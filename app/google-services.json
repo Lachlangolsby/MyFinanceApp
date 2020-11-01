@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "433178806389-77tosqqcojr7ved4rp1el3blqck7p6ml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "au.edu.unsw.infs3634.gamifiedlearning",
+            "certificate_hash": "9bc91011f1dfa013d1ae4c304a8655467192b20f"
+          }
+        },
+        {
           "client_id": "433178806389-jpurhfe8eqf8jtsnad29gglighstn8vd.apps.googleusercontent.com",
           "client_type": 3
         }
