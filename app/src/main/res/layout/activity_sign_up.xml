@@ -2,47 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/gradientlist"
     tools:context=".SignUp">
 
-
-    <TextView
-        android:id="@+id/tvSignUpTitle"
-        android:layout_width="106dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Sign up"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/archivo_black"
-        android:text="MyFinance"
-        android:textColor="#FF5722"
-        android:textColorLink="#000000"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvSignUpTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846" />
 
     <EditText
         android:id="@+id/ptEmail"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#000000"
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textPersonName"
@@ -58,7 +29,6 @@
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#000000"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
@@ -82,11 +52,12 @@
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="159dp"
+        android:layout_height="41dp"
         android:layout_marginTop="25dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/roundedbutton"
         android:text="Register and Sign In"
+        android:textColor="#4A4747"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ptPhoneNumber" />
@@ -96,7 +67,6 @@
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#000000"
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="textPersonName"
@@ -110,15 +80,25 @@
         android:id="@+id/ptFullName"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#000000"
+        android:layout_marginTop="220dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignUpTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="406dp"
+        android:layout_height="382dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ptEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

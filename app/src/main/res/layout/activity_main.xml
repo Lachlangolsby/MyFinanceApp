@@ -2,57 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".MainActivity"
-   >
+    android:background="@drawable/gradientlist"
+    tools:context=".MainActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="173dp"
-        android:layout_height="45dp"
+        android:layout_width="124dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/roundedbutton"
+        app:colorScheme="light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/tvSignUpTitle"
-        android:layout_width="106dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="MyFinance"
-        android:textColor="#FF5722"
-        android:textColorLink="#000000"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/ptEmail"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#000000"
+        android:layout_marginTop="270dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -61,14 +34,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignUpTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ptPassword"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#000000"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
@@ -81,11 +53,13 @@
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/roundedbutton"
+        android:shape="rectangle"
         android:text="Sign In"
+        android:textColor="#4A4747"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ptPassword" />
@@ -101,17 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="103dp"
-        android:layout_height="14dp"
-        android:layout_marginTop="30dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
-
     <TextView
         android:id="@+id/tvCreateAccount"
         android:layout_width="wrap_content"
@@ -122,6 +85,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="620dp"
+        android:layout_height="386dp"
+        app:layout_constraintBottom_toTopOf="@+id/ptPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
