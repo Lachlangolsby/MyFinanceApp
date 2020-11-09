@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item android:title="Settings">
+            <menu>
+                <item android:id="@+id/mProfile"
+                    android:title="Profile"
+                    android:icon="@drawable/baseline_account_circle_black_18dp"/>
+                <item android:id="@+id/mSettings"
+                    android:title="Settings"
+                    android:icon="@drawable/baseline_settings_black_18dp"/>
+
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item android:title="Navigation">
+            <menu>
+                <item android:id="@+id/mHome"
+                    android:title="Home"
+                    android:icon="@drawable/baseline_home_black_18dp"/>
+                <item android:id="@+id/mModule1"
+                    android:title="Page1"
+                    android:icon="@drawable/baseline_settings_black_18dp"/>
+                <item android:id="@+id/mModule2"
+                    android:title="Page2"
+                    android:icon="@drawable/baseline_settings_black_18dp"/>
+                <item android:id="@+id/mModule3"
+                    android:title="Page3"
+                    android:icon="@drawable/baseline_settings_black_18dp"/>
+
+            </menu>
+        </item>
+    </group>
+
+    <item android:id="@+id/mLogout"
+        android:title="Log Out"
+        android:icon="@drawable/baseline_login_black_18dp"/>
+
+
+
+
+
+</menu>
