@@ -13,14 +13,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
+//import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static au.edu.unsw.infs3634.gamifiedlearning.MainActivity.mGoogleSignInClient;
 
 public class HomePage extends AppCompatActivity {
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
+   // NavigationView navigationView;
     ActionBarDrawerToggle toggle;
 
 
