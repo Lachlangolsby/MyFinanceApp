@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">GamifiedLearning</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-
-
+    <string name="app_name">TestingApp</string>
+    <string name="Title">This is my testing app</string>
+    <string name="Enter">Enter Page 2</string>
+    <string name="Enter2">Enter Page 3</string>
+    <string name="Page2">This is Page 2</string>
+    <string name="Page3">This is Page 3</string>
 </resources>
