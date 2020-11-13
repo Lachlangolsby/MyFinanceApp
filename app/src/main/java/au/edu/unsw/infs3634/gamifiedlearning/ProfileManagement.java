@@ -29,6 +29,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firestore.v1.Value;
 
 import java.util.Objects;
@@ -40,7 +45,11 @@ public class ProfileManagement extends AppCompatActivity {
     EditText mEmail, mPassword, mName, mPhone;
     Button mUpdateEmail, mUpdatePassword, mUpdatephone, mUpdateName;
 
-    FirebaseUser user;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+
+    private String userID;
+
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -62,28 +71,32 @@ public class ProfileManagement extends AppCompatActivity {
         mUpdatephone = findViewById(R.id.btnUpdatePhone);
         mName = (findViewById(R.id.etName));
         mPhone = (findViewById(R.id.etPhone));
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
 
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
 
-        if (user != null) {
-            for (UserInfo profile : user.getProviderData()) {
-                // Id of the provider (ex: google.com)
-                String providerId = profile.getProviderId();
+                if (userProfile !=null){
+                    String fullName = userProfile.Name;
+                    String email = userProfile.Email;
+                    String phoneNumber = userProfile.PhoneNumber;
 
-                // UID specific to the provider
-                String uid = profile.getUid();
-
-                // Name, email address, and profile photo Url
-                String name = profile.getDisplayName();
-                String email = profile.getEmail();
-                String phone = profile.getPhoneNumber();
-                Uri photoUrl = profile.getPhotoUrl();
-
-                mEmail.setText(email);
-                mName.setText(name);
-                mPhone.setText(phone);
-                mPassword.setText("*******");
+                    mEmail.setText(email);
+                    mName.setText(fullName);
+                    mPhone.setText (phoneNumber);
+                }
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProfileManagement.this, "Data could not be loaded", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         mUpdateName.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
