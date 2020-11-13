@@ -73,7 +73,7 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(HomePage.this,HomePage.class);// Change this to change pages later
+                    Intent intent = new Intent(HomePage.this,SmartInvesting.class);// Change this to change pages later
                     intent.putExtra("info","This is activity from card item index  "+finalI);
                     startActivity(intent);
 
