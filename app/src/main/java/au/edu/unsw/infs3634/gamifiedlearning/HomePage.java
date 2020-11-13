@@ -95,6 +95,8 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId()){
         case R.id.mProfile:
         Toast.makeText(HomePage.this, "Profile page", Toast.LENGTH_SHORT);
+            Intent activityChangeIntent = new Intent(HomePage.this, ProfileManagement.class);
+            HomePage.this.startActivity(activityChangeIntent);
         drawerLayout.closeDrawers();
         break;
         case R.id.mSettings:
@@ -120,8 +122,8 @@ public class HomePage extends AppCompatActivity {
         case R.id.mLogout:
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(HomePage.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
-        Intent activityChangeIntent = new Intent(HomePage.this, MainActivity.class);
-        HomePage.this.startActivity(activityChangeIntent);
+        Intent activityChangeIntent2 = new Intent(HomePage.this, MainActivity.class);
+        HomePage.this.startActivity(activityChangeIntent2);
         drawerLayout.closeDrawers();
         break;
         }

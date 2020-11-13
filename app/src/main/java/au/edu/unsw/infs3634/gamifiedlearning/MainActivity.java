@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private int resultCodeSI = 1;
     private EditText mEmail, mPassword;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
