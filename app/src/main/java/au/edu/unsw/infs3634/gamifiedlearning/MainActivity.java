@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {MainActivity.this.launchDetailActivity("Second page");
+            public void onClick(View v) {MainActivity.this.launchFinCalcActivity("Second page");
             }
         });
 
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void launchDetailActivity(String message) {
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+    private void launchFinCalcActivity(String message) {
+        Intent intent = new Intent(MainActivity.this, FinCalc.class);
                 startActivity(intent);
     }
 
