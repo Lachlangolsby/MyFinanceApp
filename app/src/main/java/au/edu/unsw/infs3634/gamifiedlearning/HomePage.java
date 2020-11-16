@@ -26,6 +26,7 @@ public class HomePage extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     GridLayout mainGrid;
+    CardView cv1, cv2,cv3,cv4,cv5;
 
 
     @Override
@@ -34,6 +35,14 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
+        cv1 = findViewById(R.id.cv1);
+        cv2 = findViewById(R.id.cv2);
+        cv3 = findViewById(R.id.cv3);
+        cv4 = findViewById(R.id.cv4);
+        cv5 = findViewById(R.id.cv5);
+
+
+
 
         //Set Event
         setSingleEvent(mainGrid);
@@ -63,23 +72,60 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-    private void setSingleEvent(GridLayout mainGrid) {
+    private void setSingleEvent(final GridLayout mainGrid) {
         //Loop all child item of Main Grid
-        for (int i = 0; i < mainGrid.getChildCount(); i++) {
-            //You can see , all child item is CardView , so we just cast object to CardView
-            CardView cardView = (CardView) mainGrid.getChildAt(i);
-            final int finalI = i;
-            cardView.setOnClickListener(new View.OnClickListener() {
+
+            cv1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(HomePage.this,SmartInvesting.class);// Change this to change pages later
-                    intent.putExtra("info","This is activity from card item index  "+finalI);
-                    startActivity(intent);
+                        Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                        intent.putExtra("info", "This is activity from card item index  ");
+                        startActivity(intent);
 
                 }
             });
-        }
+        cv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+        cv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(HomePage.this, FinancialGoalSetting.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+        cv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+        cv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+
 
         navigationView = findViewById(R.id.nav_View);
                 drawerLayout = findViewById(R.id.drawerlayout);
