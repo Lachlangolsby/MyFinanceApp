@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'com.google.firebase:firebase-database:19.5.1'
     implementation files('YouTubeAndroidPlayerApi.jar')
+    implementation 'androidx.room:room-runtime:2.2.5'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -52,5 +53,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
     implementation 'com.google.android.material:material:1.2.1'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
 
 }

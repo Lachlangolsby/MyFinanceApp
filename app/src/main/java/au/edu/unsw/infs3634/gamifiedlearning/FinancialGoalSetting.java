@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FinancialGoalSetting extends AppCompatActivity {
     ImageView yt, calc;
     TextView content, content2, link1,link2;
+    Button goToQuiz;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -26,6 +28,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
         calc = findViewById(R.id.ivCalculator);
         link1 = findViewById(R.id.tvLink1);
         link2 = findViewById(R.id.tvLink2);
+        goToQuiz = findViewById(R.id.btQuiz);
 
 
         content.setText(
@@ -126,6 +129,15 @@ public class FinancialGoalSetting extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ndh.org.au/"));
                 startActivity(intent);
+            }
+        });
+
+        goToQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activityChangeIntent = new Intent(FinancialGoalSetting.this, FinancialGoalSettingQuizLanding.class);
+                FinancialGoalSetting.this.startActivity(activityChangeIntent);
+
             }
         });
 

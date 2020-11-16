@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    android:padding="16dp"
+    tools:context=".SmartInvestingQuiz">
+
+    <ImageView
+        android:id="@+id/sound2"
+        android:layout_width="46dp"
+        android:layout_height="44dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_lock_silent_mode"
+        app:tint="#FF0000" />
+
+    <TextView
+        android:id="@+id/tvQuestionCount"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvQuestion"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="Question: 1/x"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvQuestionCount"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="3dp"
+        android:text="Score: 0"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="350dp"
+        android:layout_height="109dp"
+        android:layout_above="@id/radio_group"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="39dp"
+        android:layout_marginBottom="0dp"
+        android:text="Here will be the question text\nHere will be the question text\nHere will be the question text"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+        <RadioButton
+            android:id="@+id/rbA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1" />
+        <RadioButton
+            android:id="@+id/rbB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 2" />
+        <RadioButton
+            android:id="@+id/rbC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 3" />
+        <RadioButton
+            android:id="@+id/rbD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 4" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btCOnfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radio_group"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Confirm" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/logo" />
+
+</RelativeLayout>

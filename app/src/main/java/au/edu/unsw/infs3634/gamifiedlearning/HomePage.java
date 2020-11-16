@@ -155,11 +155,15 @@ public class HomePage extends AppCompatActivity {
         break;
         case R.id.mModule1:
         Toast.makeText(HomePage.this, "Module1", Toast.LENGTH_SHORT);
+            Intent activityChangeIntentSmartInvesting = new Intent(HomePage.this, SmartInvesting.class);
+            HomePage.this.startActivity(activityChangeIntentSmartInvesting);
         drawerLayout.closeDrawers();
         break;
         case R.id.mModule2:
         Toast.makeText(HomePage.this, "Module2", Toast.LENGTH_SHORT);
         drawerLayout.closeDrawers();
+            Intent activityChangeIntentFG = new Intent(HomePage.this, FinancialGoalSetting.class);
+            HomePage.this.startActivity(activityChangeIntentFG);
         break;
         case R.id.mModule3:
         Toast.makeText(HomePage.this, "Module3", Toast.LENGTH_SHORT);

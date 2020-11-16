@@ -12,8 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinancialGoalSetting"/>
-        <activity android:name=".SmartInvesting"/>
+        <activity android:name=".QuizTopicSelection"></activity>
+        <activity android:name=".FinancialGoalSettingQuiz" />
+        <activity android:name=".FinancialGoalSettingQuizLanding" />
+        <activity android:name=".SmartInvestingQuizLanding" />
+        <activity android:name=".SmartInvestingQuiz" />
+        <activity android:name=".FinancialGoalSetting" />
+        <activity android:name=".SmartInvesting" />
         <activity android:name=".ProfileManagement" />
         <activity android:name=".SignUp" />
         <activity android:name=".HomePage" />

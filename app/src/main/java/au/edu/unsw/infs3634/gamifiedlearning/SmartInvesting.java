@@ -1,30 +1,24 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
+import androidx.appcompat.app.AppCompatActivity;
 
 
-public class SmartInvesting extends  YouTubeBaseActivity {
+
+
+public class SmartInvesting extends AppCompatActivity {
     ImageView yTLogo;
     TextView content, content2;
+    Button goToQuiz;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -34,6 +28,7 @@ public class SmartInvesting extends  YouTubeBaseActivity {
         yTLogo = findViewById(R.id.ivYT);
         content = findViewById(R.id.tvDescription);
         content2 = findViewById(R.id.tvContents2);
+        goToQuiz = findViewById(R.id.btQuiz1);
 
         content.setText("Golden rules of investing\n\n" +
                 "Pay off your debts first — pay off any loans, like a credit card or personal loan, before you invest.\n\n" +
@@ -127,7 +122,14 @@ public class SmartInvesting extends  YouTubeBaseActivity {
                 startActivity(intent);
             }
         });
+        goToQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activityChangeIntent = new Intent(SmartInvesting.this, SmartInvestingQuizLanding.class);
+                SmartInvesting.this.startActivity(activityChangeIntent);
 
+            }
+        });
 
     }
 
