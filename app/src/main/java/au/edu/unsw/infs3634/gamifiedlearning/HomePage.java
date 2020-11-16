@@ -26,7 +26,7 @@ public class HomePage extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     GridLayout mainGrid;
-    CardView cv1, cv2,cv3,cv4,cv5;
+    CardView cv1, cv2,cv3,cv4,cv5,cv6;
 
 
     @Override
@@ -40,6 +40,7 @@ public class HomePage extends AppCompatActivity {
         cv3 = findViewById(R.id.cv3);
         cv4 = findViewById(R.id.cv4);
         cv5 = findViewById(R.id.cv5);
+        cv6 = findViewById(R.id.cv6);
 
 
 
@@ -125,6 +126,16 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+        cv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(HomePage.this, QuizTopicSelection.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
 
 
         navigationView = findViewById(R.id.nav_View);
@@ -145,30 +156,40 @@ public class HomePage extends AppCompatActivity {
             HomePage.this.startActivity(activityChangeIntent);
         drawerLayout.closeDrawers();
         break;
-        case R.id.mSettings:
-        Toast.makeText(HomePage.this, "Settings", Toast.LENGTH_SHORT);
-        drawerLayout.closeDrawers();
-        break;
         case R.id.mHome:
         Toast.makeText(HomePage.this, "Home", Toast.LENGTH_SHORT);
         drawerLayout.closeDrawers();
         break;
-        case R.id.mModule1:
-        Toast.makeText(HomePage.this, "Module1", Toast.LENGTH_SHORT);
+            case R.id.mModule1:
+                Toast.makeText(HomePage.this, "Module1", Toast.LENGTH_SHORT);
+                Intent activityChangeIntentCalculator = new Intent(HomePage.this, SmartInvesting.class);
+                HomePage.this.startActivity(activityChangeIntentCalculator);
+                drawerLayout.closeDrawers();
+                break;
+        case R.id.mModule2:
+        Toast.makeText(HomePage.this, "Module2", Toast.LENGTH_SHORT);
             Intent activityChangeIntentSmartInvesting = new Intent(HomePage.this, SmartInvesting.class);
             HomePage.this.startActivity(activityChangeIntentSmartInvesting);
         drawerLayout.closeDrawers();
         break;
-        case R.id.mModule2:
-        Toast.makeText(HomePage.this, "Module2", Toast.LENGTH_SHORT);
+        case R.id.mModule3:
+        Toast.makeText(HomePage.this, "Module3", Toast.LENGTH_SHORT);
         drawerLayout.closeDrawers();
             Intent activityChangeIntentFG = new Intent(HomePage.this, FinancialGoalSetting.class);
             HomePage.this.startActivity(activityChangeIntentFG);
         break;
-        case R.id.mModule3:
-        Toast.makeText(HomePage.this, "Module3", Toast.LENGTH_SHORT);
+        case R.id.mModule4:
+        Toast.makeText(HomePage.this, "Module 4", Toast.LENGTH_SHORT);
+            Intent activityChangeIntentQS = new Intent(HomePage.this, QuizTopicSelection.class);
+            HomePage.this.startActivity(activityChangeIntentQS);
         drawerLayout.closeDrawers();
         break;
+            case R.id.mModule5:
+                Toast.makeText(HomePage.this, "Module 5", Toast.LENGTH_SHORT);
+                Intent activityChangeIntentB = new Intent(HomePage.this, QuizTopicSelection.class);
+                HomePage.this.startActivity(activityChangeIntentB);
+                drawerLayout.closeDrawers();
+                break;
         case R.id.mLogout:
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(HomePage.this, "You are Logged Out", Toast.LENGTH_SHORT).show();

@@ -1,21 +1,32 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FinancialGoalSetting extends AppCompatActivity {
     ImageView yt, calc;
     TextView content, content2, link1,link2;
     Button goToQuiz;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -141,8 +152,86 @@ public class FinancialGoalSetting extends AppCompatActivity {
             }
         });
 
+
+    navigationView = findViewById(R.id.nav_View);
+    drawerLayout = findViewById(R.id.financialGoalSettinglayout);
+
+    toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.mProfile:
+                        Toast.makeText(FinancialGoalSetting.this, "Profile page", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntent = new Intent(FinancialGoalSetting.this, ProfileManagement.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntent);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mHome:
+                        Toast.makeText(FinancialGoalSetting.this, "Home", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentHome = new Intent(FinancialGoalSetting.this, HomePage.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentHome);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule1:
+                        Toast.makeText(FinancialGoalSetting.this, "Module1", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentCalculator = new Intent(FinancialGoalSetting.this, SmartInvesting.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentCalculator);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule2:
+                        Toast.makeText(FinancialGoalSetting.this, "Module2", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentSmartInvesting = new Intent(FinancialGoalSetting.this, SmartInvesting.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentSmartInvesting);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule3:
+                        Toast.makeText(FinancialGoalSetting.this, "Module3", Toast.LENGTH_SHORT);
+                        drawerLayout.closeDrawers();
+                        Intent activityChangeIntentFG = new Intent(FinancialGoalSetting.this, FinancialGoalSetting.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentFG);
+                        break;
+                    case R.id.mModule4:
+                        Toast.makeText(FinancialGoalSetting.this, "Module 4", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentQS = new Intent(FinancialGoalSetting.this, QuizTopicSelection.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentQS);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule5:
+                        Toast.makeText(FinancialGoalSetting.this, "Module 5", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentB = new Intent(FinancialGoalSetting.this, QuizTopicSelection.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mLogout:
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(FinancialGoalSetting.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
+                        Intent activityChangeIntent2 = new Intent(FinancialGoalSetting.this, MainActivity.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntent2);
+                        drawerLayout.closeDrawers();
+                        break;
+                }
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
+
+
+
 
 //"https://www.youtube.com/watch?v=7UpADTIi9uI
 // https://www.youtube.com/watch?v=Q24OCPVTvvI

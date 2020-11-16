@@ -3,14 +3,11 @@
 
     <group android:id="@+id/group1"
         android:checkableBehavior="single">
-        <item android:title="Settings">
+        <item android:title="User Details">
             <menu>
                 <item android:id="@+id/mProfile"
                     android:title="Profile"
                     android:icon="@drawable/baseline_account_circle_black_18dp"/>
-                <item android:id="@+id/mSettings"
-                    android:title="Settings"
-                    android:icon="@drawable/baseline_settings_black_18dp"/>
 
             </menu>
         </item>
@@ -24,14 +21,20 @@
                     android:title="Home"
                     android:icon="@drawable/baseline_home_black_18dp"/>
                 <item android:id="@+id/mModule1"
+                    android:title="Financial Calculator"
+                    android:icon="@drawable/financialcalcmenu"/>
+                <item android:id="@+id/mModule2"
                     android:title="Smart Investing"
                     android:icon="@drawable/smartinvesting"/>
-                <item android:id="@+id/mModule2"
-                    android:title="Smart Financial Goal setting"
-                    android:icon="@drawable/financialgoal"/>
                 <item android:id="@+id/mModule3"
-                    android:title="Page3"
-                    android:icon="@drawable/baseline_settings_black_18dp"/>
+                    android:title="Smart Financial Goal setting"
+                    android:icon="@drawable/goalmenu"/>
+                <item android:id="@+id/mModule4"
+                    android:title="Quizes"
+                    android:icon="@drawable/quizmenu"/>
+                <item android:id="@+id/mModule5"
+                    android:title="Badges"
+                    android:icon="@drawable/badge1"/>
 
             </menu>
         </item>
