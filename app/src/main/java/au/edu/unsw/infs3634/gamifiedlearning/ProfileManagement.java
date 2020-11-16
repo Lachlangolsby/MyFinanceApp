@@ -159,15 +159,21 @@ public class ProfileManagement extends AppCompatActivity {
                         break;
                     case R.id.mHome:
                         Toast.makeText(ProfileManagement.this, "Home", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentHome = new Intent(ProfileManagement.this, HomePage.class);
+                        ProfileManagement.this.startActivity(activityChangeIntentHome);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mModule1:
                         Toast.makeText(ProfileManagement.this, "Module1", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentSmartInvesting = new Intent(ProfileManagement.this, SmartInvesting.class);
+                        ProfileManagement.this.startActivity(activityChangeIntentSmartInvesting);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mModule2:
                         Toast.makeText(ProfileManagement.this, "Module2", Toast.LENGTH_SHORT);
                         drawerLayout.closeDrawers();
+                        Intent activityChangeIntentFG = new Intent(ProfileManagement.this, FinancialGoalSetting.class);
+                        ProfileManagement.this.startActivity(activityChangeIntentFG);
                         break;
                     case R.id.mModule3:
                         Toast.makeText(ProfileManagement.this, "Module3", Toast.LENGTH_SHORT);
@@ -185,9 +191,15 @@ public class ProfileManagement extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
 
 

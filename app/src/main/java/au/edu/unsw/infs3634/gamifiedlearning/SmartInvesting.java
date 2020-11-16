@@ -9,15 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-
+import com.google.android.material.navigation.NavigationView;
 
 
 public class SmartInvesting extends AppCompatActivity {
     ImageView yTLogo;
     TextView content, content2;
     Button goToQuiz;
+
 
 
     @SuppressLint("SetTextI18n")
