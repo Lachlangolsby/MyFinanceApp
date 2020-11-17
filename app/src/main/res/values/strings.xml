@@ -5,4 +5,8 @@
     <string name="Enter2">Enter Page 3</string>
     <string name="Page2">These financial calculators will assist you in bringing your money under control and help it grow</string>
     <string name="Page3">This is Page 3</string>
+    <string name="EmergencyFund">Emergency Fund</string>
+    <string name="CreditCard">Credit Card Repayments</string>
+    <string name="CompoundInterest">Compound Interest</string>
+    <string name="Irregular">Irregular Payments</string>
 </resources>
