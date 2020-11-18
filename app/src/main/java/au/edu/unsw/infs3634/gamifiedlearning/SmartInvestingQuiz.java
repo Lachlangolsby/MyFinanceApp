@@ -1,12 +1,15 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +17,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.protobuf.StringValue;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.Collections;
 import java.util.List;
@@ -162,15 +175,45 @@ public class SmartInvestingQuiz extends AppCompatActivity {
             buttonConfirmNext.setText("Next");
         } else {
             buttonConfirmNext.setText("Finish");
+
         }
     }
 
-    private void finishQuiz() {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(EXTRA_SCORE, score);
-        setResult(RESULT_OK, resultIntent);
-        finish();
+    public void finishQuiz() {
+
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        final String userid =user.getUid();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+
+                    String result = userProfile.SIScore;
+                    if (score > Integer.parseInt(result) ){
+                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations new highScore", Toast.LENGTH_LONG).show();
+                        reference.child(userid).child("SIScore").setValue(String.valueOf(score));
+                    }else {
+                        FirebaseDatabase.getInstance().getReference("Users").child("SIScore").setValue(result);
+                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations ", Toast.LENGTH_LONG).show();
+
+                    }
+                Intent activityChangeIntentQS = new Intent(SmartInvestingQuiz.this, SmartInvestingQuizLanding.class);
+                SmartInvestingQuiz.this.startActivity(activityChangeIntentQS);
+             finish();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+      // finish();
     }
+
     @Override
     public void onBackPressed() {
         if (backPressed + 2000 > System.currentTimeMillis()) {

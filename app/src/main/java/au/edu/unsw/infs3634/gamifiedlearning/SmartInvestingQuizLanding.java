@@ -19,6 +19,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class SmartInvestingQuizLanding extends AppCompatActivity {
@@ -28,7 +34,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     public static final String KEY_HIGHSCORE = "keyHighscore";
 
     private TextView textViewHighscore;
-    private int highscore;
+    private String highscore;
 
     public static MediaPlayer mediaPlayer = null;
 
@@ -147,31 +153,53 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     private void startQuiz() {
         Intent intent = new Intent(SmartInvestingQuizLanding.this, SmartInvestingQuiz.class);
         startActivityForResult(intent,REQUEST_CODE);
+        finish();
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                int score = data.getIntExtra(SmartInvestingQuiz.EXTRA_SCORE, 0);
-                if (score > highscore) {
-                    updateHighscore(score);
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                int score = data.getIntExtra(SmartInvestingQuiz.EXTRA_SCORE, 0);
+//                if (score > highscore) {
+//                    updateHighscore(score);
+//                }
+//            }
+//        }
+//    }
+    private void loadHighscore() {
+
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        String userid =user.getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+
+                if (userProfile !=null){
+                    String result = userProfile.SIScore;
+                    highscore = result;
+                    textViewHighscore.setText("HighScore: "+highscore);
+
+
                 }
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
-    private void loadHighscore() {
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        highscore = prefs.getInt(KEY_HIGHSCORE, 0);
-        textViewHighscore.setText("Highscore: " + highscore);
-    }
-    private void updateHighscore(int highscoreNew) {
-        highscore = highscoreNew;
-        textViewHighscore.setText("Highscore: " + highscore);
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(KEY_HIGHSCORE, highscore);
-        editor.apply();
-    }
+//    private void updateHighscore(int highscoreNew) {
+//        highscore = highscoreNew;
+//        textViewHighscore.setText("Highscore: " + highscore);
+//        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putInt(KEY_HIGHSCORE, highscore);
+//        editor.apply();
+//    }
 }
 

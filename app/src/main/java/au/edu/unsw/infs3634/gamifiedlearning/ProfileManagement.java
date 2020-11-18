@@ -63,6 +63,8 @@ public class ProfileManagement extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
 
+
+
         mEmail = (findViewById(R.id.etEmail));
         mPassword = (findViewById(R.id.etPassword));
         mUpdateEmail = findViewById(R.id.btnUpdateEmail);

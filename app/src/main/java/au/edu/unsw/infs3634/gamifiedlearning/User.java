@@ -2,7 +2,8 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 
 public class User {
     public String Name, Email, PhoneNumber;
-    public int SIScore, FGSScore;
+    public String SIScore;
+    public String FGSScore;
 
     public User()
 
@@ -10,7 +11,7 @@ public class User {
     }
 
 
-    public User(String fullName, String Email, String PhoneNumber, int  SIScore, int FGSScore) {
+    public User(String fullName, String Email, String PhoneNumber, String  SIScore, String FGSScore) {
         this.Name = fullName;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
