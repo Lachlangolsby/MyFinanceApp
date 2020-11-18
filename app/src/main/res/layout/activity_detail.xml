@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FinCalc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvPage2"
+        android:layout_width="265dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="164dp"
+        android:gravity="center_horizontal"
+        android:text="@string/Page2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCCRepay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="@string/CreditCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCCRepay" />
+
+    <ImageView
+        android:id="@+id/ivEmergency"
+        android:layout_width="182dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="512dp"
+        android:contentDescription="@string/IrregularIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/calendar2" />
+
+    <TextView
+        android:id="@+id/tvEmergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:text="@string/EmergencyFund"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivIrregular" />
+
+    <ImageView
+        android:id="@+id/ivCompound"
+        android:layout_width="182dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:contentDescription="@string/compoundIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/compound" />
+
+    <TextView
+        android:id="@+id/tvCompound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:text="@string/CompoundInterest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCompound" />
+
+    <ImageView
+        android:id="@+id/ivIrregular"
+        android:layout_width="182dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="316dp"
+        android:contentDescription="@string/IrregularIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/insurance" />
+
+    <TextView
+        android:id="@+id/tvIrregular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:text="@string/Irregular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEmergency" />
+
+    <ImageView
+        android:id="@+id/ivCCRepay"
+        android:layout_width="182dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="316dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:contentDescription="@string/ccIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/credit" />
+</androidx.constraintlayout.widget.ConstraintLayout>
