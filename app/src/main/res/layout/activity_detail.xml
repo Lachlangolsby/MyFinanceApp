@@ -18,91 +18,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivEmergencyFund"
+    <TextView
+        android:id="@+id/tvCCRepay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="@string/CreditCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCCRepay" />
+
+    <ImageView
+        android:id="@+id/ivEmergency"
+        android:layout_width="186dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="316dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_anchor_black_48" />
-
-    <ImageView
-        android:id="@+id/ivCCRepay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_credit_card_black_48" />
-
-    <ImageView
-        android:id="@+id/ivIrregular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="496dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_directions_car_black_48" />
-
-    <ImageView
-        android:id="@+id/ivCompound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="496dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_build_black_48" />
+        app:srcCompat="@drawable/calendar" />
 
     <TextView
         android:id="@+id/tvEmergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:text="@string/EmergencyFund"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivEmergencyFund" />
+        app:layout_constraintTop_toBottomOf="@+id/ivEmergency" />
 
-    <TextView
-        android:id="@+id/tvCCRepay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="@string/CreditCard"
+    <ImageView
+        android:id="@+id/ivCompound"
+        android:layout_width="186dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCCRepay" />
-
-    <TextView
-        android:id="@+id/tvIrregular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/Irregular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIrregular" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/compound" />
 
     <TextView
         android:id="@+id/tvCompound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
         android:text="@string/CompoundInterest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCompound" />
+
+    <ImageView
+        android:id="@+id/ivIrregular"
+        android:layout_width="186dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="512dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/insurance" />
+
+    <TextView
+        android:id="@+id/tvIrregular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:text="@string/Irregular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivIrregular" />
+
+    <ImageView
+        android:id="@+id/ivCCRepay"
+        android:layout_width="176dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="316dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/credit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

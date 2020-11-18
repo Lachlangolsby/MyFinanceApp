@@ -17,6 +17,10 @@
         <activity android:name=".CCRepayCalc" />
         <activity android:name=".IrregularCalc" />
         <activity android:name=".SecondActivity" />
+        <activity android:name=".CCRepayCalc_preface" />
+        <activity android:name=".CompoundCalc_preface" />
+        <activity android:name=".EmergencyCalc_preface" />
+        <activity android:name=".IrregularCalc_preface" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

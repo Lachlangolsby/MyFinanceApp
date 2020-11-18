@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class FinCalc extends AppCompatActivity {
     private TextView mFinCalcTitle;
+    private TextView mEmergencyFund;
+    private TextView mCCRepay;
+    private TextView mIrregular;
+    private TextView mCompound;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
