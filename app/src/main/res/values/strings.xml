@@ -35,4 +35,6 @@
 
     <string name="result">This is the result: </string>
 
+    <string name="resulthint">Put this amount away each month: </string>
+
 </resources>

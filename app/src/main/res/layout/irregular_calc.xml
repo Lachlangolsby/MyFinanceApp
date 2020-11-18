@@ -21,13 +21,12 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="199dp"
         android:layout_height="43dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/expensetype"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIrregularTitle2" />
 
@@ -35,31 +34,31 @@
         android:id="@+id/editTextCost"
         android:layout_width="199dp"
         android:layout_height="43dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:text="Amount" />
+        tools:text="Amount: " />
 
     <EditText
         android:id="@+id/editTextNumber2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCost"
-        tools:text="Frequency" />
+        tools:text="Frequency: " />
 
     <TextView
         android:id="@+id/tvHint"
         android:layout_width="208dp"
         android:layout_height="56dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="40dp"
         android:gravity="center_horizontal"
         android:text="@string/hint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,12 +67,34 @@
 
     <TextView
         android:id="@+id/tvIrregularResult"
-        android:layout_width="209dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
         android:text="@string/result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIrregularCalc" />
+
+    <Button
+        android:id="@+id/btnIrregularCalc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Calculate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHint" />
+
+    <TextView
+        android:id="@+id/tvIrregularResultHint"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/resulthint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIrregularCalc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
