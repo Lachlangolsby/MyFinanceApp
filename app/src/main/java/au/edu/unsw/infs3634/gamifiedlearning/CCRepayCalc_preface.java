@@ -34,7 +34,7 @@ public class CCRepayCalc_preface extends AppCompatActivity {
                 });
     }
     private void CCRepayCalc_preface(String message) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        Intent intent = new Intent(CCRepayCalc_preface.this, IrregularCalc_preface.class);
         startActivity(intent);
     }
 }

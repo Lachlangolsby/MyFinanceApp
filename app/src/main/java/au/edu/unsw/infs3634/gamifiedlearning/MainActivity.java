@@ -22,22 +22,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { MainActivity.this.launchSecondActivity("Third page");
-
-            }
-        });
     }
 
     private void launchFinCalcActivity(String message) {
         Intent intent = new Intent(MainActivity.this, FinCalc.class);
                 startActivity(intent);
-    }
-
-    private void launchSecondActivity(String message){
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        startActivity(intent);
     }
 
 }

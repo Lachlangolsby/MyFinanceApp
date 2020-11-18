@@ -65,22 +65,22 @@ public class FinCalc extends AppCompatActivity {
     }
     //Preface page intents
     private void gotoEmergencyFundPreface(String message) {
-        Intent intent = new Intent(.gotoEmergencyFundPreface("Emergency Fund");
+        Intent intent = new Intent(FinCalc.this, EmergencyCalc_preface.class);
         startActivity(intent);
     }
 
     private void gotoIrregularPaymentsPreface(String message) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        Intent intent = new Intent(FinCalc.this, IrregularCalc_preface.class);
         startActivity(intent);
     }
 
     private void gotoCCRepaymentPreface(String message) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        Intent intent = new Intent(FinCalc.this, CCRepayCalc_preface.class);
         startActivity(intent);
     }
 
     private void gotoCompoundInterestPreface(String message) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        Intent intent = new Intent(FinCalc.this, CompoundCalc_preface.class);
         startActivity(intent);
     }
 }
