@@ -29,6 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FinCalc" />
+        <activity android:name=".CompoundCalc" />
+        <activity android:name=".EmergencyCalc" />
+        <activity android:name=".CCRepayCalc" />
+        <activity android:name=".IrregularCalc" />
+        <activity android:name=".CCRepayCalc_preface" />
+        <activity android:name=".CompoundCalc_preface" />
+        <activity android:name=".EmergencyCalc_preface" />
+        <activity android:name=".IrregularCalc_preface" />
 
         <meta-data
             android:name="preloaded_fonts"
