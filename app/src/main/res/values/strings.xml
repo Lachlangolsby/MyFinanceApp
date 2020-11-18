@@ -13,4 +13,13 @@
     <string name="emergencyIcon">This is the icon for going to Emergency Fund preface</string>
     <string name="compoundIcon">This is the icon for going to Compound Interest preface</string>
     <string name="IrregularIcon">This is the icon for going to Irregular Payments preface</string>
+    <string name="EmergencyFundPreface">Emergency Funds are a great way to ensure you do not run out of money if you temporarily lose a job, get sick or need some money for a replacement car.
+        This doesn't replace a savings account, and you are not supposed to touch this until you are really in an emergency. </string>
+    <string name="CreditCardPreface">Paying off credit card debt is a geat step to being more financially secure. Make note of your interest rate and principal amount.
+    The more you pay off the principal, the less interest you get charged.</string>
+    <string name="CompoundInterestPreface">Credit cards utilise compound interest to their advantage. You too can utilise compound interest.
+        With this calculator, you will be able to see just how much your money can grow.</string>
+    <string name="IrregularPreface">Irregular payments are often categorised as payments that happen once per year. It is common to forget that car registration is due at a particular part of the year.
+    This calcuator helps you budget by taking the overall amount and breaking it down so you can budget the entire amount over the year instead of trying to find a lump sum once a year.</string>
+    <string name="OkButton">OK</string>
 </resources>

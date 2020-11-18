@@ -1,6 +1,10 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +15,11 @@ public class FinCalc extends AppCompatActivity {
     private TextView mCCRepay;
     private TextView mIrregular;
     private TextView mCompound;
+    private ImageView mEmergencyFundIcon;
+    private ImageView mCCRepayIcon;
+    private ImageView mIrregularIcon;
+    private ImageView mCompoundIcon;
+
 
 
     @Override
@@ -19,5 +28,59 @@ public class FinCalc extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         mFinCalcTitle = findViewById(R.id.tvPage2);
+        mEmergencyFund = findViewById(R.id.tvEmergency);
+        mCCRepay = findViewById(R.id.tvCCRepay);
+        mIrregular = findViewById(R.id.tvIrregular);
+        mCompound = findViewById(R.id.tvCompound);
+        mEmergencyFundIcon = findViewById(R.id.ivEmergency);
+        mCCRepayIcon = findViewById(R.id.ivCCRepay);
+        mIrregularIcon = findViewById(R.id.ivIrregular);
+        mCompoundIcon = findViewById(R.id.ivCompound);
+
+        //Set the onClick Listeners so user clicks and goes into associated preface page
+        mEmergencyFundIcon.setOnClickListener
+                (new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) { FinCalc.this.gotoEmergencyFundPreface("Emergency Fund"); }
+                });
+
+        mIrregularIcon.setOnClickListener
+                (new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) { FinCalc.this.gotoIrregularPaymentsPreface("Irregular Payments"); }
+                });
+
+        mCCRepayIcon.setOnClickListener
+                (new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) { FinCalc.this.gotoCCRepaymentPreface("Credit Card Repayments"); }
+                });
+
+        mCompoundIcon.setOnClickListener
+                (new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) { FinCalc.this.gotoCompoundInterestPreface("Compound Interest"); }
+                });
+
+    }
+    //Preface page intents
+    private void gotoEmergencyFundPreface(String message) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        startActivity(intent);
+    }
+
+    private void gotoIrregularPaymentsPreface(String message) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        startActivity(intent);
+    }
+
+    private void gotoCCRepaymentPreface(String message) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        startActivity(intent);
+    }
+
+    private void gotoCompoundInterestPreface(String message) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        startActivity(intent);
     }
 }
