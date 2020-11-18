@@ -29,4 +29,10 @@
         <br /><br />To calculate this, you will need to know the amount you expect to pay in a lump sum e.g. a car registration or drivers licence payment.</string>
     <string name="OkButton">OK</string>
 
+    <string name="expensetype">Type of expense: </string>
+
+    <string name="hint">The frequency is how many times a year do you pay the above amount.</string>
+
+    <string name="result">This is the result: </string>
+
 </resources>
