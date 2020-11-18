@@ -1,10 +1,13 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +16,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +61,8 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financial_goal_setting_quiz);
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer.start();
         final ImageView sound = findViewById(R.id.sound2);
         sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -119,6 +132,7 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
 
         } else {
             finishQuiz();
+            stopAudio();
         }
     }
 
@@ -164,19 +178,57 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
         }
     }
 
-    private void finishQuiz() {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(EXTRA_SCORE, score);
-        setResult(RESULT_OK, resultIntent);
-        finish();
+    public void finishQuiz() {
+
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        final String userid =user.getUid();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+
+                String result = userProfile.FGSScore;
+                if (score > Integer.parseInt(result) ){
+                    Toast.makeText(FinancialGoalSettingQuiz.this, "Quiz Complete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FinancialGoalSettingQuiz.this, "Congratulations new highScore", Toast.LENGTH_LONG).show();
+                    reference.child(userid).child("FGSScore").setValue(String.valueOf(score));
+                }else {
+                    FirebaseDatabase.getInstance().getReference("Users").child("FGSScore").setValue(result);
+                    Toast.makeText(FinancialGoalSettingQuiz.this, "Quiz Complete", Toast.LENGTH_LONG).show();
+
+                }
+                Intent activityChangeIntentQS = new Intent(FinancialGoalSettingQuiz.this, FinancialGoalSettingQuizLanding.class);
+                FinancialGoalSettingQuiz.this.startActivity(activityChangeIntentQS);
+                finish();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
     @Override
     public void onBackPressed() {
         if (backPressed + 2000 > System.currentTimeMillis()) {
             finishQuiz();
+            stopAudio();
         } else {
             Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
         backPressed = System.currentTimeMillis();
+    }
+
+    private void stopAudio() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

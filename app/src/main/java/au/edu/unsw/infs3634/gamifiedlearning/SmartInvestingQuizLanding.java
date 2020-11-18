@@ -49,6 +49,8 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         mediaPlayer.start();
 
+
+
         final ImageView sound = findViewById(R.id.sound);
         sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +64,8 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             }
         });
 
+
+
         textViewHighscore = findViewById(R.id.tvHighScore);
         loadHighscore();
 
@@ -70,6 +74,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startQuiz();
+                stopAudio();
             }
         });
 
@@ -90,42 +95,49 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         Intent activityChangeIntent = new Intent(SmartInvestingQuizLanding.this, ProfileManagement.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntent);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mHome:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Home", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentHome = new Intent(SmartInvestingQuizLanding.this, HomePage.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentHome);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mModule1:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module1", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentCalculator = new Intent(SmartInvestingQuizLanding.this, SmartInvesting.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mModule2:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module2", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentSmartInvesting = new Intent(SmartInvestingQuizLanding.this, SmartInvesting.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentSmartInvesting);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mModule3:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module3", Toast.LENGTH_SHORT);
                         drawerLayout.closeDrawers();
                         Intent activityChangeIntentFG = new Intent(SmartInvestingQuizLanding.this, FinancialGoalSetting.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentFG);
+                        stopAudio();
                         break;
                     case R.id.mModule4:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module 4", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentQS = new Intent(SmartInvestingQuizLanding.this, QuizTopicSelection.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentQS);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mModule5:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(SmartInvestingQuizLanding.this, QuizTopicSelection.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -133,6 +145,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         Intent activityChangeIntent2 = new Intent(SmartInvestingQuizLanding.this, MainActivity.class);
                        SmartInvestingQuizLanding.this.startActivity(activityChangeIntent2);
                         drawerLayout.closeDrawers();
+                        stopAudio();
                         break;
                 }
 
@@ -193,6 +206,14 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             }
         });
     }
+
+    private void stopAudio() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
 //    private void updateHighscore(int highscoreNew) {
 //        highscore = highscoreNew;
 //        textViewHighscore.setText("Highscore: " + highscore);
@@ -201,5 +222,6 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
 //        editor.putInt(KEY_HIGHSCORE, highscore);
 //        editor.apply();
 //    }
+
 }
 

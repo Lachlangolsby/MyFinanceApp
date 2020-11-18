@@ -15,43 +15,29 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/ivprofile"
-            android:layout_width="56dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_account_circle_black_18dp" />
-
-
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="72dp"
             android:text="Profile Management "
             android:textColor="#4CAF50"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/ivprofile"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnUpdateName"
-            android:layout_width="60dp"
-            android:layout_height="30sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="148dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Update Name"
-            android:textSize="8sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/ivprofile"
+            android:layout_width="56dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_account_circle_black_18dp" />
 
         <EditText
             android:id="@+id/etName"
@@ -61,10 +47,34 @@
             android:layout_column="12"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="50dp"
             android:layout_weight="1"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+        <Button
+            android:id="@+id/btnUpdateName"
+            android:layout_width="60dp"
+            android:layout_height="30sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Update Name"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -72,25 +82,12 @@
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="200dp"
             android:layout_weight="1"
             android:autofillHints="email"
             android:inputType="textEmailAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
-
-        <Button
-            android:id="@+id/btnUpdateEmail"
-            android:layout_width="60dp"
-            android:layout_height="30sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Update"
-            android:textSize="8sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnUpdatePwd" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etPhone"
@@ -98,72 +95,25 @@
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:layout_weight="1"
             android:autofillHints="password"
             android:inputType="phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/etName" />
 
         <Button
             android:id="@+id/btnUpdatePhone"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="Update"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnUpdateEmail" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="35dp"
-            android:layout_weight="1"
-            android:inputType="textPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etName" />
-
-        <Button
-            android:id="@+id/btnUpdatePwd"
-            android:layout_width="60dp"
-            android:layout_height="30sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Update Password"
-            android:textSize="8sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnUpdateName" />
-
-            <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="30dp"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
-
-        <TextView
-            android:id="@+id/tvPwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:text="Password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etName" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -171,10 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="58dp"
             android:text="Email"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
 
         <TextView
             android:id="@+id/tvPhoneNumber"
@@ -182,10 +132,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Phone Number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

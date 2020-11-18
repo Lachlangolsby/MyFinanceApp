@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -66,9 +67,9 @@ public class ProfileManagement extends AppCompatActivity {
 
 
         mEmail = (findViewById(R.id.etEmail));
-        mPassword = (findViewById(R.id.etPassword));
-        mUpdateEmail = findViewById(R.id.btnUpdateEmail);
-        mUpdatePassword = findViewById(R.id.btnUpdatePwd);
+//        mPassword = (findViewById(R.id.etPassword));
+//        mUpdateEmail = findViewById(R.id.btnUpdateEmail);
+//        mUpdatePassword = findViewById(R.id.btnUpdatePwd);
         mUpdateName = findViewById(R.id.btnUpdateName);
         mUpdatephone = findViewById(R.id.btnUpdatePhone);
         mName = (findViewById(R.id.etName));
@@ -87,8 +88,8 @@ public class ProfileManagement extends AppCompatActivity {
                     String email = userProfile.Email;
                     String phoneNumber = userProfile.PhoneNumber;
 
-                    mEmail.setText(email);
                     mName.setText(fullName);
+                    mEmail.setText(email);
                     mPhone.setText (phoneNumber);
                 }
             }
@@ -101,39 +102,97 @@ public class ProfileManagement extends AppCompatActivity {
         });
 
         mUpdateName.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
             @Override
             public void onClick(View view) {
-                UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
-                builder.setDisplayName(mName.toString().trim());
-                UserProfileChangeRequest nameUpdate = builder.build();
-                FirebaseAuth.getInstance().getCurrentUser().updateProfile(nameUpdate);
-                Toast.makeText(getApplicationContext(), "Name Details updated", Toast.LENGTH_SHORT).show();
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                final String userid =user.getUid();
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("ShowToast")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User userProfile = snapshot.getValue(User.class);
+                        String result = userProfile.Name;
+                        if (!result.equals(mName)){
+                            Toast.makeText(ProfileManagement.this, "Name Updated", Toast.LENGTH_SHORT).show();
+                            reference.child(userid).child("Name").setValue(mName.getText().toString());
+                        }else{
+                            Toast.makeText(ProfileManagement.this, "Please enter an updated name", Toast.LENGTH_SHORT).show();
 
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
-        });
+            });
 
-        mUpdateEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
-                builder.setDisplayName(mEmail.toString().trim());
-                UserProfileChangeRequest emailUpdate = builder.build();
-                FirebaseAuth.getInstance().getCurrentUser().updateEmail(String.valueOf(emailUpdate));
-                Toast.makeText(getApplicationContext(), "Email Updated", Toast.LENGTH_SHORT).show();
 
-            }
-        });
+
+
+//        mUpdateEmail.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+//                final String userid =user.getUid();
+//                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+//                reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @SuppressLint("ShowToast")
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        User userProfile = snapshot.getValue(User.class);
+//                        String result = userProfile.Email;
+//                        if (!result.equals(String.valueOf(mEmail))){
+//                            Toast.makeText(ProfileManagement.this, "Email Updated", Toast.LENGTH_SHORT).show();
+//                            reference.child(userid).child("Email").setValue(mEmail.getText().toString());
+//                        }else{
+//                            Toast.makeText(ProfileManagement.this, "Please enter an updated name", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//
+//            }
+//        });
 
         mUpdatephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
-                builder.setDisplayName(mPhone.toString().trim());
-                UserProfileChangeRequest phoneUpdate = builder.build();
-                FirebaseAuth.getInstance().getCurrentUser().updateProfile(phoneUpdate);
-                Toast.makeText(getApplicationContext(), "Phone details Updated", Toast.LENGTH_SHORT).show();
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                final String userid =user.getUid();
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("ShowToast")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User userProfile = snapshot.getValue(User.class);
+                        String result = userProfile.PhoneNumber;
+                        if (!result.equals(String.valueOf(mPhone))){
+                            Toast.makeText(ProfileManagement.this, "Phone Updated", Toast.LENGTH_SHORT).show();
+                            reference.child(userid).child("PhoneNumber").setValue(mPhone.getText().toString());
+                        }else{
+                            Toast.makeText(ProfileManagement.this, "Please enter an updated name", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
         });
 

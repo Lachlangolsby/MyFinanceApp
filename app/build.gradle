@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.5.1'
     implementation files('YouTubeAndroidPlayerApi.jar')
     implementation 'androidx.room:room-runtime:2.2.5'
+    implementation 'androidx.media2:media2:1.0.0-alpha04'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -64,6 +65,8 @@ public class SmartInvestingQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smart_investing_quiz);
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer.start();
         final ImageView sound = findViewById(R.id.sound2);
         sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -133,6 +136,7 @@ public class SmartInvestingQuiz extends AppCompatActivity {
 
         } else {
             finishQuiz();
+            stopAudio();
         }
     }
 
@@ -192,11 +196,12 @@ public class SmartInvestingQuiz extends AppCompatActivity {
 
                     String result = userProfile.SIScore;
                     if (score > Integer.parseInt(result) ){
-                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations new highScore", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SmartInvestingQuiz.this, "Quiz complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations New HighScore", Toast.LENGTH_LONG).show();
                         reference.child(userid).child("SIScore").setValue(String.valueOf(score));
                     }else {
                         FirebaseDatabase.getInstance().getReference("Users").child("SIScore").setValue(result);
-                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SmartInvestingQuiz.this, "Quiz complete", Toast.LENGTH_LONG).show();
 
                     }
                 Intent activityChangeIntentQS = new Intent(SmartInvestingQuiz.this, SmartInvestingQuizLanding.class);
@@ -222,6 +227,14 @@ public class SmartInvestingQuiz extends AppCompatActivity {
             Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
         backPressed = System.currentTimeMillis();
+    }
+
+    private void stopAudio() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
 
