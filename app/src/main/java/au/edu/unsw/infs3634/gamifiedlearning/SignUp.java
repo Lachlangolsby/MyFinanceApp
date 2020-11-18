@@ -112,7 +112,7 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this, "User Created. Sign In Now", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("Users").document(userID);
-                            User user = new User(FullName, phoneNumber, email, 0, 0);
+                            User user = new User(FullName, phoneNumber, email, "0", "0");
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -3,5 +3,6 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/advent_pro_thin</item>
         <item>@font/archivo_black</item>
+        <item>@font/titillium_web</item>
     </array>
 </resources>
