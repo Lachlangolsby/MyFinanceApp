@@ -30,11 +30,12 @@
 
     <ImageView
         android:id="@+id/ivEmergency"
-        android:layout_width="186dp"
+        android:layout_width="182dp"
         android:layout_height="145dp"
         android:layout_marginStart="22dp"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="512dp"
+        android:contentDescription="@string/IrregularIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calendar" />
@@ -43,19 +44,20 @@
         android:id="@+id/tvEmergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:text="@string/EmergencyFund"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivEmergency" />
+        app:layout_constraintTop_toBottomOf="@+id/ivIrregular" />
 
     <ImageView
         android:id="@+id/ivCompound"
-        android:layout_width="186dp"
-        android:layout_height="146dp"
+        android:layout_width="182dp"
+        android:layout_height="145dp"
         android:layout_marginTop="512dp"
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
+        android:contentDescription="@string/compoundIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/compound" />
@@ -72,11 +74,12 @@
 
     <ImageView
         android:id="@+id/ivIrregular"
-        android:layout_width="186dp"
+        android:layout_width="182dp"
         android:layout_height="145dp"
         android:layout_marginStart="22dp"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="512dp"
+        android:layout_marginTop="316dp"
+        android:contentDescription="@string/IrregularIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/insurance" />
@@ -85,19 +88,20 @@
         android:id="@+id/tvIrregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
         android:text="@string/Irregular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIrregular" />
+        app:layout_constraintTop_toBottomOf="@+id/ivEmergency" />
 
     <ImageView
         android:id="@+id/ivCCRepay"
-        android:layout_width="176dp"
+        android:layout_width="182dp"
         android:layout_height="145dp"
         android:layout_marginTop="316dp"
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
+        android:contentDescription="@string/ccIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/credit" />

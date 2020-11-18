@@ -9,4 +9,8 @@
     <string name="CreditCard">Credit Card Repayments</string>
     <string name="CompoundInterest">Compound Interest</string>
     <string name="Irregular">Irregular Payments</string>
+    <string name="ccIcon">This is the icon for going to Credit Card repayment preface</string>
+    <string name="emergencyIcon">This is the icon for going to Emergency Fund preface</string>
+    <string name="compoundIcon">This is the icon for going to Compound Interest preface</string>
+    <string name="IrregularIcon">This is the icon for going to Irregular Payments preface</string>
 </resources>
