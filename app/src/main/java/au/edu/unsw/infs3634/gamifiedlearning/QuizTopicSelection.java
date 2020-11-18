@@ -69,7 +69,7 @@ public class QuizTopicSelection extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(QuizTopicSelection.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(QuizTopicSelection.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(QuizTopicSelection.this, FinCalc.class);
                         QuizTopicSelection.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         break;
@@ -93,7 +93,7 @@ public class QuizTopicSelection extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(QuizTopicSelection.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(QuizTopicSelection.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(QuizTopicSelection.this, BadgesPage.class);
                         QuizTopicSelection.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         break;

@@ -222,7 +222,7 @@ public class ProfileManagement extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(ProfileManagement.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(ProfileManagement.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(ProfileManagement.this, FinCalc.class);
                         ProfileManagement.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         break;
@@ -246,7 +246,7 @@ public class ProfileManagement extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(ProfileManagement.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(ProfileManagement.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(ProfileManagement.this, BadgesPage.class);
                         ProfileManagement.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         break;

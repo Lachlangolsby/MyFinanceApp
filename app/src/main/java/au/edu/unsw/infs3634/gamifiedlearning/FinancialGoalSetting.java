@@ -179,7 +179,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(FinancialGoalSetting.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(FinancialGoalSetting.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(FinancialGoalSetting.this, FinCalc.class);
                         FinancialGoalSetting.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         break;
@@ -203,7 +203,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(FinancialGoalSetting.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(FinancialGoalSetting.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(FinancialGoalSetting.this, BadgesPage.class);
                         FinancialGoalSetting.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         break;

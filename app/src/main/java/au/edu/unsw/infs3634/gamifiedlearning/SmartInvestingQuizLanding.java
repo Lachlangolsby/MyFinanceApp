@@ -41,6 +41,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    private long backPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(SmartInvestingQuizLanding.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(SmartInvestingQuizLanding.this, FinCalc.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         stopAudio();
@@ -134,7 +135,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(SmartInvestingQuizLanding.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(SmartInvestingQuizLanding.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(SmartInvestingQuizLanding.this, BadgesPage.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         stopAudio();
@@ -206,6 +207,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             }
         });
     }
+
 
     private void stopAudio() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {

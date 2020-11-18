@@ -80,7 +80,7 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                        Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                        Intent intent = new Intent(HomePage.this, FinCalc.class);
                         intent.putExtra("info", "This is activity from card item index  ");
                         startActivity(intent);
 
@@ -162,7 +162,7 @@ public class HomePage extends AppCompatActivity {
         break;
             case R.id.mModule1:
                 Toast.makeText(HomePage.this, "Module1", Toast.LENGTH_SHORT);
-                Intent activityChangeIntentCalculator = new Intent(HomePage.this, SmartInvesting.class);
+                Intent activityChangeIntentCalculator = new Intent(HomePage.this, FinCalc.class);
                 HomePage.this.startActivity(activityChangeIntentCalculator);
                 drawerLayout.closeDrawers();
                 break;
@@ -186,7 +186,7 @@ public class HomePage extends AppCompatActivity {
         break;
             case R.id.mModule5:
                 Toast.makeText(HomePage.this, "Module 5", Toast.LENGTH_SHORT);
-                Intent activityChangeIntentB = new Intent(HomePage.this, QuizTopicSelection.class);
+                Intent activityChangeIntentB = new Intent(HomePage.this, BadgesPage.class);
                 HomePage.this.startActivity(activityChangeIntentB);
                 drawerLayout.closeDrawers();
                 break;

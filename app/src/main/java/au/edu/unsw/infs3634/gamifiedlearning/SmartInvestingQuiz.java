@@ -223,6 +223,7 @@ public class SmartInvestingQuiz extends AppCompatActivity {
     public void onBackPressed() {
         if (backPressed + 2000 > System.currentTimeMillis()) {
             finishQuiz();
+            stopAudio();
         } else {
             Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
