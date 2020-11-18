@@ -65,7 +65,7 @@ public class FinCalc extends AppCompatActivity {
     }
     //Preface page intents
     private void gotoEmergencyFundPreface(String message) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        Intent intent = new Intent(.gotoEmergencyFundPreface("Emergency Fund");
         startActivity(intent);
     }
 
