@@ -11,31 +11,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class IrregularCalc_preface extends AppCompatActivity {
 
-    private TextView mTvRepayTitle;
-    private TextView mTvCCRepayPreface;
-    private Button mBtnCCRepay;
-    private ImageView mIvCCRepay2;
+    private TextView mTvIrregularTitle;
+    private TextView mTvIrregularCalcPreface;
+    private Button mBtnIrregular;
+    private ImageView mIvIrregularPreface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ccrepaycalc_preface);
+        setContentView(R.layout.irregularcalc_preface);
 
-        mTvRepayTitle = findViewById(R.id.tvRepayTitle);
-        mTvCCRepayPreface = findViewById(R.id.tvCCRepayPreface);
-        mBtnCCRepay = findViewById(R.id.btnCCRepay);
-        mIvCCRepay2 = findViewById(R.id.ivCCRepay2);
+        mTvIrregularTitle = findViewById(R.id.tvIrregularTitle);
+        mTvIrregularCalcPreface = findViewById(R.id.tvIrregularCalcPreface);
+        mBtnIrregular = findViewById(R.id.btnIrregular);
+        mIvIrregularPreface = findViewById(R.id.ivIrregularPreface);
 
-        mBtnCCRepay.setOnClickListener
+        mBtnIrregular.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) { CCRepayCalc_preface.this.CCRepayCalc_preface("CC Repay"); }
+                    public void onClick(View v) {
+                        IrregularCalc_preface("Irregular Payments"); }
                 });
     }
-    private void CCRepayCalc_preface(String message) {
-        Intent intent = new Intent(CCRepayCalc_preface.this, IrregularCalc_preface.class);
+    private void IrregularCalc_preface(String message) {
+        Intent intent = new Intent(IrregularCalc_preface.this, IrregularCalc.class);
         startActivity(intent);
     }
-
 
 }

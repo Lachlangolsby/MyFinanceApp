@@ -30,11 +30,12 @@ public class CCRepayCalc_preface extends AppCompatActivity {
         mBtnCCRepay.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) { CCRepayCalc_preface.this.CCRepayCalc_preface("CC Repay"); }
+                    public void onClick(View v) {
+                        CCRepayCalc_preface("CC Repay"); }
                 });
     }
     private void CCRepayCalc_preface(String message) {
-        Intent intent = new Intent(CCRepayCalc_preface.this, IrregularCalc_preface.class);
+        Intent intent = new Intent(CCRepayCalc_preface.this, CCRepayCalc.class);
         startActivity(intent);
     }
 }

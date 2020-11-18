@@ -11,29 +11,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EmergencyCalc_preface extends AppCompatActivity {
 
-    private TextView mTvRepayTitle;
-    private TextView mTvCCRepayPreface;
-    private Button mBtnCCRepay;
-    private ImageView mIvCCRepay2;
+    private TextView mTvEmergencyTitle;
+    private TextView mTvEmergencyCalcPreface;
+    private Button mBtnEmergency;
+    private ImageView mIvEmergencyPreface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ccrepaycalc_preface);
+        setContentView(R.layout.emergencycalc_preface);
 
-        mTvRepayTitle = findViewById(R.id.tvRepayTitle);
-        mTvCCRepayPreface = findViewById(R.id.tvCCRepayPreface);
-        mBtnCCRepay = findViewById(R.id.btnCCRepay);
-        mIvCCRepay2 = findViewById(R.id.ivCCRepay2);
+        mTvEmergencyTitle = findViewById(R.id.tvEmergencyTitle);
+        mTvEmergencyCalcPreface = findViewById(R.id.tvEmergencyCalcPreface);
+        mBtnEmergency = findViewById(R.id.btnEmergency);
+        mIvEmergencyPreface = findViewById(R.id.ivEmergencyPreface);
 
-        mBtnCCRepay.setOnClickListener
+        mBtnEmergency.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) { CCRepayCalc_preface.this.CCRepayCalc_preface("CC Repay"); }
+                    public void onClick(View v) {
+                        EmergencyCalc("Emergency Fund"); }
                 });
     }
-    private void CCRepayCalc_preface(String message) {
-        Intent intent = new Intent(CCRepayCalc_preface.this, IrregularCalc_preface.class);
+    private void EmergencyCalc(String message) {
+        Intent intent = new Intent(EmergencyCalc_preface.this, EmergencyCalc.class);
         startActivity(intent);
     }
 }

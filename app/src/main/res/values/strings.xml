@@ -13,13 +13,20 @@
     <string name="emergencyIcon">This is the icon for going to Emergency Fund preface</string>
     <string name="compoundIcon">This is the icon for going to Compound Interest preface</string>
     <string name="IrregularIcon">This is the icon for going to Irregular Payments preface</string>
+
     <string name="EmergencyFundPreface">Emergency Funds are a great way to ensure you do not run out of money if you temporarily lose a job, get sick or need some money for a replacement car.
-        This doesn't replace a savings account, and you are not supposed to touch this until you are really in an emergency. </string>
+        This does NOT replace a savings account, and you are not supposed to touch this until you are really in an emergency.<br /><br />To calculate this, you will need a rough idea of your weekly expenses</string>
+
     <string name="CreditCardPreface">Paying off credit card debt is a geat step to being more financially secure. Make note of your interest rate and principal amount.
-    The more you pay off the principal, the less interest you get charged.</string>
+    The more you pay off the principal, the less interest you get charged.<br /><br />To calculate this, you will need to find out a few things such as the interest rate in percentage terms,
+        the monthly minimum repayment, any annual fees and how much you think you could pay off. </string>
+
     <string name="CompoundInterestPreface">Credit cards utilise compound interest to their advantage. You too can utilise compound interest.
-        With this calculator, you will be able to see just how much your money can grow.</string>
+        With this calculator, you will be able to see just how much your money can grow.<br /><br />To calculate this, you will need to know the amount you wish to invest,
+        for how long you wish to onvest it, and if the interest if calculated daily, monthly or yearly.</string>
+
     <string name="IrregularPreface">Irregular payments are often categorised as payments that happen once per year. It is common to forget that car registration is due at a particular part of the year.
-    This calcuator helps you budget by taking the overall amount and breaking it down so you can budget the entire amount over the year instead of trying to find a lump sum once a year.</string>
+    This calcuator helps you budget by taking the overall amount and breaking it down so you can budget the entire amount over the year instead of trying to find a lump sum once a year.
+        <br /><br />To calculate this, you will need to know the amount you expect to pay in a lump sum e.g. a car registration or drivers licence payment.</string>
     <string name="OkButton">OK</string>
 </resources>

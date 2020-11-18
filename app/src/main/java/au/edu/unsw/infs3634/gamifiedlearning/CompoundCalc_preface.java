@@ -19,20 +19,21 @@ public class CompoundCalc_preface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ccrepaycalc_preface);
+        setContentView(R.layout.compoundcalc_preface);
 
-        mTvCompoundTitle = findViewById(R.id.tvRepayTitle);
-        mTvCompoundPreface = findViewById(R.id.tvCCRepayPreface);
-        mBtnCompound = findViewById(R.id.btnCCRepay);
-        mIvCompoundPreface = findViewById(R.id.ivCCRepay2);
+        mTvCompoundTitle = findViewById(R.id.tvCompoundTitle);
+        mTvCompoundPreface = findViewById(R.id.tvCompoundPreface);
+        mBtnCompound = findViewById(R.id.btnCompound);
+        mIvCompoundPreface = findViewById(R.id.ivCompoundPreface);
 
         mBtnCompound.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) { CompoundCalc_preface.this.C; }
+                    public void onClick(View v) {
+                        CompoundCalc("Compound Calculator"); }
                 });
     }
-    private void CCRepayCalc_preface(String message) {
+    private void CompoundCalc(String message) {
         Intent intent = new Intent(CompoundCalc_preface.this, CompoundCalc.class);
         startActivity(intent);
     }
