@@ -17,6 +17,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
+
 public class HomePage extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -184,6 +189,12 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(HomePage.this, "Module 5", Toast.LENGTH_SHORT);
                 Intent activityChangeIntentB = new Intent(HomePage.this, BadgesPage.class);
                 HomePage.this.startActivity(activityChangeIntentB);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.mModule6:
+                Toast.makeText(HomePage.this, "Module 6", Toast.LENGTH_SHORT);
+                Intent activityChangeIntentN = new Intent(HomePage.this, NoteListActivity.class);
+                HomePage.this.startActivity(activityChangeIntentN);
                 drawerLayout.closeDrawers();
                 break;
         case R.id.mLogout:

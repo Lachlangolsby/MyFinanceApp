@@ -1,9 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,14 +6,28 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
+import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
+import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
+import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class FinancialGoalSetting extends AppCompatActivity {
     ImageView yt, calc;
@@ -205,6 +214,12 @@ public class FinancialGoalSetting extends AppCompatActivity {
                         Toast.makeText(FinancialGoalSetting.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(FinancialGoalSetting.this, BadgesPage.class);
                         FinancialGoalSetting.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(FinancialGoalSetting.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(FinancialGoalSetting.this, NoteListActivity.class);
+                        FinancialGoalSetting.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:

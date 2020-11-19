@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,14 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.browser.customtabs.CustomTabsIntent.KEY_ID;
-import static au.edu.unsw.infs3634.gamifiedlearning.FGQuizContract.*;
-import static com.google.firebase.analytics.FirebaseAnalytics.Param.SCORE;
+import static au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FGQuizContract.*;
 
 public class FGQuizDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "FinancialGoalSettingDB";

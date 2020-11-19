@@ -1,11 +1,9 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SignUp;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,8 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 public class SignUp extends AppCompatActivity {
     public static final String TAG = "TAG";

@@ -1,12 +1,6 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +24,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
+import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
+import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
 
 
 public class SmartInvestingQuizLanding extends AppCompatActivity {
@@ -139,6 +149,12 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         stopAudio();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(SmartInvestingQuizLanding.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(SmartInvestingQuizLanding.this, NoteListActivity.class);
+                        SmartInvestingQuizLanding.this.startActivity(activityChangeIntentN);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();

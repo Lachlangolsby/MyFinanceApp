@@ -1,44 +1,35 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firestore.v1.Value;
 
-import java.util.Objects;
-
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 
 public class ProfileManagement extends AppCompatActivity {
@@ -248,6 +239,12 @@ public class ProfileManagement extends AppCompatActivity {
                         Toast.makeText(ProfileManagement.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(ProfileManagement.this, BadgesPage.class);
                         ProfileManagement.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(ProfileManagement.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(ProfileManagement.this, NoteListActivity.class);
+                        ProfileManagement.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:

@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SignUp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +33,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 public class MainActivity extends AppCompatActivity {
     public static GoogleSignInClient mGoogleSignInClient;

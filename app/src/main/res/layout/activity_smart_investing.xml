@@ -5,7 +5,7 @@
     android:id="@+id/smartinvestinglayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SmartInvesting">
+    tools:context=".SmartInvesting.SmartInvesting">
 
     <ScrollView
         android:layout_width="match_parent"

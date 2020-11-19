@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import au.edu.unsw.infs3634.gamifiedlearning.SIQuizContract.*;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SIQuizContract.*;
 
 
 

@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Collections;
 import java.util.List;
 
-import static au.edu.unsw.infs3634.gamifiedlearning.SmartInvestingQuizLanding.mediaPlayer;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
 
-public class FinancialGoalSettingQuiz extends AppCompatActivity {
+import static au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvestingQuizLanding.mediaPlayer;
+
+public class SmartInvestingQuiz extends AppCompatActivity {
     public static final String EXTRA_SCORE = "extrascore";
 
 
@@ -48,10 +51,10 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
 
 
 
-    private List<FGQuizQuestions> questionList;
+    private List<SIQuizQuestions> questionList;
     private int questionCounter;
     private int questionCountTotal;
-    private FGQuizQuestions currentQuestion;
+    private SIQuizQuestions currentQuestion;
     private int score;
     private boolean answered;
 
@@ -59,7 +62,7 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_financial_goal_setting_quiz);
+        setContentView(R.layout.activity_smart_investing_quiz);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         mediaPlayer.start();
@@ -89,7 +92,7 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
         textColorDefaultRb = rb1.getTextColors();
 
 
-        FGQuizDBHelper dbHelper = new FGQuizDBHelper(this);
+        SIQuizDBHelper dbHelper = new SIQuizDBHelper(this);
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
@@ -103,7 +106,7 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked()|| rb4.isChecked()) {
                         checkAnswer();
                     } else {
-                        Toast.makeText(FinancialGoalSettingQuiz.this, "Please select an answer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SmartInvestingQuiz.this, "Please select an answer", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     showNextQuestion();
@@ -175,6 +178,7 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
             buttonConfirmNext.setText("Next");
         } else {
             buttonConfirmNext.setText("Finish");
+
         }
     }
 
@@ -189,19 +193,19 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
 
-                String result = userProfile.FGSScore;
-                if (score > Integer.parseInt(result) ){
-                    Toast.makeText(FinancialGoalSettingQuiz.this, "Quiz Complete", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(FinancialGoalSettingQuiz.this, "Congratulations new highScore", Toast.LENGTH_LONG).show();
-                    reference.child(userid).child("FGSScore").setValue(String.valueOf(score));
-                }else {
-                    FirebaseDatabase.getInstance().getReference("Users").child("FGSScore").setValue(result);
-                    Toast.makeText(FinancialGoalSettingQuiz.this, "Quiz Complete", Toast.LENGTH_LONG).show();
+                    String result = userProfile.SIScore;
+                    if (score > Integer.parseInt(result) ){
+                        Toast.makeText(SmartInvestingQuiz.this, "Quiz complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SmartInvestingQuiz.this, "Congratulations New HighScore", Toast.LENGTH_LONG).show();
+                        reference.child(userid).child("SIScore").setValue(String.valueOf(score));
+                    }else {
+                        FirebaseDatabase.getInstance().getReference("Users").child("SIScore").setValue(result);
+                        Toast.makeText(SmartInvestingQuiz.this, "Quiz complete", Toast.LENGTH_LONG).show();
 
-                }
-                Intent activityChangeIntentQS = new Intent(FinancialGoalSettingQuiz.this, FinancialGoalSettingQuizLanding.class);
-                FinancialGoalSettingQuiz.this.startActivity(activityChangeIntentQS);
-                finish();
+                    }
+                Intent activityChangeIntentQS = new Intent(SmartInvestingQuiz.this, SmartInvestingQuizLanding.class);
+                SmartInvestingQuiz.this.startActivity(activityChangeIntentQS);
+             finish();
 
 
             }
@@ -211,8 +215,9 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
 
             }
         });
-
+      // finish();
     }
+
     @Override
     public void onBackPressed() {
         if (backPressed + 2000 > System.currentTimeMillis()) {
@@ -232,3 +237,5 @@ public class FinancialGoalSettingQuiz extends AppCompatActivity {
         }
     }
 }
+
+// https://www.youtube.com/watch?v=bLUXfWkZMD8

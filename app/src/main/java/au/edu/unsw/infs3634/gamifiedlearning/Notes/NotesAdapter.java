@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning.adapters;
+package au.edu.unsw.infs3634.gamifiedlearning.Notes;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import au.edu.unsw.infs3634.gamifiedlearning.Note;
 import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.BeanHolder> {

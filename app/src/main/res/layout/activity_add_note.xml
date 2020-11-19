@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="4dp"
-    tools:context="au.edu.unsw.infs3634.gamifiedlearning.AddNoteActivity"
+    tools:context="au.edu.unsw.infs3634.gamifiedlearning.Notes.AddNoteActivity"
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout

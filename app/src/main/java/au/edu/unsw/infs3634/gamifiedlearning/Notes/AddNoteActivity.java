@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.Notes;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.lang.ref.WeakReference;
+
+import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 public class AddNoteActivity extends AppCompatActivity {
     // Variables & objects

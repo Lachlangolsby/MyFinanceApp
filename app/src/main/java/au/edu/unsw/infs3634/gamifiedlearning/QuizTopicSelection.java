@@ -1,10 +1,5 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,8 +7,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSettingQuizLanding;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvestingQuizLanding;
 
 public class QuizTopicSelection extends AppCompatActivity {
     ImageView si, fg;
@@ -95,6 +102,12 @@ public class QuizTopicSelection extends AppCompatActivity {
                         Toast.makeText(QuizTopicSelection.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(QuizTopicSelection.this, BadgesPage.class);
                         QuizTopicSelection.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(QuizTopicSelection.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(QuizTopicSelection.this, NoteListActivity.class);
+                        QuizTopicSelection.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:

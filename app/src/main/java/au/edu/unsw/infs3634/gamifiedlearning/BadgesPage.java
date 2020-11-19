@@ -22,6 +22,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
+
 public class BadgesPage extends AppCompatActivity {
     ImageView mivSI3,mivSI5,mivFG3,mivFG5,mivMember;
     TextView mtvSI3,mtvSI5,mtvFG3,mtvFG5,mtvMember;
@@ -111,6 +117,12 @@ public class BadgesPage extends AppCompatActivity {
                         Toast.makeText(BadgesPage.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(BadgesPage.this, BadgesPage.class);
                         BadgesPage.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(BadgesPage.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(BadgesPage.this, NoteListActivity.class);
+                        BadgesPage.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:

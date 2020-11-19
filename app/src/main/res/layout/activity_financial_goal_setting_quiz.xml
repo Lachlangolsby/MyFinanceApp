@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
     android:padding="16dp"
-    tools:context=".FinancialGoalSettingQuiz">
+    tools:context=".SmartFinancialGoalSetting.FinancialGoalSettingQuiz">
 
     <ImageView
         android:id="@+id/sound2"

@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +18,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
+import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
+import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
+import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
+import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
+import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 
 public class SmartInvesting extends AppCompatActivity {
@@ -194,6 +204,12 @@ public class SmartInvesting extends AppCompatActivity {
                         Toast.makeText(SmartInvesting.this, "Module 5", Toast.LENGTH_SHORT);
                         Intent activityChangeIntentB = new Intent(SmartInvesting.this, BadgesPage.class);
                         SmartInvesting.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule6:
+                        Toast.makeText(SmartInvesting.this, "Module 6", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentN = new Intent(SmartInvesting.this, NoteListActivity.class);
+                        SmartInvesting.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.mLogout:

@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.Notes;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.gamifiedlearning;
+package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

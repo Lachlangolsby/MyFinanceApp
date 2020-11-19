@@ -1,79 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cicLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvCompoundTitle2"
-        android:layout_width="175dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="36dp"
-        android:gravity="center_horizontal"
-        android:text="@string/CompoundInterest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="128dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:text="Enter the amount you wish to invest: "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.192" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="128dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Enter the Inerest Rate: "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <TextView
+            android:id="@+id/tvCompoundTitle2"
+            android:layout_width="175dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="36dp"
+            android:gravity="center_horizontal"
+            android:text="@string/CompoundInterest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="128dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Enter the compounding interval."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="128dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:text="Enter the amount you wish to invest: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.192" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="128dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Enter how many years to mature"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="128dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="48dp"
+            android:text="Enter the Inerest Rate: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="44dp"
-        android:text="Your expected return:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="128dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="48dp"
+            android:text="Enter the compounding interval."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="128dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="48dp"
+            android:text="Enter how many years to mature"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="126dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="44dp"
+            android:text="Your expected return:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_View"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
