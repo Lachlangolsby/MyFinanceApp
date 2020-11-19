@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -62,8 +63,18 @@ private WeakReference<NoteListActivity> activityReference;
     protected void onPostExecute(List<Note> notes) {
           if (notes != null &&  notes.size() >0 ) {
               activityReference.get().notes.clear();
-              activityReference.get().notes.addAll(notes);
-
+              String user= FirebaseAuth.getInstance().getCurrentUser().getUid();
+              System.out.println(notes);
+              ArrayList<Note> checkednotes = new ArrayList<>();
+             for (int i = 0; i < notes.size(); i++){
+                 if (notes.get(i).getUID().trim().equals(user.trim())){
+                     checkednotes.add(notes.get(i));
+                     i++;
+                 }else{i++;
+                 }
+             }
+              System.out.println(checkednotes);
+             activityReference.get().notes.addAll(checkednotes);
               activityReference.get().textViewMsg.setVisibility(View.GONE);
               activityReference.get().notesAdapter.notifyDataSetChanged();
           }

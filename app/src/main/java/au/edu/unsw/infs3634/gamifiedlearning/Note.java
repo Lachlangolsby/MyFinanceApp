@@ -4,8 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -24,18 +25,19 @@ public class Note implements Serializable {
 
     private Date date;
 
+    @NonNull
+    private String UID;
+
     // Creating the constructor
-    public Note( String content, String title) {
-//        this.note_id = note_id;
+    public Note(String content, String title) {
+       // this.note_id = note_id;
         this.content = content;
         this.title = title;
         this.date = new Date(System.currentTimeMillis());
+        this.UID =  String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
-    @Ignore
-    public Note() {
 
-    }
     // Creating Getters and Setters
 
     public int getNote_id() {
@@ -95,8 +97,16 @@ public class Note implements Serializable {
                 ", content='" + content + '\'' +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
+                ", UID='" + UID + '\'' +
                 '}';
     }
 
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
 }
 // Refrernce: Video used to create notes page:https://www.youtube.com/watch?v=nOoJoPE6MsU&t=18s
