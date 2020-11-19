@@ -1,8 +1,13 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DecimalFormat;
+
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
@@ -22,10 +29,37 @@ public class EmergencyCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    EditText mCarExpense, mBills, mFHC, mMisc;
+    TextView mWeekly, mFortnightly, mMonthly, mEmergencyfundTitle;
+    Button btGenerate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emergency_calc);
+
+
+        mBills = findViewById(R.id.etBillExpense);
+        mCarExpense = findViewById(R.id.etCarExpense);
+        mFHC = findViewById(R.id.etFHCExpense);
+        mMisc = findViewById(R.id.etMiscelaneousExpenses);
+        mWeekly = findViewById(R.id.tvWeeklySaving);
+        mWeekly.setVisibility(View.INVISIBLE);
+        mFortnightly = findViewById(R.id.tvFortnightlySaving);
+        mFortnightly.setVisibility(View.INVISIBLE);
+        mMonthly =findViewById(R.id.tvMonthlySaving);
+        mMonthly.setVisibility(View.INVISIBLE);
+        btGenerate = findViewById(R.id.btEmergencyFund);
+        mEmergencyfundTitle = findViewById(R.id.tvEmergencyFund);
+        mEmergencyfundTitle.setVisibility(View.INVISIBLE);
+
+        btGenerate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GenerateSavingsPlan();
+
+            }
+        });
+
 
 
         navigationView = findViewById(R.id.nav_View);
@@ -107,6 +141,36 @@ public class EmergencyCalc extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @SuppressLint("SetTextI18n")
+    public void GenerateSavingsPlan(){
+
+        String bills = mBills.getText().toString();
+        String car = mCarExpense.getText().toString();
+        String FHC = mFHC.getText().toString();
+        String Misc = mMisc.getText().toString();
+        DecimalFormat df = new DecimalFormat("#.##");
+        if (bills.equals("")|| car.equals("") || FHC.equals("") || Misc.equals("")) {
+            Toast.makeText(EmergencyCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
+
+        }else {
+            double dailyExpense = ((Double.parseDouble(bills)+Double.parseDouble(car)+Double.parseDouble(FHC)+Double.parseDouble(Misc))/7);
+            double weeklyExpense = dailyExpense*7;
+            double fortnightlyExpense = dailyExpense *14;
+            double monthlyExpense = dailyExpense*30;
+            double savingPerWeek = weeklyExpense/365;
+            double savingPerFort = fortnightlyExpense/365;
+            double savingPerMonth = monthlyExpense/365;
+
+            mWeekly.setText("Save: $"+ df.format(savingPerWeek)+ " per day for one year to cover one weeks expenses");
+            mFortnightly.setText("Save: $"+ df.format(savingPerFort)+ " per day for one year to cover one Fortnights expenses");
+            mMonthly.setText("Save: $"+ df.format(savingPerMonth)+ " per day for one year to cover one Months expenses");
+            mWeekly.setVisibility(View.VISIBLE);
+            mMonthly.setVisibility(View.VISIBLE);
+            mFortnightly.setVisibility(View.VISIBLE);
+            mEmergencyfundTitle.setVisibility(View.VISIBLE);
+
+        }
     }
 
 
