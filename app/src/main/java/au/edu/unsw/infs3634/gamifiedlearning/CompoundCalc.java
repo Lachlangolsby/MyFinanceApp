@@ -26,7 +26,7 @@ public class CompoundCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-    private TextView mTvInvestAmount, mTvInterestRate, mTvCompoundingInterval, mTvMature, mTvExpectedReturn, mTvExpectedReturnCompound;
+    private TextView mTvCompoundTitle2, mTvInvestAmount, mTvInterestRate, mTvCompoundingInterval, mTvMature, mTvExpectedReturn, mTvExpectedReturnCompound;
     private EditText mEditTextLumpSum, mEditTextInterestRate, mEditTextCompoundInterval, mEditTextMaturity;
     private Button mBtnCompoundCalc;
 
@@ -36,6 +36,7 @@ public class CompoundCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compound_calc);
 
+        mTvCompoundTitle2 = findViewById(R.id.tvCompoundTitle2);
         mTvInvestAmount = findViewById(R.id.tvInvestAmount);
         mTvInterestRate = findViewById(R.id.tvInterestRate);
         mTvCompoundingInterval = findViewById(R.id.tvCompoundingInterval);

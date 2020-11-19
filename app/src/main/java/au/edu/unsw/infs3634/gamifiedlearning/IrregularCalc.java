@@ -3,6 +3,9 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,9 @@ public class IrregularCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    private TextView mTvIrregularTitle2, mTvHint , mTvIrregularResultHint, mTvIrregularResult;
+    private EditText mEtExpenseType, mEtAmount, mEditTextNumber2;
+    private Button mBtnIrregularCalc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,15 @@ public class IrregularCalc extends AppCompatActivity {
         setContentView(R.layout.irregular_calc);
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.irclayout);
+        mTvIrregularTitle2 = findViewById(R.id.tvIrregularTitle2);
+        mTvHint = findViewById(R.id.tvHint);
+        mTvIrregularResultHint = findViewById(R.id.tvIrregularResultHint);
+        mTvIrregularResult = findViewById(R.id.tvIrregularResult);
+        mEtExpenseType = findViewById(R.id.etExpenseType);
+        mEtAmount = findViewById(R.id.etAmount);
+        mEditTextNumber2 = findViewById(R.id.editTextNumber2);
+        mBtnIrregularCalc = findViewById(R.id.btnIrregularCalc);
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
