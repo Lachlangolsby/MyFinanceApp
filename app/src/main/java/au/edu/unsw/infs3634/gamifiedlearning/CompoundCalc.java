@@ -17,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DecimalFormat;
+
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
@@ -36,7 +38,8 @@ public class CompoundCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compound_calc);
 
-        mTvCompoundTitle2 = findViewById(R.id.tvCompoundTitle2);
+        mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
+        mTvExpectedReturn.setVisibility(View.INVISIBLE);
         mTvInvestAmount = findViewById(R.id.tvInvestAmount);
         mTvInterestRate = findViewById(R.id.tvInterestRate);
         mTvCompoundingInterval = findViewById(R.id.tvCompoundingInterval);
@@ -48,6 +51,15 @@ public class CompoundCalc extends AppCompatActivity {
         mEditTextCompoundInterval = findViewById(R.id.editTextCompoundInterval);
         mEditTextMaturity = findViewById(R.id.editTextMaturity);
         mBtnCompoundCalc = findViewById(R.id.btnCompoundCalc);
+
+        mBtnCompoundCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GenerateCompoundedAmount();
+
+
+            }
+        });
 
 
 
@@ -124,12 +136,7 @@ public class CompoundCalc extends AppCompatActivity {
             }
         });
 
-        mBtnCompoundCalc.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-           mTvExpectedReturnCompound = mEditTextLumpSum * Math.pow(1+(mEditTextInterestRate/mTvCompoundingInterval)(mTvCompoundingInterval*mEditTextMaturity))
-        }
-        });
+
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -138,5 +145,28 @@ public class CompoundCalc extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void GenerateCompoundedAmount(){
+        double Amount = 0;
+        double AmountPowered = 0;
+        DecimalFormat df = new DecimalFormat("#.##");
+        String lumpSum = mEditTextLumpSum.getText().toString();
+        String interestRate = mEditTextInterestRate.getText().toString();
+        String compoundInterval = mEditTextCompoundInterval.getText().toString();
+        String Maturity = mEditTextMaturity.getText().toString();
+        if (lumpSum.equals("")|| interestRate.equals("") || compoundInterval.equals("") || Maturity.equals("")) {
+        Toast.makeText(CompoundCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
+
+        }else {
+            AmountPowered = (1 + ((Double.parseDouble(interestRate)) / 100)/Integer.parseInt(compoundInterval));
+            Amount = Integer.parseInt(lumpSum) * Math.pow(AmountPowered, (Double.parseDouble(Maturity)*Double.parseDouble(compoundInterval)));
+            mTvExpectedReturnCompound.setText("$ " + df.format(Amount));
+            mTvExpectedReturn.setVisibility(View.VISIBLE);
+
+            System.out.println(Amount);
+            System.out.println(AmountPowered);
+        }
+        }
 
 }
