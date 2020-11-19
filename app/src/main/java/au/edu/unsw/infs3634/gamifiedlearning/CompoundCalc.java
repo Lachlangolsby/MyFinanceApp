@@ -3,6 +3,10 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +26,9 @@ public class CompoundCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    private TextView mTvInvestAmount, mTvInterestRate, mTvCompoundingInterval, mTvMature, mTvExpectedReturn, mTvExpectedReturnCompound;
+    private EditText mEditTextLumpSum, mEditTextInterestRate, mEditTextCompoundInterval, mEditTextMaturity;
+    private Button mBtnCompoundCalc;
 
 
     @Override
@@ -29,6 +36,17 @@ public class CompoundCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compound_calc);
 
+        mTvInvestAmount = findViewById(R.id.tvInvestAmount);
+        mTvInterestRate = findViewById(R.id.tvInterestRate);
+        mTvCompoundingInterval = findViewById(R.id.tvCompoundingInterval);
+        mTvMature = findViewById(R.id.tvMature);
+        mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
+        mTvExpectedReturnCompound = findViewById(R.id.tvExpectedReturnCompound);
+        mEditTextLumpSum = findViewById(R.id.editTextLumpSum);
+        mEditTextInterestRate = findViewById(R.id.editTextInterestRate);
+        mEditTextCompoundInterval = findViewById(R.id.editTextCompoundInterval);
+        mEditTextMaturity = findViewById(R.id.editTextMaturity);
+        mBtnCompoundCalc = findViewById(R.id.btnCompoundCalc);
 
 
 
@@ -103,6 +121,13 @@ public class CompoundCalc extends AppCompatActivity {
 
                 return false;
             }
+        });
+
+        mBtnCompoundCalc.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+           mTvExpectedReturnCompound = mEditTextLumpSum * Math.pow(1+(mEditTextInterestRate/mTvCompoundingInterval)(mTvCompoundingInterval*mEditTextMaturity))
+        }
         });
     }
     @Override

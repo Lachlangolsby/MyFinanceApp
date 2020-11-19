@@ -39,13 +39,14 @@
 
     <string name="Calculate">Calculate !</string>
     <string name="Amount">Lump sum amount </string>
-    <string name="Frequency">How often payment occurs</string>
+    <string name="Frequency">Payment frequency</string>
     <string name="investAmount">Enter the amount you wish to invest:  </string>
-    <string name="InterestRate">Enter the annual interest rate: </string>
-    <string name="compoundInterval">Enter the compounding interval. </string>
+    <string name="InterestRate">Enter the annual interest rate. <br /> Example: 15% becomes 0.15 </string>
+
+    <string name="compoundInterval">Enter the compounding intervals per year. Example: If compounding monthly, enter 12 </string>
     <string name="mature">Enter how many years to mature </string>
     <string name="ExpectedReturn">Your expected return: </string>
-    <string name="Expenses">Your weekly expenses </string>
+    <string name="Expenses">Your WEEKLY expenses </string>
     <string name="Expense1">First expense: </string>
     <string name="Expense2">Second expense: </string>
     <string name="Expense3">Third expense: </string>

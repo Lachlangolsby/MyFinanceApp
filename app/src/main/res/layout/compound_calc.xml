@@ -37,8 +37,8 @@
 
         <TextView
             android:id="@+id/tvInterestRate"
-            android:layout_width="128dp"
-            android:layout_height="61dp"
+            android:layout_width="126dp"
+            android:layout_height="76dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="48dp"
@@ -48,8 +48,8 @@
 
         <TextView
             android:id="@+id/tvCompoundingInterval"
-            android:layout_width="128dp"
-            android:layout_height="61dp"
+            android:layout_width="158dp"
+            android:layout_height="85dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="48dp"
@@ -65,23 +65,11 @@
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
-            android:layout_marginTop="48dp"
             android:text="@string/mature"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCompoundingInterval"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tvExpectedReturn"
-            android:layout_width="126dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="44dp"
-            android:text="@string/ExpectedReturn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMature" />
+            app:layout_constraintVertical_bias="0.076" />
 
         <EditText
             android:id="@+id/editTextLumpSum"
@@ -113,11 +101,11 @@
 
         <EditText
             android:id="@+id/editTextCompoundInterval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_width="164dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
             android:hint="@string/compoundInterval"
             android:importantForAutofill="no"
@@ -139,19 +127,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextCompoundInterval" />
 
-        <EditText
-            android:id="@+id/editTextCompoundReturn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginRight="22dp"
-            android:ems="10"
-            android:hint="@string/ExpectedReturn"
-            android:importantForAutofill="no"
-            android:inputType="number"
+        <TextView
+            android:id="@+id/tvExpectedReturnCompound"
+            android:layout_width="207dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/ExpectedReturn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextMaturity" />
+
+        <TextView
+            android:id="@+id/tvExpectedReturn"
+            android:layout_width="126dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="104dp"
+            android:text="@string/ExpectedReturn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMature" />
+
+        <Button
+            android:id="@+id/btnCompoundCalc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="132dp"
+            android:text="@string/Calculate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
