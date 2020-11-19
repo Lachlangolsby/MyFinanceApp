@@ -37,4 +37,13 @@
 
     <string name="resulthint">Put this amount away each month: </string>
 
+    <string name="Calculate">Calculate !</string>
+    <string name="Amount">Lump sum amount </string>
+    <string name="Frequency">How often payment occurs</string>
+    <string name="investAmount">Enter the amount you wish to invest:  </string>
+    <string name="InterestRate">Enter the Interest Rate: </string>
+    <string name="compoundInterval">Enter the compounding interval. </string>
+    <string name="mature">Enter how many years to mature </string>
+    <string name="ExpectedReturn">Your expected return: </string>
+
 </resources>
