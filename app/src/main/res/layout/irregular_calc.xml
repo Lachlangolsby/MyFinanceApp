@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradientlist">
 
         <TextView
             android:id="@+id/tvIrregularTitle2"
@@ -22,12 +23,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etExpenseType"
             android:layout_width="199dp"
             android:layout_height="43dp"
             android:layout_marginTop="40dp"
-            android:background="#FFFFFF"
             android:ems="10"
+            android:hint="@string/expensetype"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:text="@string/expensetype"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,16 +37,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tvIrregularTitle2" />
 
         <EditText
-            android:id="@+id/editTextCost"
+            android:id="@+id/etAmount"
             android:layout_width="199dp"
             android:layout_height="43dp"
             android:layout_marginTop="40dp"
             android:ems="10"
+            android:hint="@string/Amount"
+            android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-            tools:text="Amount: " />
+            app:layout_constraintTop_toBottomOf="@+id/etExpenseType"
+            tools:text="@string/Amount" />
 
         <EditText
             android:id="@+id/editTextNumber2"
@@ -52,11 +56,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:ems="10"
+            android:hint="@string/Frequency"
+            android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCost"
-            tools:text="Frequency: " />
+            app:layout_constraintTop_toBottomOf="@+id/etAmount"
+            tools:text="@string/Frequency" />
 
         <TextView
             android:id="@+id/tvHint"
@@ -85,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Calculate"
+            android:text="@string/Calculate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHint" />

@@ -41,9 +41,20 @@
     <string name="Amount">Lump sum amount </string>
     <string name="Frequency">How often payment occurs</string>
     <string name="investAmount">Enter the amount you wish to invest:  </string>
-    <string name="InterestRate">Enter the Interest Rate: </string>
+    <string name="InterestRate">Enter the annual interest rate: </string>
     <string name="compoundInterval">Enter the compounding interval. </string>
     <string name="mature">Enter how many years to mature </string>
     <string name="ExpectedReturn">Your expected return: </string>
+    <string name="Expenses">Your weekly expenses </string>
+    <string name="Expense1">First expense: </string>
+    <string name="Expense2">Second expense: </string>
+    <string name="Expense3">Third expense: </string>
+    <string name="ExpenseResult">Emergency fund size needed: </string>
+
+    <string name="Balance">Outstanding Balance: </string>
+    <string name="AnnualFee">Annual Fee: </string>
+    <string name="MinRepay">Minimum Repayment: </string>
+    <string name="HigherRepay">Higher repayment amount: </string>
+
 
 </resources>
