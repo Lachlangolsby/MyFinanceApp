@@ -23,64 +23,134 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvInvestAmount"
             android:layout_width="128dp"
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
-            android:text="Enter the amount you wish to invest: "
+            android:text="@string/Amount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.192" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvInterestRate"
             android:layout_width="128dp"
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="48dp"
-            android:text="Enter the Inerest Rate: "
+            android:text="@string/InterestRate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/tvInvestAmount" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvCompoundingInterval"
             android:layout_width="128dp"
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="48dp"
-            android:text="Enter the compounding interval."
+            android:text="@string/compoundInterval"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/tvInterestRate"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvMature"
             android:layout_width="128dp"
             android:layout_height="61dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="48dp"
-            android:text="Enter how many years to mature"
+            android:text="@string/mature"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/tvCompoundingInterval"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvExpectedReturn"
             android:layout_width="126dp"
             android:layout_height="39dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="44dp"
-            android:text="Your expected return:"
+            android:text="@string/ExpectedReturn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/tvMature" />
+
+        <EditText
+            android:id="@+id/editTextLumpSum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:ems="10"
+            android:hint="@string/Amount"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextInterestRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:ems="10"
+            android:hint="@string/InterestRate"
+            android:importantForAutofill="no"
+            android:inputType="number|numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLumpSum" />
+
+        <EditText
+            android:id="@+id/editTextCompoundInterval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:ems="10"
+            android:hint="@string/compoundInterval"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextInterestRate" />
+
+        <EditText
+            android:id="@+id/editTextMaturity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:ems="10"
+            android:hint="@string/mature"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCompoundInterval" />
+
+        <EditText
+            android:id="@+id/editTextCompoundReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:ems="10"
+            android:hint="@string/ExpectedReturn"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaturity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
