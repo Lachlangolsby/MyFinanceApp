@@ -168,7 +168,7 @@ public class SmartInvesting extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(SmartInvesting.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(SmartInvesting.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(SmartInvesting.this, FinCalc.class);
                         SmartInvesting.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         break;
@@ -192,7 +192,7 @@ public class SmartInvesting extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(SmartInvesting.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(SmartInvesting.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(SmartInvesting.this, BadgesPage.class);
                         SmartInvesting.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         break;

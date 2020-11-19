@@ -1,13 +1,19 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +26,9 @@ public class BadgesPage extends AppCompatActivity {
     ImageView mivSI3,mivSI5,mivFG3,mivFG5,mivMember;
     TextView mtvSI3,mtvSI5,mtvFG3,mtvFG5,mtvMember;
     private FirebaseAuth fAuth;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
 
     @Override
@@ -50,8 +59,82 @@ public class BadgesPage extends AppCompatActivity {
         SI5badge();
 
 
+        navigationView = findViewById(R.id.nav_View);
+        drawerLayout = findViewById(R.id.badgepagedrawer);
 
+        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.mProfile:
+                        Toast.makeText(BadgesPage.this, "Profile page", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntent = new Intent(BadgesPage.this, ProfileManagement.class);
+                        BadgesPage.this.startActivity(activityChangeIntent);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mHome:
+                        Intent activityChangeIntentHome = new Intent(BadgesPage.this, HomePage.class);
+                        BadgesPage.this.startActivity(activityChangeIntentHome);
+                        Toast.makeText(BadgesPage.this, "Home", Toast.LENGTH_SHORT);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule1:
+                        Toast.makeText(BadgesPage.this, "Module1", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentCalculator = new Intent(BadgesPage.this, FinCalc.class);
+                        BadgesPage.this.startActivity(activityChangeIntentCalculator);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule2:
+                        Toast.makeText(BadgesPage.this, "Module2", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentSmartInvesting = new Intent(BadgesPage.this, SmartInvesting.class);
+                        BadgesPage.this.startActivity(activityChangeIntentSmartInvesting);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule3:
+                        Toast.makeText(BadgesPage.this, "Module3", Toast.LENGTH_SHORT);
+                        drawerLayout.closeDrawers();
+                        Intent activityChangeIntentFG = new Intent(BadgesPage.this, FinancialGoalSetting.class);
+                        BadgesPage.this.startActivity(activityChangeIntentFG);
+                        break;
+                    case R.id.mModule4:
+                        Toast.makeText(BadgesPage.this, "Module 4", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentQS = new Intent(BadgesPage.this, QuizTopicSelection.class);
+                        BadgesPage.this.startActivity(activityChangeIntentQS);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mModule5:
+                        Toast.makeText(BadgesPage.this, "Module 5", Toast.LENGTH_SHORT);
+                        Intent activityChangeIntentB = new Intent(BadgesPage.this, BadgesPage.class);
+                        BadgesPage.this.startActivity(activityChangeIntentB);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mLogout:
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(BadgesPage.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
+                        Intent activityChangeIntent2 = new Intent(BadgesPage.this, MainActivity.class);
+                        BadgesPage.this.startActivity(activityChangeIntent2);
+                        drawerLayout.closeDrawers();
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void MembersBadge(){
        if (fAuth.getCurrentUser() != null){
@@ -172,5 +255,6 @@ public class BadgesPage extends AppCompatActivity {
         });
 
     }
+
     }
 

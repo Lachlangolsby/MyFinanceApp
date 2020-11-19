@@ -1,25 +1,21 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
-import static au.edu.unsw.infs3634.gamifiedlearning.MainActivity.mGoogleSignInClient;
 
 public class HomePage extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -80,7 +76,7 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                        Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                        Intent intent = new Intent(HomePage.this, FinCalc.class);
                         intent.putExtra("info", "This is activity from card item index  ");
                         startActivity(intent);
 
@@ -110,7 +106,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(HomePage.this, SmartInvesting.class);
+                Intent intent = new Intent(HomePage.this, NoteListActivity.class);
                 intent.putExtra("info", "This is activity from card item index  ");
                 startActivity(intent);
 
@@ -162,7 +158,7 @@ public class HomePage extends AppCompatActivity {
         break;
             case R.id.mModule1:
                 Toast.makeText(HomePage.this, "Module1", Toast.LENGTH_SHORT);
-                Intent activityChangeIntentCalculator = new Intent(HomePage.this, SmartInvesting.class);
+                Intent activityChangeIntentCalculator = new Intent(HomePage.this, FinCalc.class);
                 HomePage.this.startActivity(activityChangeIntentCalculator);
                 drawerLayout.closeDrawers();
                 break;
@@ -186,7 +182,7 @@ public class HomePage extends AppCompatActivity {
         break;
             case R.id.mModule5:
                 Toast.makeText(HomePage.this, "Module 5", Toast.LENGTH_SHORT);
-                Intent activityChangeIntentB = new Intent(HomePage.this, QuizTopicSelection.class);
+                Intent activityChangeIntentB = new Intent(HomePage.this, BadgesPage.class);
                 HomePage.this.startActivity(activityChangeIntentB);
                 drawerLayout.closeDrawers();
                 break;

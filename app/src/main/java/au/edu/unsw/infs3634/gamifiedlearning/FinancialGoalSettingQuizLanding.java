@@ -102,7 +102,7 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
                         break;
                     case R.id.mModule1:
                         Toast.makeText(FinancialGoalSettingQuizLanding.this, "Module1", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentCalculator = new Intent(FinancialGoalSettingQuizLanding.this, SmartInvesting.class);
+                        Intent activityChangeIntentCalculator = new Intent(FinancialGoalSettingQuizLanding.this, FinCalc.class);
                         FinancialGoalSettingQuizLanding.this.startActivity(activityChangeIntentCalculator);
                         drawerLayout.closeDrawers();
                         stopAudio();
@@ -130,7 +130,7 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
                         break;
                     case R.id.mModule5:
                         Toast.makeText(FinancialGoalSettingQuizLanding.this, "Module 5", Toast.LENGTH_SHORT);
-                        Intent activityChangeIntentB = new Intent(FinancialGoalSettingQuizLanding.this, QuizTopicSelection.class);
+                        Intent activityChangeIntentB = new Intent(FinancialGoalSettingQuizLanding.this, BadgesPage.class);
                         FinancialGoalSettingQuizLanding.this.startActivity(activityChangeIntentB);
                         drawerLayout.closeDrawers();
                         stopAudio();
