@@ -29,7 +29,7 @@ public class CCRepayCalc extends AppCompatActivity {
         setContentView(R.layout.ccrepay_calc);
 
         navigationView = findViewById(R.id.nav_View);
-        drawerLayout = findViewById(R.id.ccrCLayout);
+        drawerLayout = findViewById(R.id.ccrcLayout);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
