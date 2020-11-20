@@ -161,22 +161,22 @@ private WeakReference<NoteListActivity> activityReference;
     }
     @Override
     protected void onPostExecute(List<Note> notes) {
-          if (notes != null &&  notes.size() >0 ) {
+          if (notes != null ) {
               activityReference.get().notes.clear();
-              String user= FirebaseAuth.getInstance().getCurrentUser().getUid();
+              String user= FirebaseAuth.getInstance().getCurrentUser().getEmail();
               System.out.println(notes);
               ArrayList<Note> checkednotes = new ArrayList<>();
              for (int i = 0; i < notes.size(); i++){
-                 if (notes.get(i).getUID().trim().equals(user.trim())){
+                 if (notes.get(i).getEmail().trim().equals(user)){
                      checkednotes.add(notes.get(i));
-                     i++;
-                 }else{i++;
                  }
              }
               System.out.println(checkednotes);
              activityReference.get().notes.addAll(checkednotes);
               activityReference.get().textViewMsg.setVisibility(View.GONE);
               activityReference.get().notesAdapter.notifyDataSetChanged();
+              ;
+
           }
     }
 }
@@ -252,6 +252,8 @@ private void initializeViews(){
     @Override
     protected void onDestroy() {
         noteDataBase.cleanUp();
-        super.onDestroy();
+        if(noteDataBase.isOpen()) {
+            noteDataBase.close();
+        }super.onDestroy();
     }
 }

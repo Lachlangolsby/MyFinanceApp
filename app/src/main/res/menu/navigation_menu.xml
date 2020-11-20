@@ -43,6 +43,17 @@
         </item>
     </group>
 
+    <group android:id="@+id/group3"
+        android:checkableBehavior="single">
+        <item android:title="Share">
+            <menu>
+                <item android:id="@+id/mShare"
+                    android:title="Share"
+                    android:icon="@drawable/share"/>
+            </menu>
+        </item>
+    </group>
+
     <item android:id="@+id/mLogout"
         android:title="Log Out"
         android:icon="@drawable/baseline_login_black_18dp"/>

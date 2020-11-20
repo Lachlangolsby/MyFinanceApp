@@ -52,6 +52,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     private long backPressed;
+    ImageView share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         mediaPlayer.start();
 
-
+        share = findViewById(R.id.ivShare2);
 
         final ImageView sound = findViewById(R.id.sound);
         sound.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +87,18 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             public void onClick(View v) {
                 startQuiz();
                 stopAudio();
+            }
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shareMessage = "Just got a new HighScore on the SmartInvesting myfinance  quiz!!";
+                Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
+                mSharingIntent.setType("Text/Plain");
+                mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
+                mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
+                startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
             }
         });
 
@@ -155,6 +168,14 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
                         Intent activityChangeIntentN = new Intent(SmartInvestingQuizLanding.this, NoteListActivity.class);
                         SmartInvestingQuizLanding.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mShare:
+                        String shareMessage = "Join MyFinance, it's fun and eductaional.";
+                        Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
+                        mSharingIntent.setType("Text/Plain");
+                        mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();

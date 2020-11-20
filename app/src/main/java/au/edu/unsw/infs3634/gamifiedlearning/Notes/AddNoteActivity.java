@@ -48,6 +48,7 @@ public class AddNoteActivity extends AppCompatActivity {
                     note.setTitle(et_Title.getText().toString());
                     noteDB.getNoteDao().updateNote(note);
                     setResult(note,2);
+
                 }else{
                     note = new Note (et_Content.getText().toString(),et_Title.getText().toString());
                     new InsertTask(AddNoteActivity.this, note).execute();
