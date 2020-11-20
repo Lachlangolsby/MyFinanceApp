@@ -25,6 +25,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CompoundCalc extends AppCompatActivity {
+
+    //putting all text/edit Views together aids readability
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -36,8 +38,9 @@ public class CompoundCalc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.compound_calc);
-
+//Configure/install textviews, drawers and buttons
         mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
         mTvExpectedReturn.setVisibility(View.INVISIBLE);
         mTvInterestRate = findViewById(R.id.tvInterestRate);
@@ -68,7 +71,7 @@ public class CompoundCalc extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

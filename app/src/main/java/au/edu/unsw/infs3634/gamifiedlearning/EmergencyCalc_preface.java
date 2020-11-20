@@ -23,7 +23,7 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class EmergencyCalc_preface extends AppCompatActivity {
-
+    //putting all text/edit Views together aids readability
     private TextView mTvEmergencyTitle;
     private TextView mTvEmergencyCalcPreface;
     private Button mBtnEmergency;
@@ -35,13 +35,15 @@ public class EmergencyCalc_preface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.emergencycalc_preface);
 
         mTvEmergencyTitle = findViewById(R.id.tvEmergencyTitle);
+        //This does the actual preface text
         mTvEmergencyCalcPreface = findViewById(R.id.tvEmergencyCalcPreface);
         mBtnEmergency = findViewById(R.id.btnEmergency);
         mIvEmergencyPreface = findViewById(R.id.ivEmergencyPreface);
-
+//Configure/install textviews, drawers and buttons
         mBtnEmergency.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
@@ -55,7 +57,7 @@ public class EmergencyCalc_preface extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -129,7 +131,7 @@ public class EmergencyCalc_preface extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //This goes to the actual calculator
     private void EmergencyCalc(String message) {
         Intent intent = new Intent(au.edu.unsw.infs3634.gamifiedlearning.EmergencyCalc_preface.this, au.edu.unsw.infs3634.gamifiedlearning.EmergencyCalc.class);
         startActivity(intent);

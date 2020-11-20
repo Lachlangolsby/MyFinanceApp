@@ -26,6 +26,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class EmergencyCalc extends AppCompatActivity {
+
+    //putting all text/edit Views together aids readability
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -35,9 +37,9 @@ public class EmergencyCalc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.emergency_calc);
-
-
+//Configure/install textviews, drawers and buttons
         mBills = findViewById(R.id.etBillExpense);
         mCarExpense = findViewById(R.id.etCarExpense);
         mFHC = findViewById(R.id.etFHCExpense);
@@ -69,7 +71,7 @@ public class EmergencyCalc extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

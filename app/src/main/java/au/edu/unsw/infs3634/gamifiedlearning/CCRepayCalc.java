@@ -26,6 +26,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CCRepayCalc extends AppCompatActivity {
+
+    //putting all text/edit Views together aids readability
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -36,7 +38,9 @@ public class CCRepayCalc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.ccrepay_calc);
+        //Configure/install textviews, drawers and buttons
         mOutstandingBalance = findViewById(R.id.etOutstandingBalance);
         mFees=findViewById(R.id.etAnnualFees);
         mInterestRate = findViewById(R.id.etAnnualInterestRate);
@@ -69,7 +73,7 @@ public class CCRepayCalc extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

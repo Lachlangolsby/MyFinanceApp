@@ -29,6 +29,7 @@ public class IrregularCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    //putting all text/edit Views together aids readability
     private TextView mIRSolutionTitle,  mIRSolutionWeekly, mIRSolutionMonthly, mIRSolutionFortnightly;
     private EditText mEtExpenseType, mEtAmount, mETFrequency;
     private Button mBtnIrregularCalc;
@@ -36,7 +37,9 @@ public class IrregularCalc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.irregular_calc);
+        //Configure/install textviews, drawers and buttons
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.irclayout);
         mIRSolutionTitle = findViewById(R.id.tvIrregularResultHint);
@@ -64,7 +67,7 @@ public class IrregularCalc extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

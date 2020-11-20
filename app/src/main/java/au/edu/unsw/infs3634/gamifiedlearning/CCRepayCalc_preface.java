@@ -24,6 +24,7 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CCRepayCalc_preface extends AppCompatActivity {
 
+    //putting all text/edit Views together aids readabilityivate TextView mTvRepayTitle;
     private TextView mTvRepayTitle;
     private TextView mTvCCRepayPreface;
     private Button mBtnCCRepay;
@@ -35,9 +36,11 @@ public class CCRepayCalc_preface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.ccrepaycalc_preface);
 
         mTvRepayTitle = findViewById(R.id.tvRepayTitle);
+        //This does the actual preface text
         mTvCCRepayPreface = findViewById(R.id.tvCCRepayPreface);
         mBtnCCRepay = findViewById(R.id.btnCCRepay);
         mIvCCRepay2 = findViewById(R.id.ivCCRepay2);
@@ -50,12 +53,12 @@ public class CCRepayCalc_preface extends AppCompatActivity {
                 });
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.ccrPLayout);
-
+//Configure/install textviews, drawers and buttons
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -129,7 +132,7 @@ public class CCRepayCalc_preface extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //This goes to the actual calculator
     private void CCRepayCalc_preface(String message) {
         Intent intent = new Intent(au.edu.unsw.infs3634.gamifiedlearning.CCRepayCalc_preface.this, CCRepayCalc.class);
         startActivity(intent);

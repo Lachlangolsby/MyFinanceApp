@@ -23,7 +23,7 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CompoundCalc_preface extends AppCompatActivity {
-
+    //putting all text/edit Views together aids readability
     private TextView mTvCompoundTitle;
     private TextView mTvCompoundPreface;
     private Button mBtnCompound;
@@ -35,13 +35,15 @@ public class CompoundCalc_preface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ensure layout is from correct xml file
         setContentView(R.layout.compoundcalc_preface);
 
         mTvCompoundTitle = findViewById(R.id.tvCompoundTitle);
+        //This does the actual preface text
         mTvCompoundPreface = findViewById(R.id.tvCompoundPreface);
         mBtnCompound = findViewById(R.id.btnCompound);
         mIvCompoundPreface = findViewById(R.id.ivCompoundPreface);
-
+//Configure/install textviews, drawers and buttons
         mBtnCompound.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
@@ -55,7 +57,7 @@ public class CompoundCalc_preface extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -128,7 +130,7 @@ public class CompoundCalc_preface extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //This goes to the actual calculator
     private void CompoundCalc(String message) {
         Intent intent = new Intent(au.edu.unsw.infs3634.gamifiedlearning.CompoundCalc_preface.this, CompoundCalc.class);
         startActivity(intent);
