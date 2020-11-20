@@ -36,6 +36,7 @@
             android:hint="@string/expensetype"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIrregularTitle2" />
 
@@ -50,6 +51,7 @@
             android:hint="Irregular Payement Amounts"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etExpenseType" />
 
@@ -64,6 +66,7 @@
             android:hint="Irregular Payement Frequency"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAmount" />
 

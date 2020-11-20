@@ -1,8 +1,13 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DecimalFormat;
+
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
@@ -22,11 +29,38 @@ public class CCRepayCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    EditText mOutstandingBalance, mFees, mInterestRate;
+    TextView mSolutionTitle, mMinRepayment, mMonthly,mThreeMonthly,mYearly;
+    Button btCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ccrepay_calc);
+        mOutstandingBalance = findViewById(R.id.etOutstandingBalance);
+        mFees=findViewById(R.id.etAnnualFees);
+        mInterestRate = findViewById(R.id.etAnnualInterestRate);
+        mSolutionTitle = findViewById(R.id.tvCCRSolutionTitle);
+        mSolutionTitle.setVisibility(View.INVISIBLE);
+        mMinRepayment = findViewById(R.id.tvCCRMin);
+        mMinRepayment.setVisibility(View.INVISIBLE);
+        mMonthly = findViewById(R.id.tvCCRMonth);
+        mMonthly.setVisibility(View.INVISIBLE);
+        mThreeMonthly = findViewById(R.id.tvCCR3Month);
+        mThreeMonthly.setVisibility(View.INVISIBLE);
+        mYearly = findViewById(R.id.tvCCRYear);
+        mYearly.setVisibility(View.INVISIBLE);
+        btCalculate = findViewById(R.id.btCCR);
+
+        btCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GenerateCCR();
+
+            }
+        });
+
+
 
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.ccrcLayout);
@@ -107,6 +141,44 @@ public class CCRepayCalc extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void GenerateCCR(){
+       String outstandingBalance = mOutstandingBalance.getText().toString();
+       String interestRate = mInterestRate.getText().toString();
+       String fees = mFees.getText().toString();
+       DecimalFormat df = new DecimalFormat("#.##");
+        if (outstandingBalance.equals("")|| interestRate.equals("") || fees.equals("")) {
+            Toast.makeText(CCRepayCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
+
+        }else {
+            double monthlyInterestrate = (1+((Double.parseDouble(interestRate)/100)/12));
+            double oneMonthInterest  = Double.parseDouble(outstandingBalance)*monthlyInterestrate-Double.parseDouble(outstandingBalance);
+            double ThreeMonthInterest = Double.parseDouble(outstandingBalance)*Math.pow(monthlyInterestrate,3)-Double.parseDouble(outstandingBalance);
+            double tweleveMonthInteret = Double.parseDouble(outstandingBalance)*Math.pow(monthlyInterestrate,12)-Double.parseDouble(outstandingBalance);
+            double MinMonthlyRepayment = oneMonthInterest+(Double.parseDouble(fees)/12);
+            double monthPayoff = Double.parseDouble(outstandingBalance)+ oneMonthInterest +(Double.parseDouble(fees)/12) ;
+            double threeMonthPayoff = Double.parseDouble(outstandingBalance) + ThreeMonthInterest+ (3*(Double.parseDouble(fees)/12));
+            double tweleveMonthPayoff = Double.parseDouble(outstandingBalance) + tweleveMonthInteret+ ((Double.parseDouble(fees)));
+
+            mSolutionTitle.setText("Possible Credit Card Payment Options include");
+            mMinRepayment.setText("The Interest Only plus Fees payment is $"+ df.format(MinMonthlyRepayment));
+            mMonthly.setText("Pay off the card this Month for $"+df.format(monthPayoff));
+            mThreeMonthly.setText("pay off the card within three months for $"+df.format(threeMonthPayoff) +
+                    " or three payments of $ " + df.format(threeMonthPayoff/3));
+            mYearly.setText("pay off the card within one Year for $" + df.format(tweleveMonthPayoff)+
+                    " or twelve payments of $"+df.format(tweleveMonthPayoff/12));
+            mSolutionTitle.setVisibility(View.VISIBLE);
+            mMonthly.setVisibility(View.VISIBLE);
+            mMinRepayment.setVisibility(View.VISIBLE);
+            mThreeMonthly.setVisibility(View.VISIBLE);
+            mYearly.setVisibility(View.VISIBLE);
+
+
+        }
+
+
     }
 
 }

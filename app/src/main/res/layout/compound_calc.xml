@@ -13,127 +13,89 @@
         android:background="@drawable/gradientlist">
 
         <TextView
-            android:id="@+id/tvInvestAmount"
-            android:layout_width="125dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="140dp"
-            android:gravity="center"
-            android:text="@string/Amount"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/tvInterestRate"
-            android:layout_width="125dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
             android:gravity="center"
-            android:text="@string/InterestRate"
+            android:text="(Whole number i.e. 15.5)"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInvestAmount" />
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextInterestRate" />
 
         <TextView
             android:id="@+id/tvCompoundingInterval"
-            android:layout_width="148dp"
-            android:layout_height="98dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
             android:gravity="center"
-            android:text="@string/compoundInterval"
+            android:text="(i.e. 12 For Monthly Compounding)"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInterestRate" />
-
-        <TextView
-            android:id="@+id/tvMature"
-            android:layout_width="125dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@string/mature"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompoundingInterval" />
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCompoundInterval" />
 
         <EditText
             android:id="@+id/editTextLumpSum"
             android:layout_width="190dp"
             android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
             android:ems="10"
             android:hint="@string/Amount"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvInvestAmount"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <EditText
             android:id="@+id/editTextInterestRate"
             android:layout_width="190dp"
             android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
             android:ems="10"
             android:hint="Annual Interest Rate"
             android:importantForAutofill="no"
             android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvInterestRate"
             app:layout_constraintTop_toBottomOf="@+id/editTextLumpSum" />
 
         <EditText
             android:id="@+id/editTextCompoundInterval"
             android:layout_width="190dp"
             android:layout_height="70dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:ems="10"
             android:hint="Compounding Interval"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvCompoundingInterval"
             app:layout_constraintTop_toBottomOf="@+id/editTextInterestRate" />
 
         <EditText
             android:id="@+id/editTextMaturity"
             android:layout_width="190dp"
             android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:ems="10"
             android:hint="Years to maturity"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvMature"
             app:layout_constraintTop_toBottomOf="@+id/editTextCompoundInterval" />
 
         <TextView
@@ -199,6 +161,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="53dp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextMaturity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView24"
+            app:srcCompat="@drawable/calendarbw" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="53dp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextCompoundInterval"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView25"
+            app:srcCompat="@drawable/compoundbw" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="53dp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextInterestRate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView26"
+            app:srcCompat="@drawable/interest" />
+
+        <ImageView
+            android:id="@+id/imageView26"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextLumpSum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:srcCompat="@drawable/money" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -40,10 +40,8 @@ public class CompoundCalc extends AppCompatActivity {
 
         mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
         mTvExpectedReturn.setVisibility(View.INVISIBLE);
-        mTvInvestAmount = findViewById(R.id.tvInvestAmount);
         mTvInterestRate = findViewById(R.id.tvInterestRate);
         mTvCompoundingInterval = findViewById(R.id.tvCompoundingInterval);
-        mTvMature = findViewById(R.id.tvMature);
         mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
         mTvExpectedReturnCompound = findViewById(R.id.tvExpectedReturnCompound);
         mEditTextLumpSum = findViewById(R.id.editTextLumpSum);
