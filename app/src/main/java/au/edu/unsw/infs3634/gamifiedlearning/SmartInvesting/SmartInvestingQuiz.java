@@ -1,14 +1,12 @@
 package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import au.edu.unsw.infs3634.gamifiedlearning.R;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
@@ -34,12 +36,13 @@ import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
 import static au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvestingQuizLanding.mediaPlayer;
 
 public class SmartInvestingQuiz extends AppCompatActivity {
-    public static final String EXTRA_SCORE = "extrascore";
+    public static final long CountDown = 30000;
 
 
     private TextView textViewQuestion;
     private TextView textViewScore;
     private TextView textViewQuestionCount;
+    private TextView tvCountDown;
 
     private RadioGroup rbGroup;
     private RadioButton rb1;
@@ -49,6 +52,9 @@ public class SmartInvestingQuiz extends AppCompatActivity {
     private Button buttonConfirmNext;
     private ColorStateList textColorDefaultRb;
 
+    private  ColorStateList textColorDefaultCount;
+    private CountDownTimer countDownTimer;
+    private long timeleft;
 
 
     private List<SIQuizQuestions> questionList;
@@ -88,8 +94,10 @@ public class SmartInvestingQuiz extends AppCompatActivity {
         rb2 = findViewById(R.id.rbB);
         rb3 = findViewById(R.id.rbC);
         rb4 = findViewById(R.id.rbD);
+        tvCountDown = findViewById(R.id.tvCountDown);
         buttonConfirmNext = findViewById(R.id.btCOnfirm);
         textColorDefaultRb = rb1.getTextColors();
+        textColorDefaultCount = tvCountDown.getTextColors();
 
 
         SIQuizDBHelper dbHelper = new SIQuizDBHelper(this);
@@ -132,17 +140,51 @@ public class SmartInvestingQuiz extends AppCompatActivity {
             answered = false;
             buttonConfirmNext.setText("Confirm");
 
-
+timeleft = CountDown;
+CountDownStart(); 
         } else {
             finishQuiz();
             stopAudio();
         }
     }
 
+    private void CountDownStart() {
+        countDownTimer = new CountDownTimer(timeleft,1000) {
+            @Override
+            public void onTick(long l) {
+                timeleft = l;
+                updateCountDownText();
+
+            }
+
+            @Override
+            public void onFinish() {
+                timeleft =0;
+                updateCountDownText();
+                checkAnswer();
+
+            }
+        }.start();
+
+    }
+
+    private void updateCountDownText() {
+        int seconds = (int) (timeleft/1000);
+
+        String Time = String.format(Locale.getDefault(), "%02d", seconds);
+        tvCountDown.setText(Time);
+
+        if (timeleft<10000){
+            tvCountDown.setTextColor(Color.RED);
+        }else {
+            tvCountDown.setTextColor(textColorDefaultCount);
+        }
+    }
 
 
     private void checkAnswer() {
         answered = true;
+        countDownTimer.cancel();
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
         if (answerNr == currentQuestion.getAnswerNr()) {
@@ -234,6 +276,13 @@ public class SmartInvestingQuiz extends AppCompatActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
         }
     }
 }
