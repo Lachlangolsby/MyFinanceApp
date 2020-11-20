@@ -108,6 +108,14 @@ public class IrregularCalc_preface extends AppCompatActivity {
                         IrregularCalc_preface.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.mShare:
+                        String shareMessage = "Join MyFinance, it's fun and eductaional.";
+                        Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
+                        mSharingIntent.setType("Text/Plain");
+                        mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
                         Toast.makeText(IrregularCalc_preface.this, "You are Logged Out", Toast.LENGTH_SHORT).show();

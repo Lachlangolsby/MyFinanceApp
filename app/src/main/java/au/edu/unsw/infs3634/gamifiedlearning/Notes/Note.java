@@ -26,7 +26,7 @@ public class Note implements Serializable {
     private Date date;
 
     @NonNull
-    private String UID;
+    private String email;
 
     // Creating the constructor
     public Note(String content, String title) {
@@ -34,7 +34,7 @@ public class Note implements Serializable {
         this.content = content;
         this.title = title;
         this.date = new Date(System.currentTimeMillis());
-        this.UID =  String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        this.email =  String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getEmail().trim());
     }
 
 
@@ -97,16 +97,16 @@ public class Note implements Serializable {
                 ", content='" + content + '\'' +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
-                ", UID='" + UID + '\'' +
+                ", Email='" + email + '\'' +
                 '}';
     }
 
-    public String getUID() {
-        return UID;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 // Refrernce: Video used to create notes page:https://www.youtube.com/watch?v=nOoJoPE6MsU&t=18s

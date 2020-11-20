@@ -51,6 +51,7 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    ImageView share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
             }
         });
 
+        share = findViewById(R.id.ivShare);
+
         textViewHighscore = findViewById(R.id.tvHighScore);
         loadHighscore();
 
@@ -91,6 +94,18 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shareMessage = "Just got a new HighScore on the Financial Goal Setting myfinance  quiz!!";
+                Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
+                mSharingIntent.setType("Text/Plain");
+                mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
+                mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
+                startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -150,6 +165,14 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
                         Intent activityChangeIntentN = new Intent(FinancialGoalSettingQuizLanding.this, NoteListActivity.class);
                         FinancialGoalSettingQuizLanding.this.startActivity(activityChangeIntentN);
                         drawerLayout.closeDrawers();
+                        break;
+                    case R.id.mShare:
+                        String shareMessage = "Join MyFinance, it's fun and eductaional.";
+                        Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
+                        mSharingIntent.setType("Text/Plain");
+                        mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
