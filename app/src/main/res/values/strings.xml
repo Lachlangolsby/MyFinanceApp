@@ -12,6 +12,9 @@
     <string name="emergencyIcon">This is the icon for going to Emergency Fund preface</string>
     <string name="compoundIcon">This is the icon for going to Compound Interest preface</string>
     <string name="IrregularIcon">This is the icon for going to Irregular Payments preface</string>
+    <string name="facebook_app_id">403306607711246</string>
+    <string name="fb_login_protocol_scheme">fb403306607711246</string>
+
 
     <string name="EmergencyFundPreface">Emergency Funds are a great way to ensure you do not run out of money if you temporarily lose a job, get sick or need some money for a replacement car.
         This does NOT replace a savings account, and you are not supposed to touch this until you are really in an emergency.<br /><br />To calculate this, you will need a rough idea of your weekly expenses</string>
@@ -56,6 +59,8 @@
     <string name="AnnualFee">Annual Fee: </string>
     <string name="MinRepay">Minimum Repayment: </string>
     <string name="HigherRepay">Higher repayment amount: </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

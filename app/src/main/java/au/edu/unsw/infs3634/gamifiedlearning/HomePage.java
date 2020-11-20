@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.facebook.login.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -199,6 +200,7 @@ public class HomePage extends AppCompatActivity {
                 break;
         case R.id.mLogout:
         FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
         Toast.makeText(HomePage.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
         Intent activityChangeIntent2 = new Intent(HomePage.this, MainActivity.class);
         HomePage.this.startActivity(activityChangeIntent2);

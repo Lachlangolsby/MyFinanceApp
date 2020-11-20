@@ -47,7 +47,7 @@
             android:layout_column="12"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_weight="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etEmail" />
@@ -55,12 +55,25 @@
         <Button
             android:id="@+id/btnUpdateName"
             android:layout_width="60dp"
-            android:layout_height="30sp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="300dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="Update Name"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnUpdateEmail"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Verify Email"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,23 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
             android:text="Name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="200dp"
-            android:layout_weight="1"
-            android:autofillHints="email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etName"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/etPhone"
@@ -105,12 +106,12 @@
         <Button
             android:id="@+id/btnUpdatePhone"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="Update"
+            android:text="Update Phone Number"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnUpdateName" />
@@ -123,6 +124,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="58dp"
             android:text="Email"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
 
@@ -134,8 +136,45 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:text="Phone Number"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+        <Button
+            android:id="@+id/btPasswordChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/roundedbutton"
+            android:text="Change Password "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPhone" />
+
+        <ImageView
+            android:id="@+id/ivVerified"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="84dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/etEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:srcCompat="@drawable/correct" />
+
+        <TextView
+            android:id="@+id/etEmail"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

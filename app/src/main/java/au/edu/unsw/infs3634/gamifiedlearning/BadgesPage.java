@@ -149,11 +149,12 @@ public class BadgesPage extends AppCompatActivity {
 
 
     public void MembersBadge(){
-       if (fAuth.getCurrentUser() != null){
-           mivMember.setAlpha(255);
-           mtvMember.setTextColor(Color.parseColor("#000000"));
+        if (fAuth.getCurrentUser().isEmailVerified() == true){
+            mivMember.setAlpha(255);
+            mtvMember.setTextColor(Color.parseColor("#000000"));
 
-       }
+
+        }
     }
     public void FG3badge(){
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

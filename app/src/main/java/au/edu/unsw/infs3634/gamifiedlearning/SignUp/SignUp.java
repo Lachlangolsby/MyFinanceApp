@@ -36,10 +36,14 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
 
         ConstraintLayout background = findViewById(R.id.layout);
         AnimationDrawable animationDrawable = (AnimationDrawable) background.getBackground();
@@ -108,7 +112,7 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this, "User Created. Sign In Now", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("Users").document(userID);
-                            User user = new User(FullName, phoneNumber, email, "0", "0");
+                            User user = new User(FullName, email, phoneNumber, "0", "0");
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

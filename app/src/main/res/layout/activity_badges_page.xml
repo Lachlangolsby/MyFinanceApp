@@ -97,8 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Members Club Badge"
-            android:textColor="#989393"
+            android:text="Verified Email Badge"
+            android:textColor="#F44336"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivMembers" />

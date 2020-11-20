@@ -8,19 +8,6 @@
     android:background="@drawable/gradientlist"
     tools:context=".SignUp.MainActivity">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="124dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/roundedbutton"
-        app:colorScheme="light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
-        tools:ignore="MissingConstraints" />
-
     <EditText
         android:id="@+id/ptEmail"
         android:layout_width="200sp"
@@ -43,7 +30,7 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
