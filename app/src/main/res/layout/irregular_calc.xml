@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/irclayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:outlineSpotShadowColor="#F8F8F8">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,98 +15,167 @@
         <TextView
             android:id="@+id/tvIrregularTitle2"
             android:layout_width="175dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="36dp"
+            android:layout_height="25dp"
             android:gravity="center_horizontal"
             android:text="@string/Irregular"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
         <EditText
             android:id="@+id/etExpenseType"
-            android:layout_width="199dp"
+            android:layout_width="250dp"
             android:layout_height="43dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:ems="10"
             android:hint="@string/expensetype"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@string/expensetype"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIrregularTitle2" />
 
         <EditText
             android:id="@+id/etAmount"
-            android:layout_width="199dp"
+            android:layout_width="250dp"
             android:layout_height="43dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:ems="10"
-            android:hint="@string/Amount"
+            android:hint="Irregular Payement Amounts"
             android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etExpenseType"
-            tools:text="@string/Amount" />
+            app:layout_constraintTop_toBottomOf="@+id/etExpenseType" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:id="@+id/etFrequency"
+            android:layout_width="250dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:ems="10"
-            android:hint="@string/Frequency"
+            android:hint="Irregular Payement Frequency"
             android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAmount"
-            tools:text="@string/Frequency" />
+            app:layout_constraintTop_toBottomOf="@+id/etAmount" />
 
         <TextView
-            android:id="@+id/tvHint"
-            android:layout_width="208dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center_horizontal"
-            android:text="@string/hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
-
-        <TextView
-            android:id="@+id/tvIrregularResult"
-            android:layout_width="132dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="40dp"
+            android:id="@+id/tvSolutionWeekly"
+            android:layout_width="331dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="@string/result"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.813"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnIrregularCalc" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIrregularResultHint" />
+
+        <TextView
+            android:id="@+id/tvSolutionFortnightly"
+            android:layout_width="331dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/result"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSolutionWeekly" />
+
+        <TextView
+            android:id="@+id/tvSolutionMonthly"
+            android:layout_width="331dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/result"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSolutionFortnightly" />
 
         <Button
             android:id="@+id/btnIrregularCalc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/roundedbutton"
             android:text="@string/Calculate"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHint" />
+            app:layout_constraintTop_toBottomOf="@+id/etFrequency" />
 
         <TextView
             android:id="@+id/tvIrregularResultHint"
-            android:layout_width="132dp"
+            android:layout_width="210dp"
             android:layout_height="51dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/resulthint"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="Possible Saving Solutions"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.189"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIrregularCalc" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="107dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/calendar2" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="84dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:outlineAmbientShadowColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/etAmount"
+            app:layout_constraintTop_toBottomOf="@+id/etExpenseType"
+            app:srcCompat="@drawable/certificate" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="84dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:outlineAmbientShadowColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/etFrequency"
+            app:layout_constraintTop_toBottomOf="@+id/imageView16"
+            app:srcCompat="@drawable/lending" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="84dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:outlineAmbientShadowColor="#FFFFFF"
+            android:outlineSpotShadowColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/etExpenseType"
+            app:layout_constraintTop_toBottomOf="@+id/tvIrregularTitle2"
+            app:srcCompat="@drawable/saving" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

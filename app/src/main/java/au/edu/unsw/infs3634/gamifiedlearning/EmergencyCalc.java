@@ -157,7 +157,7 @@ public class EmergencyCalc extends AppCompatActivity {
             double dailyExpense = ((Double.parseDouble(bills)+Double.parseDouble(car)+Double.parseDouble(FHC)+Double.parseDouble(Misc))/7);
             double weeklyExpense = dailyExpense*7;
             double fortnightlyExpense = dailyExpense *14;
-            double monthlyExpense = dailyExpense*30;
+            double monthlyExpense = dailyExpense*30.416667;
             double savingPerWeek = weeklyExpense/365;
             double savingPerFort = fortnightlyExpense/365;
             double savingPerMonth = monthlyExpense/365;

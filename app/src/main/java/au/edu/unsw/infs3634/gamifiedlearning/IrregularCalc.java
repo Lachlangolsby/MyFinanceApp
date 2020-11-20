@@ -1,8 +1,10 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DecimalFormat;
+
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
@@ -25,8 +29,8 @@ public class IrregularCalc extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-    private TextView mTvIrregularTitle2, mTvHint , mTvIrregularResultHint, mTvIrregularResult;
-    private EditText mEtExpenseType, mEtAmount, mEditTextNumber2;
+    private TextView mIRSolutionTitle,  mIRSolutionWeekly, mIRSolutionMonthly, mIRSolutionFortnightly;
+    private EditText mEtExpenseType, mEtAmount, mETFrequency;
     private Button mBtnIrregularCalc;
 
     @Override
@@ -35,14 +39,25 @@ public class IrregularCalc extends AppCompatActivity {
         setContentView(R.layout.irregular_calc);
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.irclayout);
-        mTvIrregularTitle2 = findViewById(R.id.tvIrregularTitle2);
-        mTvHint = findViewById(R.id.tvHint);
-        mTvIrregularResultHint = findViewById(R.id.tvIrregularResultHint);
-        mTvIrregularResult = findViewById(R.id.tvIrregularResult);
-        mEtExpenseType = findViewById(R.id.etExpenseType);
+        mIRSolutionTitle = findViewById(R.id.tvIrregularResultHint);
+        mIRSolutionTitle.setVisibility(View.INVISIBLE);
+        mIRSolutionWeekly = findViewById(R.id.tvSolutionWeekly);
+        mIRSolutionWeekly.setVisibility(View.INVISIBLE);
+        mIRSolutionMonthly = findViewById(R.id.tvSolutionMonthly);
+        mIRSolutionMonthly.setVisibility(View.INVISIBLE);
+        mIRSolutionFortnightly = findViewById(R.id.tvSolutionFortnightly);
+        mIRSolutionFortnightly.setVisibility(View.INVISIBLE);
         mEtAmount = findViewById(R.id.etAmount);
-        mEditTextNumber2 = findViewById(R.id.editTextNumber2);
+        mETFrequency = findViewById(R.id.etFrequency);
+        mEtExpenseType =findViewById(R.id.etExpenseType);
         mBtnIrregularCalc = findViewById(R.id.btnIrregularCalc);
+
+        mBtnIrregularCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                generateIrregular();
+            }
+        });
 
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
@@ -121,6 +136,36 @@ public class IrregularCalc extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @SuppressLint("SetTextI18n")
+    public void generateIrregular(){
+        String expenseType = mEtExpenseType.getText().toString();
+        String Amount = mEtAmount.getText().toString();
+        String Frequency = mETFrequency.getText().toString();
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        if (expenseType.equals("")|| Amount.equals("") || Frequency.equals("")) {
+            Toast.makeText(IrregularCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
+
+        }else {
+            mIRSolutionTitle.setText("Possible Saving Solutions for "+expenseType +" Expense:");
+            int expenseTotal = Integer.parseInt(Amount)*Integer.parseInt(Frequency);
+            double dailybreakdown = expenseTotal/365.000;
+            double weekly = dailybreakdown*7;
+            double fortnightly = dailybreakdown*14;
+            double monthly = dailybreakdown *30.416667;
+
+            mIRSolutionWeekly.setText("Save: $"+ df.format(weekly) + " Weekly, to cover yearly "+ expenseType + " Expense");
+            mIRSolutionFortnightly.setText("Save: $"+ df.format(fortnightly) + " Fortnightly, to cover yearly "+ expenseType + " Expense");
+            mIRSolutionMonthly.setText("Save: $"+ df.format(monthly) + " Monthly, to cover yearly "+ expenseType + " Expense");
+            mIRSolutionTitle.setVisibility(View.VISIBLE);
+            mIRSolutionWeekly.setVisibility(View.VISIBLE);
+            mIRSolutionMonthly.setVisibility(View.VISIBLE);
+            mIRSolutionFortnightly.setVisibility(View.VISIBLE);
+
+
+        }
+
     }
 
     }
