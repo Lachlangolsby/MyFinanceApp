@@ -28,39 +28,39 @@ import com.google.firebase.database.ValueEventListener;
 import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
 import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
 import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
-import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
 import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
 import au.edu.unsw.infs3634.gamifiedlearning.R;
-import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
+import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
-
-    private static final int REQUEST_CODE = 1;
-
+    // decalring variables to be used throughout class
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String KEY_HIGHSCORE = "keyHighscore";
-
-    private TextView textViewHighscore;
-    private String highscore;
-
+    private static final int REQUEST_CODE = 1;
     public static MediaPlayer mediaPlayer = null;
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     ImageView share;
+    private TextView textViewHighscore;
+    private String highscore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct layout
         setContentView(R.layout.activity_financial_goal_setting_quiz_landing);
-            mediaPlayer = MediaPlayer.create(this, R.raw.music);
-            mediaPlayer.start();
+
+        // starting gamified music
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer.start();
 
 
+        // logic behinde the pausing of music via the speaker image view
         final ImageView sound = findViewById(R.id.sound);
         sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,11 +74,14 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
             }
         });
 
+        // assigning share button to xml
         share = findViewById(R.id.ivShare);
 
+        // declaring highscore text to relevant xml and retrieving through method
         textViewHighscore = findViewById(R.id.tvHighScore);
         loadHighscore();
 
+        // declaring highscore text to relevant xml and onclick listener for start quiz button
         Button buttonStartQuiz = findViewById(R.id.btStart);
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +90,17 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
             }
         });
 
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.tvTitle);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        //action when navigation menu open and close
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // on click listner that Uses intents to pass string through to other application on mobile device to share their learning progress in terms of high score attainment
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,15 +108,16 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
                 Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                 mSharingIntent.setType("Text/Plain");
                 mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
             }
         });
 
+        //Navigation Menu Logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(FinancialGoalSettingQuizLanding.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(FinancialGoalSettingQuizLanding.this, ProfileManagement.class);
@@ -171,8 +178,8 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -188,60 +195,53 @@ public class FinancialGoalSettingQuizLanding extends AppCompatActivity {
             }
         });
     }
+
+    // Returning whether menu selected true or false
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    // method for starting the quiz
     private void startQuiz() {
         Intent intent = new Intent(FinancialGoalSettingQuizLanding.this, FinancialGoalSettingQuiz.class);
-        startActivityForResult(intent,REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
         stopAudio();
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                int score = data.getIntExtra(FinancialGoalSettingQuiz.EXTRA_SCORE, 0);
-//                if (score > highscore) {
-//                    updateHighscore(score);
-//                }
-//            }
-//        }
-//    }
-private void loadHighscore() {
 
-    FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-    String userid =user.getUid();
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-    reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+    // loads highscore retrieved via firebase realtime db
+    private void loadHighscore() {
 
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            User userProfile = snapshot.getValue(User.class);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
 
-            if (userProfile !=null){
-                String result = userProfile.FGSScore;
-                highscore = result;
-                textViewHighscore.setText("HighScore: "+highscore);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
 
+                // setting highScore to ui
+                if (userProfile != null) {
+                    String result = userProfile.FGSScore;
+                    highscore = result;
+                    textViewHighscore.setText("HighScore: " + highscore);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        }
+        });
+    }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    });
-}
-
+    // method to stop the audio player
     private void stopAudio() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
@@ -249,12 +249,4 @@ private void loadHighscore() {
             mediaPlayer = null;
         }
     }
-//    private void updateHighscore(int highscoreNew) {
-//        highscore = highscoreNew;
-//        textViewHighscore.setText("Highscore: " + highscore);
-//        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = prefs.edit();
-//        editor.putInt(KEY_HIGHSCORE, highscore);
-//        editor.apply();
-//    }
 }

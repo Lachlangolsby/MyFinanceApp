@@ -40,7 +40,7 @@ public class CCRepayCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ensure layout is from correct xml file
         setContentView(R.layout.ccrepay_calc);
-        //Configure/install textviews, drawers and buttons
+        //Configure/install textViews, drawers and buttons
         mOutstandingBalance = findViewById(R.id.etOutstandingBalance);
         mFees=findViewById(R.id.etAnnualFees);
         mInterestRate = findViewById(R.id.etAnnualInterestRate);
@@ -56,6 +56,7 @@ public class CCRepayCalc extends AppCompatActivity {
         mYearly.setVisibility(View.INVISIBLE);
         btCalculate = findViewById(R.id.btCCR);
 
+        // logic for calculate button clicked calls logic method
         btCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,15 +66,17 @@ public class CCRepayCalc extends AppCompatActivity {
         });
 
 
-
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.ccrcLayout);
 
+        //action when navigation menu open and close
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu code
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,6 +150,7 @@ public class CCRepayCalc extends AppCompatActivity {
             }
         });
     }
+    // return true or false is nav menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)){
@@ -155,16 +159,22 @@ public class CCRepayCalc extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // calculator logic method
     @SuppressLint("SetTextI18n")
     public void GenerateCCR(){
+        // retrieving user input into usaebale form
        String outstandingBalance = mOutstandingBalance.getText().toString();
        String interestRate = mInterestRate.getText().toString();
        String fees = mFees.getText().toString();
        DecimalFormat df = new DecimalFormat("#.##");
+
+       // making sure all fields are entered
         if (outstandingBalance.equals("")|| interestRate.equals("") || fees.equals("")) {
             Toast.makeText(CCRepayCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
 
         }else {
+
+            // performing mathematical calculations in order to return results
             double monthlyInterestrate = (1+((Double.parseDouble(interestRate)/100)/12));
             double oneMonthInterest  = Double.parseDouble(outstandingBalance)*monthlyInterestrate-Double.parseDouble(outstandingBalance);
             double ThreeMonthInterest = Double.parseDouble(outstandingBalance)*Math.pow(monthlyInterestrate,3)-Double.parseDouble(outstandingBalance);
@@ -174,6 +184,7 @@ public class CCRepayCalc extends AppCompatActivity {
             double threeMonthPayoff = Double.parseDouble(outstandingBalance) + ThreeMonthInterest+ (3*(Double.parseDouble(fees)/12));
             double tweleveMonthPayoff = Double.parseDouble(outstandingBalance) + tweleveMonthInteret+ ((Double.parseDouble(fees)));
 
+            // returning results to the user
             mSolutionTitle.setText("Possible Credit Card Payment Options include");
             mMinRepayment.setText("The Interest Only plus Fees payment is $"+ df.format(MinMonthlyRepayment));
             mMonthly.setText("Pay off the card this Month for $"+df.format(monthPayoff));

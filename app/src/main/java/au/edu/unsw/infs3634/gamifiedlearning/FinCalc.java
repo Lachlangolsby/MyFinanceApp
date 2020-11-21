@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,36 +21,27 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class FinCalc extends AppCompatActivity {
-    private TextView mFinCalcTitle;
-    private TextView mEmergencyFund;
-    private TextView mCCRepay;
-    private TextView mIrregular;
-    private TextView mCompound;
+    // loading variables to be used in class
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
     private ImageView mEmergencyFundIcon;
     private ImageView mCCRepayIcon;
     private ImageView mIrregularIcon;
     private ImageView mCompoundIcon;
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mFinCalcTitle = findViewById(R.id.tvPage2);
-        mEmergencyFund = findViewById(R.id.tvEmergency);
-        mCCRepay = findViewById(R.id.tvCCRepay);
-        mIrregular = findViewById(R.id.tvIrregular);
-        mCompound = findViewById(R.id.tvCompound);
+        // assigning variables to xml items
         mEmergencyFundIcon = findViewById(R.id.ivEmergency);
         mCCRepayIcon = findViewById(R.id.ivCCRepay);
         mIrregularIcon = findViewById(R.id.ivIrregular);
         mCompoundIcon = findViewById(R.id.ivCompound);
 
+        // changing pages based on which item is selected
         mEmergencyFundIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,19 +72,21 @@ public class FinCalc extends AppCompatActivity {
         });
 
 
-
+        // assigning navigation menu to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.dtLayout);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // action when menu opened and closed
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // navigation menu logic behind each item when selected
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(FinCalc.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(FinCalc.this, ProfileManagement.class);
@@ -148,8 +140,8 @@ public class FinCalc extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -164,9 +156,11 @@ public class FinCalc extends AppCompatActivity {
             }
         });
     }
+
+    // return whether menu selected true or false
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,13 +22,10 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class EmergencyCalc_preface extends AppCompatActivity {
     //putting all text/edit Views together aids readability
-    private TextView mTvEmergencyTitle;
-    private TextView mTvEmergencyCalcPreface;
-    private Button mBtnEmergency;
-    private ImageView mIvEmergencyPreface;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    private Button mBtnEmergency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +33,33 @@ public class EmergencyCalc_preface extends AppCompatActivity {
         //ensure layout is from correct xml file
         setContentView(R.layout.emergencycalc_preface);
 
-        mTvEmergencyTitle = findViewById(R.id.tvEmergencyTitle);
-        //This does the actual preface text
-        mTvEmergencyCalcPreface = findViewById(R.id.tvEmergencyCalcPreface);
+
         mBtnEmergency = findViewById(R.id.btnEmergency);
-        mIvEmergencyPreface = findViewById(R.id.ivEmergencyPreface);
-//Configure/install textviews, drawers and buttons
+
+        //Configure/install textviews, drawers and buttons
         mBtnEmergency.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        EmergencyCalc("Emergency Fund"); }
+                        EmergencyCalc("Emergency Fund");
+                    }
                 });
+
+        // assigning navigation menu to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.eflayout);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // action when navigation menu open and close
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(EmergencyCalc_preface.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(EmergencyCalc_preface.this, ProfileManagement.class);
@@ -115,8 +113,8 @@ public class EmergencyCalc_preface extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -131,9 +129,11 @@ public class EmergencyCalc_preface extends AppCompatActivity {
             }
         });
     }
+
+    //// return whether menu selected true or false
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);

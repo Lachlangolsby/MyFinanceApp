@@ -38,6 +38,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.SignUp.User;
 
 
 public class SmartInvestingQuizLanding extends AppCompatActivity {
+
+    // Declaring variables to be used throughout the class
     private static final int REQUEST_CODE = 1;
 
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -57,12 +59,17 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct layout
         setContentView(R.layout.activity_smart_investing_quiz_landing);
+
+        // starting gamified music
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         mediaPlayer.start();
 
+        // assigning share button to xml
         share = findViewById(R.id.ivShare2);
 
+        // logic behinde the pausing of music via the speaker image view
         final ImageView sound = findViewById(R.id.sound);
         sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,10 +84,11 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
         });
 
 
-
+        // declaring highscore text to relevant xml and retrieving through method
         textViewHighscore = findViewById(R.id.tvHighScore);
         loadHighscore();
 
+        // declaring highscore text to relevant xml and onclick listener for start quiz button
         Button buttonStartQuiz = findViewById(R.id.btStart);
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +98,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             }
         });
 
+        // on click listner that Uses intents to pass string through to other application on mobile device to share their learning progress in terms of high score attainment
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,14 +111,17 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             }
         });
 
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.tvTitle);
 
+        //action when navigation menu open and close
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -192,6 +204,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
         });
     }
 
+    // Returning whether menu selected true or false
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)){
@@ -200,26 +213,15 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    // method for starting the quiz
     private void startQuiz() {
         Intent intent = new Intent(SmartInvestingQuizLanding.this, SmartInvestingQuiz.class);
         startActivityForResult(intent,REQUEST_CODE);
         finish();
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                int score = data.getIntExtra(SmartInvestingQuiz.EXTRA_SCORE, 0);
-//                if (score > highscore) {
-//                    updateHighscore(score);
-//                }
-//            }
-//        }
-//    }
-    private void loadHighscore() {
 
+    // loads highscore retrieved via firebase realtime db
+    private void loadHighscore() {
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String userid =user.getUid();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -229,6 +231,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
 
+                // setting highScore to ui
                 if (userProfile !=null){
                     String result = userProfile.SIScore;
                     highscore = result;
@@ -246,6 +249,7 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
     }
 
 
+// method to stop the audio player
     private void stopAudio() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
@@ -253,14 +257,6 @@ public class SmartInvestingQuizLanding extends AppCompatActivity {
             mediaPlayer = null;
         }
     }
-//    private void updateHighscore(int highscoreNew) {
-//        highscore = highscoreNew;
-//        textViewHighscore.setText("Highscore: " + highscore);
-//        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = prefs.edit();
-//        editor.putInt(KEY_HIGHSCORE, highscore);
-//        editor.apply();
-//    }
 
 }
 

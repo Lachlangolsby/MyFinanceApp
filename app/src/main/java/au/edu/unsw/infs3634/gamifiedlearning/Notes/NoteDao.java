@@ -11,7 +11,9 @@ import java.util.List;
 
 @Dao
 public interface NoteDao {
-    @Query("SELECT * FROM "+ Constants.TABLE_NAME_NOTE)
+
+    // Note DAO contains the queries that are used to query the database
+    @Query("SELECT * FROM " + Constants.TABLE_NAME_NOTE)
     List<Note> getNotes();
 
     @Insert
@@ -28,7 +30,6 @@ public interface NoteDao {
 
     @Delete
     void deleteNotes(Note... note);
-
 
 
 }

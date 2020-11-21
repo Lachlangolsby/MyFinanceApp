@@ -40,7 +40,7 @@ public class CompoundCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ensure layout is from correct xml file
         setContentView(R.layout.compound_calc);
-//Configure/install textviews, drawers and buttons
+        //Configure/install textviews, drawers and buttons
         mTvExpectedReturn = findViewById(R.id.tvExpectedReturn);
         mTvExpectedReturn.setVisibility(View.INVISIBLE);
         mTvInterestRate = findViewById(R.id.tvInterestRate);
@@ -63,15 +63,17 @@ public class CompoundCalc extends AppCompatActivity {
         });
 
 
-
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.cicLayout);
 
+        // action when navigation menu open and close
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,6 +149,7 @@ public class CompoundCalc extends AppCompatActivity {
 
 
     }
+    // return true or false is nav menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)){
@@ -156,7 +159,10 @@ public class CompoundCalc extends AppCompatActivity {
     }
 
 
+    // logic behind the calculator
     public void GenerateCompoundedAmount(){
+
+        // retrieving textviews and making them usable
         double Amount = 0;
         double AmountPowered = 0;
         DecimalFormat df = new DecimalFormat("#.##");
@@ -164,10 +170,14 @@ public class CompoundCalc extends AppCompatActivity {
         String interestRate = mEditTextInterestRate.getText().toString();
         String compoundInterval = mEditTextCompoundInterval.getText().toString();
         String Maturity = mEditTextMaturity.getText().toString();
+
+        // ensuring all fields are entered
         if (lumpSum.equals("")|| interestRate.equals("") || compoundInterval.equals("") || Maturity.equals("")) {
         Toast.makeText(CompoundCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
 
         }else {
+
+            // performing claculations and returning to user
             AmountPowered = (1 + ((Double.parseDouble(interestRate)) / 100)/Integer.parseInt(compoundInterval));
             Amount = Integer.parseInt(lumpSum) * Math.pow(AmountPowered, (Double.parseDouble(Maturity)*Double.parseDouble(compoundInterval)));
             mTvExpectedReturnCompound.setText("$ " + df.format(Amount));

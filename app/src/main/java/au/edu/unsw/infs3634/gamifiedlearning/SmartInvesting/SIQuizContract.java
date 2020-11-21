@@ -5,6 +5,7 @@ import android.provider.BaseColumns;
 public final class SIQuizContract {
     private SIQuizContract() {
     }
+    // how object must be formatted
     public static class QuestionsTable implements BaseColumns {
         public static final String TABLE_NAME = "quiz_questions";
         public static final String COLUMN_QUESTION = "question";

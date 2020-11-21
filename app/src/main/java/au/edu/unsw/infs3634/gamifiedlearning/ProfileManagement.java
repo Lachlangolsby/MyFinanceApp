@@ -41,36 +41,33 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 
 public class ProfileManagement extends AppCompatActivity {
-
-    EditText mPassword, mName, mPhone;
-    Button mUpdateEmail, mUpdatePassword, mUpdatephone, mUpdateName;
+    //initialising variables to be used throughout java class
+    EditText mName, mPhone;
+    Button mVerifyEmail, mUpdatePassword, mUpdatephone, mUpdateName;
     TextView mEmail;
-
-    private FirebaseUser user;
-    private DatabaseReference reference;
-
-    private String userID;
-
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-    private FirebaseAuth mAuth;
     ImageView ivVerified;
-
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+    private FirebaseAuth mAuth;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // loading relevant xml layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_management);
+
+        // retrieving current user from firebase
         user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-
-
+// assigning xml nodes to respective java class variables
         mEmail = (findViewById(R.id.etEmail));
-//        mPassword = (findViewById(R.id.etPassword));
-        mUpdateEmail = findViewById(R.id.btnUpdateEmail);
+        mVerifyEmail = findViewById(R.id.btnUpdateEmail);
         mUpdatePassword = findViewById(R.id.btPasswordChange);
         mUpdateName = findViewById(R.id.btnUpdateName);
         mUpdatephone = findViewById(R.id.btnUpdatePhone);
@@ -81,13 +78,14 @@ public class ProfileManagement extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         ivVerified = findViewById(R.id.ivVerified);
 
-        if (user.isEmailVerified() == true){
+// checking if email has been verified to remove UI button
+        if (user.isEmailVerified() == true) {
             ivVerified.setVisibility(View.VISIBLE);
-            mUpdateEmail.setVisibility(View.GONE);
+            mVerifyEmail.setVisibility(View.GONE);
 
 
         }
-
+// retrieving user data from android firebase realtim database
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -97,7 +95,7 @@ public class ProfileManagement extends AppCompatActivity {
                     String fullName = userProfile.Name;
                     String email = userProfile.Email;
                     String phoneNumber = userProfile.PhoneNumber;
-
+// assigning realtime database info to ui elements
                     mName.setText(fullName);
                     mEmail.setText(email);
                     mPhone.setText(phoneNumber);
@@ -106,15 +104,18 @@ public class ProfileManagement extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                // error handingling should db not be accessible
                 Toast.makeText(ProfileManagement.this, "Data could not be loaded", Toast.LENGTH_SHORT).show();
 
             }
         });
 
+        // Action for updating name in Firebase realtime database.
         mUpdateName.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                // getting user credentials and creating a reference in order to perform Updates
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 final String userid = user.getUid();
                 final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -122,12 +123,15 @@ public class ProfileManagement extends AppCompatActivity {
                     @SuppressLint("ShowToast")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // getting name from db
                         User userProfile = snapshot.getValue(User.class);
                         String result = userProfile.Name;
+                        // checking updated name is different to previous and updating
                         if (!result.equals(mName)) {
                             Toast.makeText(ProfileManagement.this, "Name Updated", Toast.LENGTH_SHORT).show();
                             reference.child(userid).child("Name").setValue(mName.getText().toString());
                         } else {
+                            // error handling if name the same as already entered in realtime db.
                             Toast.makeText(ProfileManagement.this, "Please enter an updated name", Toast.LENGTH_SHORT).show();
 
                         }
@@ -144,13 +148,11 @@ public class ProfileManagement extends AppCompatActivity {
         });
 
 
-        mUpdateEmail.setOnClickListener(new View.OnClickListener() {
+        mVerifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-                if  (user != null) {
+                // sending verification email to user
+                if (user != null) {
                     user.sendEmailVerification()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -164,14 +166,15 @@ public class ProfileManagement extends AppCompatActivity {
                 }
 
 
-                        }
+            }
 
-                    });
+        });
 
-
+        // Action for updating Phone in Firebase realtime database.
         mUpdatephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // getting user credentials and creating a reference in order to perform Updates
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 final String userid = user.getUid();
                 final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -179,8 +182,10 @@ public class ProfileManagement extends AppCompatActivity {
                     @SuppressLint("ShowToast")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // getting number from db
                         User userProfile = snapshot.getValue(User.class);
                         String result = userProfile.PhoneNumber;
+                        // updating if phone number not the same as already stored
                         if (!result.equals(String.valueOf(mPhone))) {
                             Toast.makeText(ProfileManagement.this, "Phone Updated", Toast.LENGTH_SHORT).show();
                             reference.child(userid).child("PhoneNumber").setValue(mPhone.getText().toString());
@@ -199,15 +204,16 @@ public class ProfileManagement extends AppCompatActivity {
 
             }
         });
-
+// navigation menu items being assigned to xml
         navigationView = findViewById(R.id.View);
         drawerLayout = findViewById(R.id.layout);
 
+// calling the required behaviour when menu accessed
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+// the required actions should the various different items in the menu be selected.
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -265,8 +271,8 @@ public class ProfileManagement extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -280,16 +286,18 @@ public class ProfileManagement extends AppCompatActivity {
                 return false;
             }
         });
+
+        // creating a password change method
         mUpdatePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+// creating popup message that asks for email
                 final EditText resetMail = new EditText(v.getContext());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password ?");
                 passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
                 passwordResetDialog.setView(resetMail);
-
+// sending email after yes is selected
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -309,20 +317,21 @@ public class ProfileManagement extends AppCompatActivity {
 
                     }
                 });
-
+// returning back to profile management should no be clicked
                 passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
-
+// showing message created in this method
                 passwordResetDialog.create().show();
 
             }
         });
     }
 
+    // method used by navigation menu to see if item has been selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) {

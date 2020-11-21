@@ -14,15 +14,18 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SIQuizContract.*;
 
 
 public class SIQuizDBHelper extends SQLiteOpenHelper {
+    // declaring variables of db
     private static final String DATABASE_NAME = "SmartInvestingDB";
     private static final int DATABASE_VERSION = 3;
 
+    // declaring instance of an SQLite DB
     private SQLiteDatabase db;
 
     public SIQuizDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // creating db method using SQL
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         this.db = sqLiteDatabase;
@@ -39,11 +42,15 @@ public class SIQuizDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         fillQuestionsTable();
     }
-        @Override
+
+    // creating new version on db should version be changed
+    @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
             onCreate(db);
         }
+
+        // populating db with questions
         private void fillQuestionsTable(){
             SIQuizQuestions q1 = new SIQuizQuestions("Which one of these is not a golden rule of investing? ", "Pay off your debts first",
                     "Have emergency savings ", "Research different asset classes","Invest at the highest rates of return", 4);
@@ -59,6 +66,8 @@ public class SIQuizDBHelper extends SQLiteOpenHelper {
             SIQuizQuestions q5 = new SIQuizQuestions("Out of these assets which traditionally is riskier?", "Shares", "Property", "Options","Government Bonds", 3);
             addQuestion(q5);
         }
+
+        // method to add questions to data base
         private void addQuestion(SIQuizQuestions question) {
             ContentValues cv = new ContentValues();
             cv.put(QuestionsTable.COLUMN_QUESTION, question.getQuestion());
@@ -70,6 +79,7 @@ public class SIQuizDBHelper extends SQLiteOpenHelper {
             db.insert(QuestionsTable.TABLE_NAME, null, cv);
         }
 
+        // method to retrieve all questions from the sqlLite db
     public List<SIQuizQuestions> getAllQuestions() {
         List<SIQuizQuestions> questionList = new ArrayList<>();
         db = getReadableDatabase();

@@ -23,6 +23,7 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvestingQuizLanding;
 
 public class QuizTopicSelection extends AppCompatActivity {
+    // Declaring variables to connect java class to xmllayout
     ImageView si, fg;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -30,11 +31,14 @@ public class QuizTopicSelection extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // loading corresponding xml layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_topic_selection);
+        // assigning variables to xml images
         si = findViewById(R.id.ivSI);
         fg = findViewById(R.id.ivFG);
 
+        // creating onclick listener to take user to quiz
         si.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +47,7 @@ public class QuizTopicSelection extends AppCompatActivity {
 
             }
         });
+        // creating onclick listener to take user to quiz
         fg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,18 +55,22 @@ public class QuizTopicSelection extends AppCompatActivity {
                 QuizTopicSelection.this.startActivity(activityChange);
             }
         });
+
+        // Loading navigation menu layout
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.QuizSelectionLayout);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // initialising toggle so action menu performs properly
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // setting functions for what action menu does when something is selected
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(QuizTopicSelection.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(QuizTopicSelection.this, ProfileManagement.class);
@@ -90,7 +99,7 @@ public class QuizTopicSelection extends AppCompatActivity {
                         Toast.makeText(QuizTopicSelection.this, "Module3", Toast.LENGTH_SHORT);
                         drawerLayout.closeDrawers();
                         Intent activityChangeIntentFG = new Intent(QuizTopicSelection.this, FinancialGoalSetting.class);
-                       QuizTopicSelection.this.startActivity(activityChangeIntentFG);
+                        QuizTopicSelection.this.startActivity(activityChangeIntentFG);
                         break;
                     case R.id.mModule4:
                         Toast.makeText(QuizTopicSelection.this, "Module 4", Toast.LENGTH_SHORT);
@@ -115,12 +124,12 @@ public class QuizTopicSelection extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(QuizTopicSelection.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuizTopicSelection.this, "You are Logged Out", Toast.LENGTH_SHORT).show();
                         Intent activityChangeIntent2 = new Intent(QuizTopicSelection.this, MainActivity.class);
                         QuizTopicSelection.this.startActivity(activityChangeIntent2);
                         drawerLayout.closeDrawers();
@@ -132,9 +141,10 @@ public class QuizTopicSelection extends AppCompatActivity {
         });
     }
 
+    // relaying to the navigation menu that an option has been selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,14 +1,10 @@
 package au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class SIQuizQuestions {
+    // Declaring variables
         private String question;
         private String option1;
         private String option2;
@@ -16,9 +12,11 @@ public class SIQuizQuestions {
         private String option4;
         private int answerNr;
 
+        // creating empty constructor
         public SIQuizQuestions() {
         }
 
+        // creating constructor for questions
         public SIQuizQuestions(String question, String option1, String option2, String option3, String option4,  int answerNr) {
             this.question = question;
             this.option1 = option1;
@@ -27,6 +25,8 @@ public class SIQuizQuestions {
             this.option4 = option4;
             this.answerNr = answerNr;
         }
+
+        // getter and setter methods for questions
 
         public String getQuestion() {
             return question;

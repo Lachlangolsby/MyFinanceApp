@@ -7,13 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = { Note.class }, version = 3, exportSchema = false)
+// room databse
+@Database(entities = {Note.class}, version = 3, exportSchema = false)
 @TypeConverters({DataRoomConverter.class})
 public abstract class NoteDataBase extends RoomDatabase {
-    public abstract NoteDao getNoteDao();
-
     private static NoteDataBase noteDB;
 
+    // calling to build database if not existant
     public static NoteDataBase getInstance(Context context) {
         if (null == noteDB) {
             noteDB = buildDatabaseInstance(context);
@@ -21,6 +21,7 @@ public abstract class NoteDataBase extends RoomDatabase {
         return noteDB;
     }
 
+    // building database
     private static NoteDataBase buildDatabaseInstance(Context context) {
         return Room.databaseBuilder(context,
                 NoteDataBase.class,
@@ -28,7 +29,11 @@ public abstract class NoteDataBase extends RoomDatabase {
                 .allowMainThreadQueries().build();
     }
 
-    public void cleanUp(){
+    // using notes dao
+    public abstract NoteDao getNoteDao();
+
+    // clean database
+    public void cleanUp() {
         noteDB = null;
     }
 

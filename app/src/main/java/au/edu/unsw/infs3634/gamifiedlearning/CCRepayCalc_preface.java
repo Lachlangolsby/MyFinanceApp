@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,14 +22,13 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CCRepayCalc_preface extends AppCompatActivity {
 
-    //putting all text/edit Views together aids readabilityivate TextView mTvRepayTitle;
-    private TextView mTvRepayTitle;
-    private TextView mTvCCRepayPreface;
-    private Button mBtnCCRepay;
-    private ImageView mIvCCRepay2;
+    //putting all text/edit Views together aids readability
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+
+    private Button mBtnCCRepay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +36,34 @@ public class CCRepayCalc_preface extends AppCompatActivity {
         //ensure layout is from correct xml file
         setContentView(R.layout.ccrepaycalc_preface);
 
-        mTvRepayTitle = findViewById(R.id.tvRepayTitle);
-        //This does the actual preface text
-        mTvCCRepayPreface = findViewById(R.id.tvCCRepayPreface);
+
         mBtnCCRepay = findViewById(R.id.btnCCRepay);
-        mIvCCRepay2 = findViewById(R.id.ivCCRepay2);
+
+
 
         mBtnCCRepay.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CCRepayCalc_preface("CC Repay"); }
+                        CCRepayCalc_preface("CC Repay");
+                    }
                 });
+
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.ccrPLayout);
-//Configure/install textviews, drawers and buttons
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+
+        // action when navigation menu open and close
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(CCRepayCalc_preface.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(CCRepayCalc_preface.this, ProfileManagement.class);
@@ -116,8 +117,8 @@ public class CCRepayCalc_preface extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -132,9 +133,11 @@ public class CCRepayCalc_preface extends AppCompatActivity {
             }
         });
     }
+
+    // return true false should menu be selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);

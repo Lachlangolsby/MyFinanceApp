@@ -18,6 +18,8 @@
             android:layout_marginTop="36dp"
             android:gravity="center_horizontal"
             android:text="@string/Irregular"
+            android:textColor="#000000"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +41,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:text="@string/IrregularPreface"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivIrregularPreface" />

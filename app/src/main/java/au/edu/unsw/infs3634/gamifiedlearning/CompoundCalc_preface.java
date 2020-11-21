@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,13 +22,10 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class CompoundCalc_preface extends AppCompatActivity {
     //putting all text/edit Views together aids readability
-    private TextView mTvCompoundTitle;
-    private TextView mTvCompoundPreface;
-    private Button mBtnCompound;
-    private ImageView mIvCompoundPreface;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+    private Button mBtnCompound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +33,33 @@ public class CompoundCalc_preface extends AppCompatActivity {
         //ensure layout is from correct xml file
         setContentView(R.layout.compoundcalc_preface);
 
-        mTvCompoundTitle = findViewById(R.id.tvCompoundTitle);
-        //This does the actual preface text
-        mTvCompoundPreface = findViewById(R.id.tvCompoundPreface);
+
         mBtnCompound = findViewById(R.id.btnCompound);
-        mIvCompoundPreface = findViewById(R.id.ivCompoundPreface);
-//Configure/install textviews, drawers and buttons
+
+        //Configure what button does on click
         mBtnCompound.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CompoundCalc("Compound Calculator"); }
+                        CompoundCalc("Compound Calculator");
+                    }
                 });
+
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.cilayout);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // action when navigation menu open and close
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(CompoundCalc_preface.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(CompoundCalc_preface.this, ProfileManagement.class);
@@ -115,8 +113,8 @@ public class CompoundCalc_preface extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -131,13 +129,16 @@ public class CompoundCalc_preface extends AppCompatActivity {
             }
         });
     }
+
+    // return true or false is nav menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     //This goes to the actual calculator
     private void CompoundCalc(String message) {
         Intent intent = new Intent(au.edu.unsw.infs3634.gamifiedlearning.CompoundCalc_preface.this, CompoundCalc.class);

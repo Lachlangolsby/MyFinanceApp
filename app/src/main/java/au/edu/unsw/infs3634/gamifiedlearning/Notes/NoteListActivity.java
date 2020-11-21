@@ -29,46 +29,58 @@ import java.util.List;
 import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
 import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
 import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
-import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
 import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
 import au.edu.unsw.infs3634.gamifiedlearning.R;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.FinancialGoalSetting;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class NoteListActivity extends AppCompatActivity implements NotesAdapter.OnNoteItemClick {
-
+    // variables to be used within the class
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
     private TextView textViewMsg;
     private RecyclerView recyclerView;
     private NoteDataBase noteDataBase;
     private List<Note> notes;
     private NotesAdapter notesAdapter;
     private int pos;
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
+    // method for when a note is selected
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivityForResult(new Intent(NoteListActivity.this, AddNoteActivity.class), 100);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct xml
         setContentView(R.layout.activity_note_list);
 
+        // calling methods to display correct notes
         initializeViews();
         displayList();
 
 
+        // attaching nav menu to correct xml elements
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.notesDrawer);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // action for when menu is open and closed
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // nav menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(NoteListActivity.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(NoteListActivity.this, ProfileManagement.class);
@@ -131,76 +143,38 @@ public class NoteListActivity extends AppCompatActivity implements NotesAdapter.
         });
     }
 
+    // return true or false about menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-
-private void displayList(){
+    // display correct list of notes
+    private void displayList() {
         noteDataBase = NoteDataBase.getInstance(NoteListActivity.this);
         new RetrieveTask(this).execute();
-}
-private static class RetrieveTask extends AsyncTask<Void,Void, List<Note>>{
-private WeakReference<NoteListActivity> activityReference;
-
-      RetrieveTask(NoteListActivity context){
-          activityReference = new WeakReference<>(context);
-      }
-
-    @Override
-    protected List<Note> doInBackground(Void... voids) {
-        if (activityReference.get()!= null){
-            return activityReference.get().noteDataBase.getNoteDao().getNotes();
-        }else
-          return null;
     }
-    @Override
-    protected void onPostExecute(List<Note> notes) {
-          if (notes != null ) {
-              activityReference.get().notes.clear();
-              String user= FirebaseAuth.getInstance().getCurrentUser().getEmail();
-              System.out.println(notes);
-              ArrayList<Note> checkednotes = new ArrayList<>();
-             for (int i = 0; i < notes.size(); i++){
-                 if (notes.get(i).getEmail().trim().equals(user)){
-                     checkednotes.add(notes.get(i));
-                 }
-             }
-              System.out.println(checkednotes);
-             activityReference.get().notes.addAll(checkednotes);
-              activityReference.get().textViewMsg.setVisibility(View.GONE);
-              activityReference.get().notesAdapter.notifyDataSetChanged();
-              ;
 
-          }
+    // initialising recyclerView
+    private void initializeViews() {
+        textViewMsg = findViewById(R.id.tv__empty);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(listener);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(NoteListActivity.this));
+        notes = new ArrayList<>();
+        notesAdapter = new NotesAdapter(notes, NoteListActivity.this);
+        recyclerView.setAdapter(notesAdapter);
     }
-}
-private void initializeViews(){
-    textViewMsg =findViewById(R.id.tv__empty);
-    FloatingActionButton fab = findViewById(R.id.fab);
-    fab.setOnClickListener(listener);
-
-    recyclerView = findViewById(R.id.recycler_view);
-    recyclerView.setLayoutManager(new LinearLayoutManager(NoteListActivity.this));
-    notes = new ArrayList<>();
-    notesAdapter = new NotesAdapter(notes, NoteListActivity.this);
-    recyclerView.setAdapter(notesAdapter);
-}
-
-    private View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivityForResult(new Intent(NoteListActivity.this, AddNoteActivity.class), 100);
-        }
-    };
 
     @SuppressLint("MissingSuperCall")
     @Override
+
+    // add note to list should note be saved
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode > 0) {
             if (resultCode == 1) {
@@ -212,6 +186,7 @@ private void initializeViews(){
         }
     }
 
+    // method for whether user wants to delete or update notes
     @Override
     public void onNoteClick(final int pos) {
         //Alert Dialog asking user for update or delete notes
@@ -220,12 +195,14 @@ private void initializeViews(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
+                            // in case of delete, delete note
                             case 0:
                                 noteDataBase.getNoteDao().deleteNote(notes.get(pos));
                                 notes.remove(pos);
                                 listVisibility();
                                 break;
                             case 1:
+                                // incase of update take user to note to be updated
                                 NoteListActivity.this.pos = pos;
                                 startActivityForResult(
                                         new Intent(NoteListActivity.this,
@@ -239,6 +216,7 @@ private void initializeViews(){
 
     }
 
+    // Method decifering wether or not to display add notes message in the background of nots screen
     private void listVisibility() {
         int emptyMsgVisibility = View.GONE;
         if (notes.size() == 0) {
@@ -249,11 +227,55 @@ private void initializeViews(){
         notesAdapter.notifyDataSetChanged();
     }
 
+    // on destroy method to interact with db safely (clean up and close)
     @Override
     protected void onDestroy() {
         noteDataBase.cleanUp();
-        if(noteDataBase.isOpen()) {
+        if (noteDataBase.isOpen()) {
             noteDataBase.close();
-        }super.onDestroy();
+        }
+        super.onDestroy();
+    }
+
+    // class that retireves notes
+    private static class RetrieveTask extends AsyncTask<Void, Void, List<Note>> {
+        private WeakReference<NoteListActivity> activityReference;
+
+        RetrieveTask(NoteListActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        // assess wether their are any notes in db
+        @Override
+        protected List<Note> doInBackground(Void... voids) {
+            if (activityReference.get() != null) {
+                return activityReference.get().noteDataBase.getNoteDao().getNotes();
+            } else
+                return null;
+        }
+
+        // if notes in db assess which notes belong to the current user via the email in both the firebase realtime db and the SQLite db.
+        @Override
+        protected void onPostExecute(List<Note> notes) {
+            if (notes != null) {
+                activityReference.get().notes.clear();
+                String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                System.out.println(notes);
+                ArrayList<Note> checkednotes = new ArrayList<>();
+                // checking list to see if email variables match
+                for (int i = 0; i < notes.size(); i++) {
+                    if (notes.get(i).getEmail().trim().equals(user)) {
+                        checkednotes.add(notes.get(i));
+                    }
+                }
+                // assigning correct notes
+                System.out.println(checkednotes);
+                activityReference.get().notes.addAll(checkednotes);
+                activityReference.get().textViewMsg.setVisibility(View.GONE);
+                activityReference.get().notesAdapter.notifyDataSetChanged();
+                ;
+
+            }
+        }
     }
 }

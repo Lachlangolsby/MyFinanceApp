@@ -33,9 +33,6 @@
             android:padding="14dp"
             android:rowCount="3">
 
-            <!-- Row 1 -->
-
-            <!-- Column 1 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv1"
                 android:layout_width="0dp"
@@ -74,7 +71,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Column 2 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv2"
                 android:layout_width="0dp"
@@ -114,9 +110,6 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- Row 2 -->
-
-            <!-- Column 1 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv3"
                 android:layout_width="0dp"
@@ -155,7 +148,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Column 2 -->
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv4"
                 android:layout_width="0dp"
@@ -195,9 +188,7 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- Row 2 -->
 
-            <!-- Column 1 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv5"
                 android:layout_width="0dp"
@@ -236,7 +227,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Column 2 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv6"
                 android:layout_width="0dp"

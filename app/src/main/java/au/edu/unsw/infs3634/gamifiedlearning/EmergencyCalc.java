@@ -34,12 +34,13 @@ public class EmergencyCalc extends AppCompatActivity {
     EditText mCarExpense, mBills, mFHC, mMisc;
     TextView mWeekly, mFortnightly, mMonthly, mEmergencyfundTitle;
     Button btGenerate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //ensure layout is from correct xml file
         setContentView(R.layout.emergency_calc);
-//Configure/install textviews, drawers and buttons
+        //Configure/install textviews, drawers and buttons
         mBills = findViewById(R.id.etBillExpense);
         mCarExpense = findViewById(R.id.etCarExpense);
         mFHC = findViewById(R.id.etFHCExpense);
@@ -48,7 +49,7 @@ public class EmergencyCalc extends AppCompatActivity {
         mWeekly.setVisibility(View.INVISIBLE);
         mFortnightly = findViewById(R.id.tvFortnightlySaving);
         mFortnightly.setVisibility(View.INVISIBLE);
-        mMonthly =findViewById(R.id.tvMonthlySaving);
+        mMonthly = findViewById(R.id.tvMonthlySaving);
         mMonthly.setVisibility(View.INVISIBLE);
         btGenerate = findViewById(R.id.btEmergencyFund);
         mEmergencyfundTitle = findViewById(R.id.tvEmergencyFund);
@@ -62,20 +63,20 @@ public class EmergencyCalc extends AppCompatActivity {
             }
         });
 
-
-
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.efcLayout);
-
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // action when navigation menu open and close
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(EmergencyCalc.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(EmergencyCalc.this, ProfileManagement.class);
@@ -129,8 +130,8 @@ public class EmergencyCalc extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -145,36 +146,46 @@ public class EmergencyCalc extends AppCompatActivity {
             }
         });
     }
+
+    // return true or false is nav menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    @SuppressLint("SetTextI18n")
-    public void GenerateSavingsPlan(){
 
+    @SuppressLint("SetTextI18n")
+    // method for the logic of the calculator
+    public void GenerateSavingsPlan() {
+
+        // retrieving strings from edittexts
         String bills = mBills.getText().toString();
         String car = mCarExpense.getText().toString();
         String FHC = mFHC.getText().toString();
         String Misc = mMisc.getText().toString();
         DecimalFormat df = new DecimalFormat("#.##");
-        if (bills.equals("")|| car.equals("") || FHC.equals("") || Misc.equals("")) {
+
+        // assessing all fields are entered
+        if (bills.equals("") || car.equals("") || FHC.equals("") || Misc.equals("")) {
             Toast.makeText(EmergencyCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
 
-        }else {
-            double dailyExpense = ((Double.parseDouble(bills)+Double.parseDouble(car)+Double.parseDouble(FHC)+Double.parseDouble(Misc))/7);
-            double weeklyExpense = dailyExpense*7;
-            double fortnightlyExpense = dailyExpense *14;
-            double monthlyExpense = dailyExpense*30.416667;
-            double savingPerWeek = weeklyExpense/365;
-            double savingPerFort = fortnightlyExpense/365;
-            double savingPerMonth = monthlyExpense/365;
+        } else {
 
-            mWeekly.setText("Save: $"+ df.format(savingPerWeek)+ " per day for one year to cover one weeks expenses");
-            mFortnightly.setText("Save: $"+ df.format(savingPerFort)+ " per day for one year to cover one Fortnights expenses");
-            mMonthly.setText("Save: $"+ df.format(savingPerMonth)+ " per day for one year to cover one Months expenses");
+            // performing mathematical calculations with user input
+            double dailyExpense = ((Double.parseDouble(bills) + Double.parseDouble(car) + Double.parseDouble(FHC) + Double.parseDouble(Misc)) / 7);
+            double weeklyExpense = dailyExpense * 7;
+            double fortnightlyExpense = dailyExpense * 14;
+            double monthlyExpense = dailyExpense * 30.416667;
+            double savingPerWeek = weeklyExpense / 365;
+            double savingPerFort = fortnightlyExpense / 365;
+            double savingPerMonth = monthlyExpense / 365;
+
+            // returning results to the user
+            mWeekly.setText("Save: $" + df.format(savingPerWeek) + " per day for one year to cover one weeks expenses");
+            mFortnightly.setText("Save: $" + df.format(savingPerFort) + " per day for one year to cover one Fortnights expenses");
+            mMonthly.setText("Save: $" + df.format(savingPerMonth) + " per day for one year to cover one Months expenses");
             mWeekly.setVisibility(View.VISIBLE);
             mMonthly.setVisibility(View.VISIBLE);
             mFortnightly.setVisibility(View.VISIBLE);

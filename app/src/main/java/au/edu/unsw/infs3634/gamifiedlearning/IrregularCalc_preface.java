@@ -23,21 +23,21 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class IrregularCalc_preface extends AppCompatActivity {
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
     //putting all text/edit Views together aids readability
     private TextView mTvIrregularTitle;
     private TextView mTvIrregularCalcPreface;
     private Button mBtnIrregular;
     private ImageView mIvIrregularPreface;
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //ensure layout is from correct xml file
         setContentView(R.layout.irregularcalc_preface);
-//Configure/install textviews, drawers and buttons
+        //Configure/install textviews, drawers and buttons
         mTvIrregularTitle = findViewById(R.id.tvIrregularTitle);
         //This does the actual preface text
         mTvIrregularCalcPreface = findViewById(R.id.tvIrregularCalcPreface);
@@ -48,20 +48,24 @@ public class IrregularCalc_preface extends AppCompatActivity {
                 (new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        IrregularCalc_preface("Irregular Payments"); }
+                        IrregularCalc_preface("Irregular Payments");
+                    }
                 });
+
+        // navigation menu items being assigned to xml
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.irLayout);
-
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // calling the required behaviour when menu accessed
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(IrregularCalc_preface.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(IrregularCalc_preface.this, ProfileManagement.class);
@@ -115,8 +119,8 @@ public class IrregularCalc_preface extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -131,14 +135,16 @@ public class IrregularCalc_preface extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-//This goes to the actual calculator
+
+    //This goes to the actual calculator
     private void IrregularCalc_preface(String message) {
         Intent intent = new Intent(IrregularCalc_preface.this, IrregularCalc.class);
         startActivity(intent);

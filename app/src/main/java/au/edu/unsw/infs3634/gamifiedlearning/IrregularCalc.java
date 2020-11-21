@@ -30,7 +30,7 @@ public class IrregularCalc extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     //putting all text/edit Views together aids readability
-    private TextView mIRSolutionTitle,  mIRSolutionWeekly, mIRSolutionMonthly, mIRSolutionFortnightly;
+    private TextView mIRSolutionTitle, mIRSolutionWeekly, mIRSolutionMonthly, mIRSolutionFortnightly;
     private EditText mEtExpenseType, mEtAmount, mETFrequency;
     private Button mBtnIrregularCalc;
 
@@ -52,7 +52,7 @@ public class IrregularCalc extends AppCompatActivity {
         mIRSolutionFortnightly.setVisibility(View.INVISIBLE);
         mEtAmount = findViewById(R.id.etAmount);
         mETFrequency = findViewById(R.id.etFrequency);
-        mEtExpenseType =findViewById(R.id.etExpenseType);
+        mEtExpenseType = findViewById(R.id.etExpenseType);
         mBtnIrregularCalc = findViewById(R.id.btnIrregularCalc);
 
         mBtnIrregularCalc.setOnClickListener(new View.OnClickListener() {
@@ -63,15 +63,15 @@ public class IrregularCalc extends AppCompatActivity {
         });
 
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//Navigation menu code
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(IrregularCalc.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(IrregularCalc.this, ProfileManagement.class);
@@ -125,8 +125,8 @@ public class IrregularCalc extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -141,34 +141,40 @@ public class IrregularCalc extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @SuppressLint("SetTextI18n")
-    public void generateIrregular(){
+    // This method is the logic behind the calculator
+    public void generateIrregular() {
+        // gets string values from edit text
         String expenseType = mEtExpenseType.getText().toString();
         String Amount = mEtAmount.getText().toString();
         String Frequency = mETFrequency.getText().toString();
         DecimalFormat df = new DecimalFormat("#.##");
-
-        if (expenseType.equals("")|| Amount.equals("") || Frequency.equals("")) {
+        // checking all fields are entered
+        if (expenseType.equals("") || Amount.equals("") || Frequency.equals("")) {
             Toast.makeText(IrregularCalc.this, "Enter a Value for all fields", Toast.LENGTH_LONG).show();
 
-        }else {
-            mIRSolutionTitle.setText("Possible Saving Solutions for "+expenseType +" Expense:");
-            int expenseTotal = Integer.parseInt(Amount)*Integer.parseInt(Frequency);
-            double dailybreakdown = expenseTotal/365.000;
-            double weekly = dailybreakdown*7;
-            double fortnightly = dailybreakdown*14;
-            double monthly = dailybreakdown *30.416667;
+        } else {
 
-            mIRSolutionWeekly.setText("Save: $"+ df.format(weekly) + " Weekly, to cover yearly "+ expenseType + " Expense");
-            mIRSolutionFortnightly.setText("Save: $"+ df.format(fortnightly) + " Fortnightly, to cover yearly "+ expenseType + " Expense");
-            mIRSolutionMonthly.setText("Save: $"+ df.format(monthly) + " Monthly, to cover yearly "+ expenseType + " Expense");
+            // performing mathematical logic with the user provided details
+            mIRSolutionTitle.setText("Possible Saving Solutions for " + expenseType + " Expense:");
+            int expenseTotal = Integer.parseInt(Amount) * Integer.parseInt(Frequency);
+            double dailybreakdown = expenseTotal / 365.000;
+            double weekly = dailybreakdown * 7;
+            double fortnightly = dailybreakdown * 14;
+            double monthly = dailybreakdown * 30.416667;
+            // returning results to users
+            mIRSolutionWeekly.setText("Save: $" + df.format(weekly) + " Weekly, to cover yearly " + expenseType + " Expense");
+            mIRSolutionFortnightly.setText("Save: $" + df.format(fortnightly) + " Fortnightly, to cover yearly " + expenseType + " Expense");
+            mIRSolutionMonthly.setText("Save: $" + df.format(monthly) + " Monthly, to cover yearly " + expenseType + " Expense");
             mIRSolutionTitle.setVisibility(View.VISIBLE);
             mIRSolutionWeekly.setVisibility(View.VISIBLE);
             mIRSolutionMonthly.setVisibility(View.VISIBLE);
@@ -179,6 +185,6 @@ public class IrregularCalc extends AppCompatActivity {
 
     }
 
-    }
+}
     
 

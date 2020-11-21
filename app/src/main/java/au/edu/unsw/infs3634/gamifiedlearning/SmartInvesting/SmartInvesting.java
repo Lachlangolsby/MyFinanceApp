@@ -31,6 +31,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 
 public class SmartInvesting extends AppCompatActivity {
+
+    // assigning variables to be used in class
     ImageView yTLogo;
     TextView content, content2;
     Button goToQuiz;
@@ -44,12 +46,15 @@ public class SmartInvesting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct xml
         setContentView(R.layout.activity_smart_investing);
+        // assigning varibales to correct items on UI
         yTLogo = findViewById(R.id.ivYT);
         content = findViewById(R.id.tvDescription);
         content2 = findViewById(R.id.tvContents2);
         goToQuiz = findViewById(R.id.btQuiz1);
 
+        // Inserting block contents
         content.setText("Golden rules of investing\n\n" +
                 "Pay off your debts first — pay off any loans, like a credit card or personal loan, before you invest.\n\n" +
                 "Have emergency savings — aim to have enough set aside to cover three months' expenses, so you won't have to sell an investment if you need cash quickly.\n\n" +
@@ -97,7 +102,8 @@ public class SmartInvesting extends AppCompatActivity {
                         "\n" +
                         "The graph below shows the risk and return relationship for different asset classes."
                 );
-        content2.setText("Know your risk tolerance\n\n" +
+        // Inserting block contents
+        content2.setText("<b>Know your risk tolerance\n\n" +
                 "Your risk tolerance depends on your ability to cope with falls in the value of your investment. Your age, capacity to recover from financial loss, financial goals and your health are some of the factors that may influence your risk tolerance. \n" +
                 "\n" +
                 "Ask yourself: how would I feel if I woke up tomorrow and found the value of my investments had dropped 20%?\n" +
@@ -135,6 +141,7 @@ public class SmartInvesting extends AppCompatActivity {
 
         );
 
+        // onclick listener for video learning's
         yTLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +149,8 @@ public class SmartInvesting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // onClickListener to go to quiz
         goToQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,15 +160,16 @@ public class SmartInvesting extends AppCompatActivity {
             }
         });
 
-
+// assigning nav menu variables to xml of this page
     navigationView = findViewById(R.id.nav_View);
     drawerLayout = findViewById(R.id.smartinvestinglayout);
-
+//action when navigation menu open and close
     toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    // navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -234,6 +244,7 @@ public class SmartInvesting extends AppCompatActivity {
         });
     }
 
+    // return true false if nav menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)){

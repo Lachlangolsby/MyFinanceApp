@@ -1,7 +1,7 @@
 package au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting;
 
 public class FGQuizQuestions {
-
+    // Declaring variables
     private String question;
     private String option1;
     private String option2;
@@ -9,10 +9,12 @@ public class FGQuizQuestions {
     private String option4;
     private int answerNr;
 
+    //Creating empty constructor
     public FGQuizQuestions() {
     }
 
-    public FGQuizQuestions(String question, String option1, String option2, String option3, String option4,  int answerNr) {
+    // creating constructor
+    public FGQuizQuestions(String question, String option1, String option2, String option3, String option4, int answerNr) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -21,6 +23,7 @@ public class FGQuizQuestions {
         this.answerNr = answerNr;
     }
 
+    // getter and setter methods
     public String getQuestion() {
         return question;
     }

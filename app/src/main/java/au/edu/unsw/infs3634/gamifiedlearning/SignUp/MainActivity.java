@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,42 +17,164 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
 import au.edu.unsw.infs3634.gamifiedlearning.R;
 
 public class MainActivity extends AppCompatActivity {
-    public static GoogleSignInClient mGoogleSignInClient;
-
+    // Variables used for Signing in
     Button mLogin;
     TextView mCreateButton, mForgotPassword;
-    private SignInButton signInButton;
     private String Tag = "MainActivity ";
     private FirebaseAuth mAuth;
     private int resultCodeSI = 1;
     private EditText mEmail, mPassword;
-    CallbackManager mCallbackManager;
-    LoginButton loginButton;
-    private FirebaseFirestore fStore;
+    private ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct XML layout
         setContentView(R.layout.activity_main);
+
+
+        // Animating background
+        ConstraintLayout background = findViewById(R.id.layout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) background.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
+
+
+        // assigning variable to correct xml elements
+        mAuth = FirebaseAuth.getInstance();
+        mEmail = findViewById((R.id.ptEmail));
+        mPassword = findViewById((R.id.ptPassword));
+        mLogin = findViewById(R.id.btLogin);
+        mCreateButton = findViewById(R.id.tvCreateAccount);
+        mForgotPassword = findViewById(R.id.tvForgotPassword);
+        mAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progressBar2);
+
+
+        // login button on click listener
+        mLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                // retrieving variables from edit text
+                String email = mEmail.getText().toString().trim();
+                String password = mPassword.getText().toString().trim();
+
+                //Assessing field input is not null
+                if (TextUtils.isEmpty(email)) {
+                    mEmail.setError("email is Required.");
+                    progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
+
+                //Assessing field input is not null
+                if (TextUtils.isEmpty(password)) {
+                    mPassword.setError("Password is Required.");
+                    progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
+
+                //Assessing field input meets firebase requirements
+                if (password.length() < 5) {
+                    mPassword.setError("Password Must be at least 5 Characters");
+                    progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
+
+
+                // using firebase authentication signin method and redirecting accordingly
+                mAuth.signInWithEmailAndPassword(String.valueOf(email), password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), HomePage.class));
+                            progressBar.setVisibility(View.INVISIBLE);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+
+                    }
+                });
+
+            }
+        });
+
+        // re directing to sign up page
+        mCreateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activityChangeIntent = new Intent(MainActivity.this, SignUp.class);
+                MainActivity.this.startActivity(activityChangeIntent);
+
+            }
+        });
+
+        // sending email to reset password
+        mForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+// creating popup message that asks for email
+                final EditText resetMail = new EditText(v.getContext());
+                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Password ?");
+                passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
+                passwordResetDialog.setView(resetMail);
+// sending email after yes is selected
+                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String mail = resetMail.getText().toString();
+                        mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(MainActivity.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Reset Link is Not Sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+// returning back to profile management should no be clicked
+                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+// showing message created in this method
+                passwordResetDialog.create().show();
+
+            }
+        });
+    }
+}
+
+
+// Bellow is code for authenticating with facebook and google Was working.However wasn't writing a profile to the firebase realtime database so couldn't use for a number of application functions sake.
+
+
 // Initialising Facebook SDK
-    //     FacebookSdk.sdkInitialize(MainActivity.this);
+//     FacebookSdk.sdkInitialize(MainActivity.this);
 
 
 //        // Initialize Facebook Login button
@@ -76,114 +199,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        ConstraintLayout background = findViewById(R.id.layout);
-        AnimationDrawable animationDrawable = (AnimationDrawable) background.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
-
-        mAuth = FirebaseAuth.getInstance();
-        mEmail = findViewById((R.id.ptEmail));
-        mPassword = findViewById((R.id.ptPassword));
-        mLogin = findViewById(R.id.btLogin);
-        mCreateButton = findViewById(R.id.tvCreateAccount);
-        mForgotPassword = findViewById(R.id.tvForgotPassword);
-        mAuth = FirebaseAuth.getInstance();
-
-
-        mLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("email is Required.");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Password is Required.");
-                    return;
-                }
-
-                if (password.length() < 5) {
-                    mPassword.setError("Password Must be at least 5 Characters");
-                    return;
-                }
-
-
-                mAuth.signInWithEmailAndPassword(String.valueOf(email), password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), HomePage.class));
-                        } else {
-                            Toast.makeText(MainActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-
-                    }
-                });
-
-            }
-        });
-
-        mCreateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activityChangeIntent = new Intent(MainActivity.this, SignUp.class);
-                MainActivity.this.startActivity(activityChangeIntent);
-
-            }
-        });
-
-        mForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final EditText resetMail = new EditText(v.getContext());
-                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-                passwordResetDialog.setTitle("Reset Password ?");
-                passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
-                passwordResetDialog.setView(resetMail);
-
-                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        String mail = resetMail.getText().toString();
-                        mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(MainActivity.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, "Reset Link is Not Sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    }
-                });
-
-                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                passwordResetDialog.create().show();
-
-            }
-        });
-    }
-}
 
 
 //        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

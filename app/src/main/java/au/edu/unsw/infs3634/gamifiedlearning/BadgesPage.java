@@ -29,6 +29,8 @@ import au.edu.unsw.infs3634.gamifiedlearning.SmartFinancialGoalSetting.Financial
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class BadgesPage extends AppCompatActivity {
+
+    // declaring variables to be used throughout class
     ImageView mivSI3,mivSI5,mivFG3,mivFG5,mivMember;
     TextView mtvSI3,mtvSI5,mtvFG3,mtvFG5,mtvMember;
     private FirebaseAuth fAuth;
@@ -40,7 +42,10 @@ public class BadgesPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // getting xml layout
         setContentView(R.layout.activity_badges_page);
+
+        // assigning variables to xml layout items
         mivFG3 = findViewById(R.id.ivFG3);
         mivFG5 = findViewById(R.id.ivFG5);
         mivSI3 = findViewById(R.id.ivSI3);
@@ -52,27 +57,34 @@ public class BadgesPage extends AppCompatActivity {
         mtvSI5 = findViewById(R.id.tvSI5);
         mtvMember= findViewById(R.id.tvMembers);
 
+       // setting default transparency
         mivFG3.setAlpha(75);
         mivFG5.setAlpha(75);
         mivSI3.setAlpha(75);
         mivSI5.setAlpha(75);
         mivMember.setAlpha(75);
+
+        // getting current user
         fAuth = FirebaseAuth.getInstance();
+
+        // calling methods to assess wether badges attained
         MembersBadge();
         FG3badge();
         FG5badge();
         SI3badge();
         SI5badge();
 
-
+        // assigning nav menu variables to xml of this page
         navigationView = findViewById(R.id.nav_View);
         drawerLayout = findViewById(R.id.badgepagedrawer);
 
+        //action when navigation menu open and close
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Navigation menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,6 +159,7 @@ public class BadgesPage extends AppCompatActivity {
         });
     }
 
+    // Returning whether menu selected true or false
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)){
@@ -155,7 +168,7 @@ public class BadgesPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    // assessing whether email verified and displaying badge attained
     public void MembersBadge(){
         if (fAuth.getCurrentUser().isEmailVerified() == true){
             mivMember.setAlpha(255);
@@ -164,6 +177,8 @@ public class BadgesPage extends AppCompatActivity {
 
         }
     }
+
+    // Accessing Firebase realtime db and assessing whether high score is over 50%. giving badge to user if true
     public void FG3badge(){
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String userid =user.getUid();
@@ -192,6 +207,8 @@ public class BadgesPage extends AppCompatActivity {
         });
 
         }
+
+    // Accessing Firebase realtime db and assessing whether high score is 100%. giving badge to user if true
     public void FG5badge(){
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String userid =user.getUid();
@@ -220,6 +237,8 @@ public class BadgesPage extends AppCompatActivity {
         });
 
     }
+
+    // Accessing Firebase realtime db and assessing whether high score is over 50%. giving badge to user if true
     public void SI3badge(){
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String userid =user.getUid();
@@ -248,6 +267,8 @@ public class BadgesPage extends AppCompatActivity {
         });
 
     }
+
+    // Accessing Firebase realtime db and assessing whether high score is 100%. giving badge to user if true
     public void SI5badge(){
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String userid =user.getUid();

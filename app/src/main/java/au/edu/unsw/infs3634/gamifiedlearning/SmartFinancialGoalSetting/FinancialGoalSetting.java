@@ -22,16 +22,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import au.edu.unsw.infs3634.gamifiedlearning.BadgesPage;
 import au.edu.unsw.infs3634.gamifiedlearning.FinCalc;
 import au.edu.unsw.infs3634.gamifiedlearning.HomePage;
-import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.Notes.NoteListActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.ProfileManagement;
 import au.edu.unsw.infs3634.gamifiedlearning.QuizTopicSelection;
 import au.edu.unsw.infs3634.gamifiedlearning.R;
+import au.edu.unsw.infs3634.gamifiedlearning.SignUp.MainActivity;
 import au.edu.unsw.infs3634.gamifiedlearning.SmartInvesting.SmartInvesting;
 
 public class FinancialGoalSetting extends AppCompatActivity {
+    // assigning variables to be used in class
     ImageView yt, calc;
-    TextView content, content2, link1,link2;
+    TextView content, content2, link1, link2;
     Button goToQuiz;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -41,9 +42,11 @@ public class FinancialGoalSetting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // loading correct xml
         setContentView(R.layout.activity_financial_goal_setting);
-                content = findViewById(R.id.tvDescription);
-        content2 =findViewById(R.id.tvcontent2);
+        // assigning variables to correct items on UI
+        content = findViewById(R.id.tvDescription);
+        content2 = findViewById(R.id.tvcontent2);
         yt = findViewById(R.id.ivYT);
         calc = findViewById(R.id.ivCalculator);
         link1 = findViewById(R.id.tvLink1);
@@ -51,46 +54,49 @@ public class FinancialGoalSetting extends AppCompatActivity {
         goToQuiz = findViewById(R.id.btQuiz);
 
 
+        // Inserting block contents
         content.setText(
                 "1. What is your income?\n\n" +
-                "Identify your sources of income. This may be your full time, part time or casual job. Ask yourself the following questions:\n" +
-                "\n" +
-                "- How often do you get paid? For example, weekly, fortnightly, etc.\n" +
-                "- What day do you get paid? For example, every second Wednesday, the 14th of every month etc.\n" +
-                "- How much do you get paid?\n" +
-                "- Are you on a salary, and therefore is your income the same every paycheck?\n" +
-                "- Are you a casual worker, and does your income change every paycheck? If so, what is the average amount you get paid per month?\n" +
-                "- What will your total income be for the month?\n" +
-                "\n" +
-                "2. Add up your expenses\n\n" +
-                "Look over the past month and write down all the things you bought. Try and be as specific as possible. You may need to refer to your online banking app, past receipts and bills.\n" +
-                "\n" +
-                "3. Prioritise your spending – what are the ‘wants’ vs ‘needs’?\n\n" +
-                "Once you’ve made a comprehensive list of each of your expenses it is time to determine whether they are a ‘need’ or a ‘want’.\n" +
-                "\n" +
-                "- ‘Needs’ are goods and services that are required to survive and function in society.\n" +
-                "\n" +
-                "- ‘Wants’ are goods and services that you desire to have and are not essential.\n" +
-                "\n" +
-                "Clearly identify what category each of your expenses falls within by:\n" +
-                "\n" +
-                "Highlighting all the expenses that are ‘needs’.\n" +
-                "Placing an asterisk next to all the expenses that are ‘wants’.\n" +
-                "\n" +
-                "By identifying your ‘wants’ and ‘needs’, you’ll be able to identify areas where you can reduce your spending. If you are saving up for something or finances are tight, you may want to reduce your ‘wants’ where necessary. In times of greater financial security or during special times of the year (birthdays, celebrations, etc), you may choose to be more lenient.\n" +
-                "\n" +
+                        "Identify your sources of income. This may be your full time, part time or casual job. Ask yourself the following questions:\n" +
+                        "\n" +
+                        "- How often do you get paid? For example, weekly, fortnightly, etc.\n" +
+                        "- What day do you get paid? For example, every second Wednesday, the 14th of every month etc.\n" +
+                        "- How much do you get paid?\n" +
+                        "- Are you on a salary, and therefore is your income the same every paycheck?\n" +
+                        "- Are you a casual worker, and does your income change every paycheck? If so, what is the average amount you get paid per month?\n" +
+                        "- What will your total income be for the month?\n" +
+                        "\n" +
+                        "2. Add up your expenses\n\n" +
+                        "Look over the past month and write down all the things you bought. Try and be as specific as possible. You may need to refer to your online banking app, past receipts and bills.\n" +
+                        "\n" +
+                        "3. Prioritise your spending – what are the ‘wants’ vs ‘needs’?\n\n" +
+                        "Once you’ve made a comprehensive list of each of your expenses it is time to determine whether they are a ‘need’ or a ‘want’.\n" +
+                        "\n" +
+                        "- ‘Needs’ are goods and services that are required to survive and function in society.\n" +
+                        "\n" +
+                        "- ‘Wants’ are goods and services that you desire to have and are not essential.\n" +
+                        "\n" +
+                        "Clearly identify what category each of your expenses falls within by:\n" +
+                        "\n" +
+                        "Highlighting all the expenses that are ‘needs’.\n" +
+                        "Placing an asterisk next to all the expenses that are ‘wants’.\n" +
+                        "\n" +
+                        "By identifying your ‘wants’ and ‘needs’, you’ll be able to identify areas where you can reduce your spending. If you are saving up for something or finances are tight, you may want to reduce your ‘wants’ where necessary. In times of greater financial security or during special times of the year (birthdays, celebrations, etc), you may choose to be more lenient.\n" +
+                        "\n" +
 
-                "4. Take a little time to find ways to save\n\n" +
-                "There are many ways you can save money without having to drastically change your behaviours. Here are a few useful tips to get you started:\n" +
-                "\n" +
-                "Save money when socialising with friends by doing things that are free. Why not go for a walk or head down to the beach?\n\n" +
-                "Try and do your grocery shopping with a group (eg your roommates). This means you’ll be able to buy more items in bulk.\n\n" +
-                "Make the most of rewards programs every time you shop. For example, Woolworths ‘everyday rewards’ offer $10 off your shopping when you earn a certain amount of points, and Flybys can be used for many different shopping outlets including Kmart, Coles and Optus.\n\n " +
-                "5. Set your saving goals and create your budget\n\n" +
-                "Set one to three financial goals\n" +
-                "For example, ‘have $5,000 in my savings account’ or ‘repay my credit card debt in six months’\n\n" +
-                "Use the Money Smart Goals Calculator to recieve a personalised savings plan." );
+                        "4. Take a little time to find ways to save\n\n" +
+                        "There are many ways you can save money without having to drastically change your behaviours. Here are a few useful tips to get you started:\n" +
+                        "\n" +
+                        "Save money when socialising with friends by doing things that are free. Why not go for a walk or head down to the beach?\n\n" +
+                        "Try and do your grocery shopping with a group (eg your roommates). This means you’ll be able to buy more items in bulk.\n\n" +
+                        "Make the most of rewards programs every time you shop. For example, Woolworths ‘everyday rewards’ offer $10 off your shopping when you earn a certain amount of points, and Flybys can be used for many different shopping outlets including Kmart, Coles and Optus.\n\n " +
+                        "5. Set your saving goals and create your budget\n\n" +
+                        "Set one to three financial goals\n" +
+                        "For example, ‘have $5,000 in my savings account’ or ‘repay my credit card debt in six months’\n\n" +
+                        "Use the Money Smart Goals Calculator to recieve a personalised savings plan.");
 
+
+        // Inserting block contents
         content2.setText("People who set a savings goal and commit to a plan are more likely to achieve it.\n\n" +
                 "Allocate a set amount to an emergency fund. Decide on an amount you would like to allocate to an ‘emergency fund.’ This is a savings account that should not be touched, and acts as a provision for unexpected circumstances, such as Covid-19. This fund can be used if something unexpected happens, such as losing your job.\n\n" +
                 "You might want to aim to have enough in your emergency fund to cover at least two to three months’ worth of expenses. Saving just $10 a week adds up to over $500 in a year.\n\n" +
@@ -110,18 +116,13 @@ public class FinancialGoalSetting extends AppCompatActivity {
                 "The Covid-19 pandemic is a challenging time for everyone, so you’re not alone! There are a number of ways to seek help if you have found yourself to be in a situation of financial distress. Contact a financial counselling service for free, or explore the following resources that provide financial advice and information:");
 
 
+        // Assigning text to hyper links
         link1.setText("- Asics Money Smart Website");
         link2.setText("- The National Debt Helpline");
 
 
-
-
-
-
-
-
-
-                yt.setOnClickListener(new View.OnClickListener() {
+        // onclick listener for video learning's
+        yt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=Q24OCPVTvvI"));
@@ -129,6 +130,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
             }
         });
 
+        // onclick listener for online calculators
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +139,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
             }
         });
 
+        // onclick listener for online resource
         link1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +147,8 @@ public class FinancialGoalSetting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // onclick listener for online resource
         link2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,6 +157,7 @@ public class FinancialGoalSetting extends AppCompatActivity {
             }
         });
 
+        // onclick listener for changing page
         goToQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,19 +167,21 @@ public class FinancialGoalSetting extends AppCompatActivity {
             }
         });
 
+        // assigning nav variables to this pages xml
+        navigationView = findViewById(R.id.nav_View);
+        drawerLayout = findViewById(R.id.financialGoalSettinglayout);
 
-    navigationView = findViewById(R.id.nav_View);
-    drawerLayout = findViewById(R.id.financialGoalSettinglayout);
-
-    toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
+        // toggliing action when menu selected
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // nav menu logic
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.mProfile:
                         Toast.makeText(FinancialGoalSetting.this, "Profile page", Toast.LENGTH_SHORT);
                         Intent activityChangeIntent = new Intent(FinancialGoalSetting.this, ProfileManagement.class);
@@ -227,8 +235,8 @@ public class FinancialGoalSetting extends AppCompatActivity {
                         Intent mSharingIntent = new Intent(Intent.ACTION_SEND);
                         mSharingIntent.setType("Text/Plain");
                         mSharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MYFinance HighScore");
-                        mSharingIntent.putExtra(Intent.EXTRA_TEXT,shareMessage);
-                        startActivity(Intent.createChooser(mSharingIntent,"Share Score Via"));
+                        mSharingIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(mSharingIntent, "Share Score Via"));
                         break;
                     case R.id.mLogout:
                         FirebaseAuth.getInstance().signOut();
@@ -244,17 +252,12 @@ public class FinancialGoalSetting extends AppCompatActivity {
         });
     }
 
+    // return true or false if menu selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-
-
-//"https://www.youtube.com/watch?v=7UpADTIi9uI
-// https://www.youtube.com/watch?v=Q24OCPVTvvI

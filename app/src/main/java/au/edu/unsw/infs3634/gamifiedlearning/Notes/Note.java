@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Entity(tableName = Constants.TABLE_NAME_NOTE)
 public class Note implements Serializable {
-    // Creating Collumns
+    // Creating Collumns for db
     @PrimaryKey(autoGenerate = true)
     private int note_id;
 
@@ -30,11 +30,10 @@ public class Note implements Serializable {
 
     // Creating the constructor
     public Note(String content, String title) {
-       // this.note_id = note_id;
         this.content = content;
         this.title = title;
         this.date = new Date(System.currentTimeMillis());
-        this.email =  String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getEmail().trim());
+        this.email = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getEmail().trim());
     }
 
 
@@ -72,26 +71,30 @@ public class Note implements Serializable {
         this.date = Date;
     }
 
+    // overriding the default equals method for the db
     @Override
-    public boolean equals (@Nullable Object o){
-        if (this ==o ) return true;
+    public boolean equals(@Nullable Object o) {
+        if (this == o) return true;
 
         if (!(o instanceof Note)) return false;
 
-        Note note = (Note) o ;
+        Note note = (Note) o;
         if (note_id != note.note_id) return false;
-        return title != null ? title.equals(note.title): note.title == null;
+        return title != null ? title.equals(note.title) : note.title == null;
     }
 
+    // overriding the default hash code method
     @Override
-    public int hashCode(){
+    public int hashCode() {
         int result = (int) note_id;
-        result = 31* result +(title!= null ? title.hashCode():0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
     }
+
+    // over riding the default to sting method so db prints nicely
     @NonNull
     @Override
-    public String toString(){
+    public String toString() {
         return "Note{" +
                 "Note_id=" + note_id +
                 ", content='" + content + '\'' +
@@ -101,6 +104,8 @@ public class Note implements Serializable {
                 '}';
     }
 
+    // more getter and setters
+
     public String getEmail() {
         return email;
     }
@@ -109,4 +114,4 @@ public class Note implements Serializable {
         this.email = email;
     }
 }
-// Refrernce: Video used to create notes page:https://www.youtube.com/watch?v=nOoJoPE6MsU&t=18s
+
