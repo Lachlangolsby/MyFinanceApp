@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Entity(tableName = Constants.TABLE_NAME_NOTE)
 public class Note implements Serializable {
-    // Creating Collumns for db
+    // Creating Columns for db
     @PrimaryKey(autoGenerate = true)
     private int note_id;
 

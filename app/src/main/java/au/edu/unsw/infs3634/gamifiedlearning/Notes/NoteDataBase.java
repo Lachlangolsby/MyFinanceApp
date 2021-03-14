@@ -13,7 +13,7 @@ import androidx.room.TypeConverters;
 public abstract class NoteDataBase extends RoomDatabase {
     private static NoteDataBase noteDB;
 
-    // calling to build database if not existant
+    // calling to build database if not existent
     public static NoteDataBase getInstance(Context context) {
         if (null == noteDB) {
             noteDB = buildDatabaseInstance(context);
